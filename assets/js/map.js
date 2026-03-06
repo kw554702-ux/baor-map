@@ -13,9 +13,10 @@ for (var i = 0; i < locations.length; i++) {
 
   var baorIcon = L.icon({
   iconUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhO2wz-J-BDs24xhoYNBNsUXoI4dPgPRPiohJu6kB83yU2vGX9WlZiB1rcnOQc7MfLQfVtV66wYQWFNbKkrRoDPa3wjFTHpa4APhbVplDSXQmx9Ti6mzQR7huzhuRxB3XDeP9G_0_0Suu1JDQCdOuTHkZhD_5t7Qv82pSrCio2MK9wHIOQjLS5EICqvQ98/s1536/Union%20Jack%20location%20pin%20icon.png',
-  iconSize: [48, 48],
-  iconAnchor: [24, 48],
-  popupAnchor: [0, -42]
+
+  iconSize: [48, 60],
+  iconAnchor: [24, 60],
+  popupAnchor: [0, -55]
 });
 
 var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
@@ -101,6 +102,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
