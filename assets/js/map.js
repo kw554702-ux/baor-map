@@ -11,7 +11,14 @@ var markerLayer = L.layerGroup().addTo(map);
 for (var i = 0; i < locations.length; i++) {
   var loc = locations[i];
 
-  var marker = L.marker(loc.coords).addTo(markerLayer);
+  var baorIcon = L.icon({
+  iconUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhO2wz-J-BDs24xhoYNBNsUXoI4dPgPRPiohJu6kB83yU2vGX9WlZiB1rcnOQc7MfLQfVtV66wYQWFNbKkrRoDPa3wjFTHpa4APhbVplDSXQmx9Ti6mzQR7huzhuRxB3XDeP9G_0_0Suu1JDQCdOuTHkZhD_5t7Qv82pSrCio2MK9wHIOQjLS5EICqvQ98/s1536/Union%20Jack%20location%20pin%20icon.png',
+  iconSize: [36, 36],
+  iconAnchor: [18, 36],
+  popupAnchor: [0, -32]
+});
+
+var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
 
   var popupHtml =
     '<strong>' + loc.title + '</strong>' +
@@ -94,3 +101,4 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
