@@ -5,20 +5,21 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// --- Marker layer ---
-var markerLayer = L.layerGroup().addTo(map);
-
-for (var i = 0; i < locations.length; i++) {
-  var loc = locations[i];
-
-  var baorIcon = L.icon({
+// Custom BAOR icon
+var baorIcon = L.icon({
   iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
   iconSize: [40, 56],
   iconAnchor: [20, 56],
   popupAnchor: [0, -50]
 });
 
-var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
+// --- Marker layer ---
+var markerLayer = L.layerGroup().addTo(map);
+
+for (var i = 0; i < locations.length; i++) {
+  var loc = locations[i];
+
+  var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
 
   var popupHtml =
     '<strong>' + loc.title + '</strong>' +
