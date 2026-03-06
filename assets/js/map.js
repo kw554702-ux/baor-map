@@ -12,7 +12,7 @@ for (var i = 0; i < locations.length; i++) {
   var loc = locations[i];
 
   var baorIcon = L.icon({
-  iconUrl: 'assets/img/union-jack-marker.png',
+  iconUrl: 'https://raw.githubusercontent.com/kw554702-ux/baor-map/main/assets/img/union-jack-marker.png',
   iconSize: [40, 56],
   iconAnchor: [20, 56],
   popupAnchor: [0, -50]
@@ -101,6 +101,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
