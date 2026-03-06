@@ -5,7 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// --- Markers ---
+// --- Marker layer ---
 var markerLayer = L.layerGroup().addTo(map);
 
 for (var i = 0; i < locations.length; i++) {
@@ -21,59 +21,71 @@ for (var i = 0; i < locations.length; i++) {
   marker.bindPopup(popupHtml);
 }
 
-// --- British Zone overlay ---
-// Practical first-pass method:
-// load German state boundaries and keep only the states that broadly match
-// the British Zone footprint for your project.
+// --- British Zone overlay layer ---
 var britishZoneLayer = L.geoJSON(null, {
-  style: function () {
+  style: function (feature) {
+    var p = feature.properties || {};
+    var rawName = p.name || p.NAME_1 || p.NAME || p.GEN || p.lan_name || '';
+    var name = String(rawName).toLowerCase();
+
+    var isBritishZone =
+      name.indexOf('schleswig') !== -1 ||
+      name.indexOf('hamburg') !== -1 ||
+      name.indexOf('niedersachsen') !== -1 ||
+      name.indexOf('lower saxony') !== -1 ||
+      name.indexOf('nordrhein') !== -1 ||
+      name.indexOf('north rhine') !== -1;
+
+    if (isBritishZone) {
+      return {
+        color: '#1f4aa8',
+        weight: 2,
+        opacity: 0.9,
+        fillColor: '#4f83ff',
+        fillOpacity: 0.15
+      };
+    }
+
     return {
-      color: '#1f4aa8',
-      weight: 2,
-      opacity: 0.9,
-      fillColor: '#4f83ff',
-      fillOpacity: 0.12
+      color: '#000000',
+      weight: 1,
+      opacity: 0,
+      fillOpacity: 0
     };
   },
   onEachFeature: function (feature, layer) {
     var p = feature.properties || {};
-    var name =
-      p.name || p.NAME_1 || p.NAME || p.GEN || p.lan_name || 'British Zone area';
-    layer.bindPopup('<strong>' + name + '</strong><br>British Zone overlay');
+    var rawName = p.name || p.NAME_1 || p.NAME || p.GEN || p.lan_name || 'Area';
+    var name = String(rawName).toLowerCase();
+
+    var isBritishZone =
+      name.indexOf('schleswig') !== -1 ||
+      name.indexOf('hamburg') !== -1 ||
+      name.indexOf('niedersachsen') !== -1 ||
+      name.indexOf('lower saxony') !== -1 ||
+      name.indexOf('nordrhein') !== -1 ||
+      name.indexOf('north rhine') !== -1;
+
+    if (isBritishZone) {
+      layer.bindPopup('<strong>' + rawName + '</strong><br>British Zone overlay');
+    }
   }
 }).addTo(map);
 
+// Load Germany state boundaries
 fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/4_niedrig.geo.json')
   .then(function (response) {
     return response.json();
   })
   .then(function (geojson) {
-    var wanted = {
-      'schleswig-holstein': true,
-      'hamburg': true,
-      'niedersachsen': true,
-      'lower saxony': true,
-      'nordrhein-westfalen': true,
-      'north rhine-westphalia': true
-    };
-
-    var filtered = {
-      type: 'FeatureCollection',
-      features: geojson.features.filter(function (feature) {
-        var p = feature.properties || {};
-        var rawName =
-          p.name || p.NAME_1 || p.NAME || p.GEN || p.lan_name || '';
-        var name = String(rawName).trim().toLowerCase();
-        return !!wanted[name];
-      })
-    };
-
-    britishZoneLayer.addData(filtered);
+    britishZoneLayer.addData(geojson);
   })
   .catch(function (err) {
-    console.error('British Zone overlay failed to load:', err);
+    console.log('Overlay failed to load:', err);
+    alert('British Zone overlay failed to load.');
   });
 
+// Layer switcher
 L.control.layers(
   null,
   {
@@ -82,5 +94,3 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
-
-
