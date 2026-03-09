@@ -162,7 +162,7 @@ var locations = [
 
 {
   key: "osnabruck",
-  title: "Osnabrück",
+  title: "Osnabruck",
   region: "lower-saxony",
   coords: [52.2799, 8.0472],
   desc: "Major BAOR garrison city in Lower Saxony.",
@@ -192,7 +192,7 @@ var locations = [
 
 {
   key: "gutersloh",
-  title: "Gütersloh",
+  title: "Gutersloh",
   region: "nrw",
   coords: [51.9069, 8.3785],
   desc: "Important British military location associated with BAOR and RAF Germany.",
@@ -228,7 +228,6 @@ var locations = [
   desc: "Training-area and camp location within the BAOR North German training zone.",
   units: [],
   page: "locations/template-location.html"
-}  
+}
+
 ];
-
-
