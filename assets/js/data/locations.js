@@ -522,9 +522,9 @@ var locations = [
 
 {
   key: "bunde",
-  title: "Bunde",
-  region: "lower-saxony",
-  coords: [53.1810, 7.2730],
+  title: "Bünde",
+  region: "nrw",
+  coords: [52.20347187578234, 8.598626709038221],
   desc: "British military location near the Dutch border.",
   units: [],
   page: "locations/template-location.html"
@@ -630,6 +630,7 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
 
 
