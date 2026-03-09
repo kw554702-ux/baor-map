@@ -120,4 +120,14 @@ var locations = [
   page: "locations/template-location.html"
 }
 
+{
+  key: "munsterlager",
+  title: "Munster (Munsterlager)",
+  region: "lower-saxony",
+  coords: [52.986, 10.090],
+  desc: "Major BAOR station adjacent to the Soltau–Lüneburg training area.",
+  units: [],
+  page: "locations/template-location.html"
+},  
 ];
+
