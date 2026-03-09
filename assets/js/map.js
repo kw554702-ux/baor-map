@@ -27,6 +27,11 @@ for (var i = 0; i < locations.length; i++) {
     '<br><a href="' + loc.page + '" target="_blank">Open page</a>';
 
   marker.bindPopup(popupHtml);
+  marker.bindTooltip(loc.title, {
+  direction: 'top',
+  offset: [0, -50],
+  opacity: 0.9
+});
 }
 
 // --- British Zone overlay layer ---
@@ -102,6 +107,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
