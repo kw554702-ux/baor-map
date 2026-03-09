@@ -26,11 +26,11 @@ for (var i = 0; i < locations.length; i++) {
     (loc.desc ? '<br>' + loc.desc : '') +
     '<br><a href="' + loc.page + '" target="_blank">Open page</a>';
 
-  marker.bindPopup(popupHtml);
   marker.bindTooltip(loc.title, {
   direction: 'top',
-  offset: [0, -50],
-  opacity: 0.9
+  offset: [0, -55],
+  opacity: 1,
+  className: 'baor-label'
 });
 }
 
@@ -107,6 +107,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
