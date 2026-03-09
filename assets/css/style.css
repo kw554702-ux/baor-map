@@ -15,4 +15,18 @@ h1 {
 #map {
   height: calc(100vh - 56px);
   width: 100%;
+
+}
+
+/* BAOR map labels */
+
+.leaflet-tooltip.baor-label {
+  background: white;
+  border: 1px solid #2d3e66;
+  color: #1f2a44;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
