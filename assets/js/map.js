@@ -26,12 +26,12 @@ for (var i = 0; i < locations.length; i++) {
 
   bounds.extend(loc.coords);
 
- var popupHtml =
-  '<div class="baor-popup">' +
-  '<div class="baor-title">' + loc.title + '</div>' +
-  (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
-  '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
-  '</div>';
+  var popupHtml =
+    '<div class="baor-popup">' +
+    '<div class="baor-title">' + loc.title + '</div>' +
+    (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
+    '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
+    '</div>';
 
   marker.bindPopup(popupHtml);
 
@@ -62,20 +62,20 @@ var britishZoneLayer = L.geoJSON(null, {
 
     if (isBritishZone) {
       return {
-  color: '#4f6ea8',
-  weight: 1,
-  opacity: 0.35,
-  fillColor: '#6f93d6',
-  fillOpacity: 0.10
-};
+        color: '#1f4aa8',
+        weight: 2,
+        opacity: 0.9,
+        fillColor: '#4f83ff',
+        fillOpacity: 0.15
+      };
     }
 
-   return {
-  color: '#000000',
-  weight: 0,
-  opacity: 0,
-  fillOpacity: 0
-};
+    return {
+      color: '#000000',
+      weight: 1,
+      opacity: 0,
+      fillOpacity: 0
+    };
   },
   onEachFeature: function (feature, layer) {
     var p = feature.properties || {};
@@ -107,6 +107,7 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
+// Layer switcher
 L.control.layers(
   null,
   {
@@ -115,5 +116,3 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
-
-
