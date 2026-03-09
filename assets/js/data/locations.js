@@ -235,7 +235,7 @@ var locations = [
   title: "Bad Oeynhausen",
   region: "nrw",
   coords: [52.2066, 8.8037],
-  desc: "Post-war headquarters location of BAOR in North Rhine-Westphalia.",
+  desc: "Headquarters, British Army of the Rhine (BAOR), 1948–1954.",
   units: [],
   page: "locations/template-location.html"
 },
@@ -455,7 +455,7 @@ var locations = [
   title: "Rheindahlen",
   region: "nrw",
   coords: [51.1660, 6.3380],
-  desc: "Major BAOR headquarters complex near Mönchengladbach.",
+  desc: "Headquarters, British Army of the Rhine (BAOR), 1954–1994.",
   units: [],
   page: "locations/template-location.html"
 },
@@ -670,6 +670,7 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
 
 
