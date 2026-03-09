@@ -14,7 +14,8 @@ var baorIcon = L.icon({
 });
 
 // --- Marker layer ---
-var markerLayer = L.layerGroup().addTo(map);
+var markerLayer = L.markerClusterGroup();
+map.addLayer(markerLayer);
 
 var bounds = L.latLngBounds();
 
@@ -112,6 +113,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
