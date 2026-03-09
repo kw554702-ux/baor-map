@@ -94,20 +94,17 @@ var britishZoneLayer = L.geoJSON(null, {
   }
 }).addTo(map);
 
-// Load Germany state boundaries
 fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/4_niedrig.geo.json')
-  .then(function(response) {
+  .then(function (response) {
     return response.json();
   })
-  .then(function(geojson) {
+  .then(function (geojson) {
     britishZoneLayer.addData(geojson);
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log('Overlay failed to load:', err);
-    alert('British Zone overlay failed to load.');
   });
 
-// Layer switcher
 L.control.layers(
   null,
   {
