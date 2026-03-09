@@ -105,6 +105,27 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
+// --- East Germany (GDR) overlay ---
+var gdrLayer = L.geoJSON(null, {
+  style: {
+    color: "#cc0000",
+    weight: 3,
+    dashArray: "6,6",
+    fillOpacity: 0
+  }
+}).addTo(map);
+
+fetch('assets/geo/gdr.geojson')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    gdrLayer.addData(data);
+  })
+  .catch(function(err) {
+    console.log("GDR layer failed:", err);
+  });
+
 // --- Inner German Border ---
 var borderCoords = [
   [54.803, 10.874],
@@ -164,10 +185,11 @@ L.control.layers(
   {
     'BAOR markers': markerLayer,
     'British Zone overlay': britishZoneLayer,
-    'Inner German Border': innerGermanBorder
+    'East Germany (GDR)': gdrLayer
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
