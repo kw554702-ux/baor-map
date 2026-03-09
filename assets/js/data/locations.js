@@ -130,4 +130,104 @@ var locations = [
   page: "locations/template-location.html"
 }
 
+{
+  key: "bielefeld",
+  title: "Bielefeld",
+  region: "nrw",
+  coords: [52.0302, 8.5325],
+  desc: "Major BAOR garrison city in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "herford",
+  title: "Herford",
+  region: "nrw",
+  coords: [52.1151, 8.6734],
+  desc: "Important BAOR garrison town in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "minden",
+  title: "Minden",
+  region: "nrw",
+  coords: [52.2895, 8.9146],
+  desc: "BAOR station town on the Weser.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "osnabruck",
+  title: "Osnabrück",
+  region: "lower-saxony",
+  coords: [52.2799, 8.0472],
+  desc: "Major BAOR garrison city in Lower Saxony.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "paderborn",
+  title: "Paderborn",
+  region: "nrw",
+  coords: [51.7189, 8.7575],
+  desc: "Major BAOR garrison city and later armoured centre.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "detmold",
+  title: "Detmold",
+  region: "nrw",
+  coords: [51.9363, 8.8792],
+  desc: "BAOR garrison town in Lippe.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "gutersloh",
+  title: "Gütersloh",
+  region: "nrw",
+  coords: [51.9069, 8.3785],
+  desc: "Important British military location associated with BAOR and RAF Germany.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "soest",
+  title: "Soest",
+  region: "nrw",
+  coords: [51.5711, 8.1058],
+  desc: "BAOR garrison town in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "hohne",
+  title: "Hohne",
+  region: "lower-saxony",
+  coords: [52.8070, 9.9730],
+  desc: "BAOR camp and training-area location closely linked to Bergen-Hohne.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "wietzendorf",
+  title: "Wietzendorf",
+  region: "lower-saxony",
+  coords: [52.9167, 9.9833],
+  desc: "Training-area and camp location within the BAOR North German training zone.",
+  units: [],
+  page: "locations/template-location.html"
+}  
 ];
+
