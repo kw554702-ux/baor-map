@@ -105,6 +105,27 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
+// --- Inner German Border ---
+var borderCoords = [
+  [54.800, 10.900],
+  [54.300, 10.500],
+  [53.900, 10.200],
+  [53.600, 10.200],
+  [53.200, 10.300],
+  [52.900, 10.600],
+  [52.500, 10.900],
+  [52.100, 10.900],
+  [51.700, 10.600],
+  [51.300, 10.400],
+  [50.900, 10.200],
+  [50.500, 10.200]
+];
+
+var innerGermanBorder = L.polyline(borderCoords, {
+  color: "#cc0000",
+  weight: 3,
+  dashArray: "6,6"
+}).addTo(map);
 L.control.layers(
   null,
   {
@@ -113,3 +134,4 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
