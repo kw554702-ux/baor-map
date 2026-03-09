@@ -95,15 +95,14 @@ var britishZoneLayer = L.geoJSON(null, {
 }).addTo(map);
 
 // Load Germany state boundaries
-fetch("https://raw.githubusercontent.com/ginseng666/GeoJSON-TopoJSON-Austria/master/inner_german_border.geojson")
-  .then(function(response) { return response.json(); })
-  .then(function(data) {
-    innerGermanBorder.addData(data);
+fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/4_niedrig.geo.json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(geojson) {
+    britishZoneLayer.addData(geojson);
   })
   .catch(function(err) {
-    console.log("Inner German Border failed to load:", err);
-  });
-  .catch(function (err) {
     console.log('Overlay failed to load:', err);
     alert('British Zone overlay failed to load.');
   });
@@ -113,25 +112,7 @@ L.control.layers(
   null,
   {
     'BAOR markers': markerLayer,
-    'British Zone overlay': britishZoneLayer,
-    'Inner German Border': innerGermanBorder
+    'British Zone overlay': britishZoneLayer
   },
   { collapsed: false }
 ).addTo(map);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
