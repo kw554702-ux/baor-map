@@ -127,58 +127,29 @@ fetch('assets/geo/gdr.geojson')
   });
 
 // --- Inner German Border ---
-var borderCoords = [
-  [54.803, 10.874],
-  [54.700, 10.780],
-  [54.600, 10.720],
-  [54.500, 10.650],
-  [54.400, 10.560],
-  [54.300, 10.500],
-  [54.200, 10.430],
-  [54.100, 10.360],
-  [54.000, 10.300],
-  [53.900, 10.250],
-  [53.800, 10.220],
-  [53.700, 10.220],
-  [53.600, 10.240],
-  [53.500, 10.280],
-  [53.400, 10.340],
-  [53.300, 10.420],
-  [53.200, 10.500],
-  [53.100, 10.600],
-  [53.000, 10.680],
-  [52.900, 10.760],
-  [52.800, 10.840],
-  [52.700, 10.900],
-  [52.600, 10.920],
-  [52.500, 10.930],
-  [52.400, 10.920],
-  [52.300, 10.900],
-  [52.200, 10.880],
-  [52.100, 10.860],
-  [52.000, 10.830],
-  [51.900, 10.780],
-  [51.800, 10.720],
-  [51.700, 10.650],
-  [51.600, 10.580],
-  [51.500, 10.500],
-  [51.400, 10.420],
-  [51.300, 10.350],
-  [51.200, 10.300],
-  [51.100, 10.250],
-  [51.000, 10.200],
-  [50.900, 10.140],
-  [50.800, 10.080],
-  [50.700, 10.000],
-  [50.600, 9.960],
-  [50.500, 9.950]
-];
-
-var innerGermanBorder = L.polyline(borderCoords, {
-  color: "#cc0000",
-  weight: 3,
-  dashArray: "6,6"
+// --- East Germany (GDR) overlay from local GeoJSON ---
+var gdrLayer = L.geoJSON(null, {
+  style: {
+    color: "#cc0000",
+    weight: 2,
+    opacity: 0.9,
+    fillOpacity: 0
+  },
+  onEachFeature: function (feature, layer) {
+    layer.bindPopup("German Democratic Republic (1949–1990)");
+  }
 }).addTo(map);
+
+fetch('assets/geo/gdr.geojson')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    gdrLayer.addData(data);
+  })
+  .catch(function(err) {
+    console.log("GDR layer failed:", err);
+  });
 
 L.control.layers(
   null,
@@ -189,6 +160,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
