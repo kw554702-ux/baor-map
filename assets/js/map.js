@@ -126,12 +126,15 @@ var innerGermanBorder = L.polyline(borderCoords, {
   weight: 3,
   dashArray: "6,6"
 }).addTo(map);
+
 L.control.layers(
   null,
   {
     'BAOR markers': markerLayer,
-    'British Zone overlay': britishZoneLayer
+    'British Zone overlay': britishZoneLayer,
+    'Inner German Border': innerGermanBorder
   },
   { collapsed: false }
 ).addTo(map);
+
 
