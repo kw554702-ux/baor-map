@@ -658,8 +658,19 @@ var locations = [
   desc: "BAOR station town east of Dortmund.",
   units: [],
   page: "locations/template-location.html"
+},
+
+{
+  key: "berlin",
+  title: "Berlin (British Sector)",
+  region: "berlin",
+  coords: [52.5074, 13.3756],
+  desc: "British sector of Berlin within the four-power occupation city.",
+  units: [],
+  page: "locations/template-location.html"
 }  
 ];
+
 
 
 
