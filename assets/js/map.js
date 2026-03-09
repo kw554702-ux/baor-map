@@ -105,7 +105,6 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
-// Layer switcher
 L.control.layers(
   null,
   {
