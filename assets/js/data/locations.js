@@ -228,7 +228,8 @@ var locations = [
   desc: "Training-area and camp location within the BAOR North German training zone.",
   units: [],
   page: "locations/template-location.html"
-}
+},
+  
 {
   key: "bad-oeynhausen",
   title: "Bad Oeynhausen",
@@ -449,4 +450,5 @@ var locations = [
   page: "locations/template-location.html"
 }
 ];
+
 
