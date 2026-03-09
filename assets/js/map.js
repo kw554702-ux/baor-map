@@ -26,10 +26,12 @@ for (var i = 0; i < locations.length; i++) {
 
   bounds.extend(loc.coords);
 
-  var popupHtml =
-    '<strong>' + loc.title + '</strong>' +
-    (loc.desc ? '<br>' + loc.desc : '') +
-    '<br><a href="' + loc.page + '" target="_blank">Open page</a>';
+ var popupHtml =
+  '<div class="baor-popup">' +
+  '<div class="baor-title">' + loc.title + '</div>' +
+  (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
+  '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
+  '</div>';
 
   marker.bindPopup(popupHtml);
 
@@ -113,3 +115,4 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
