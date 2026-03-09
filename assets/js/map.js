@@ -62,20 +62,20 @@ var britishZoneLayer = L.geoJSON(null, {
 
     if (isBritishZone) {
       return {
-        color: '#1f4aa8',
-        weight: 2,
-        opacity: 0.9,
-        fillColor: '#4f83ff',
-        fillOpacity: 0.15
-      };
+  color: '#4f6ea8',
+  weight: 1,
+  opacity: 0.35,
+  fillColor: '#6f93d6',
+  fillOpacity: 0.10
+};
     }
 
-    return {
-      color: '#000000',
-      weight: 1,
-      opacity: 0,
-      fillOpacity: 0
-    };
+   return {
+  color: '#000000',
+  weight: 0,
+  opacity: 0,
+  fillOpacity: 0
+};
   },
   onEachFeature: function (feature, layer) {
     var p = feature.properties || {};
@@ -115,4 +115,5 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
