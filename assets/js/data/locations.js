@@ -128,7 +128,7 @@ var locations = [
   desc: "Major BAOR station adjacent to the Soltau-Lüneburg training area.",
   units: [],
   page: "locations/template-location.html"
-}
+},
 
 {
   key: "bielefeld",
@@ -230,4 +230,5 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
