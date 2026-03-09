@@ -95,73 +95,22 @@ var britishZoneLayer = L.geoJSON(null, {
 }).addTo(map);
 
 fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bundeslaender/4_niedrig.geo.json')
-  .then(function (response) {
+  .then(function(response) {
     return response.json();
   })
-  .then(function (geojson) {
+  .then(function(geojson) {
     britishZoneLayer.addData(geojson);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     console.log('Overlay failed to load:', err);
   });
 
-// --- East Germany (GDR) overlay ---
-var gdrLayer = L.geoJSON(null, {
-  style: {
-    color: "#cc0000",
-    weight: 3,
-    dashArray: "6,6",
-    fillOpacity: 0
-  }
-}).addTo(map);
-
-fetch('assets/geo/gdr.geojson')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    gdrLayer.addData(data);
-  })
-  .catch(function(err) {
-    console.log("GDR layer failed:", err);
-  });
-
-// --- Inner German Border ---
-// --- East Germany (GDR) overlay from local GeoJSON ---
-var gdrLayer = L.geoJSON(null, {
-  style: {
-    color: "#cc0000",
-    weight: 2,
-    opacity: 0.9,
-    fillOpacity: 0
-  },
-  onEachFeature: function (feature, layer) {
-    layer.bindPopup("German Democratic Republic (1949–1990)");
-  }
-}).addTo(map);
-
-fetch('assets/geo/gdr.geojson')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    gdrLayer.addData(data);
-  })
-  .catch(function(err) {
-    console.log("GDR layer failed:", err);
-  });
-
+// Layer switcher
 L.control.layers(
   null,
   {
     'BAOR markers': markerLayer,
-    'British Zone overlay': britishZoneLayer,
-    'East Germany (GDR)': gdrLayer
+    'British Zone overlay': britishZoneLayer
   },
   { collapsed: false }
 ).addTo(map);
-
-
-
-
-
