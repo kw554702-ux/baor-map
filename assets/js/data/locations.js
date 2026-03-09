@@ -448,7 +448,188 @@ var locations = [
   desc: "British military location near Paderborn.",
   units: [],
   page: "locations/template-location.html"
-}
+},
+
+{
+  key: "rheindahlen",
+  title: "Rheindahlen",
+  region: "nrw",
+  coords: [51.1660, 6.3380],
+  desc: "Major BAOR headquarters complex near Mönchengladbach.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "birgelen",
+  title: "Birgelen",
+  region: "nrw",
+  coords: [51.0990, 6.1430],
+  desc: "British military location near the Dutch border.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "neumunster",
+  title: "Neumünster",
+  region: "schleswig-holstein",
+  coords: [54.0720, 9.9810],
+  desc: "BAOR station town in Schleswig-Holstein.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "willich",
+  title: "Willich",
+  region: "nrw",
+  coords: [51.2630, 6.5480],
+  desc: "British military location near Krefeld.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "oldenburg",
+  title: "Oldenburg",
+  region: "lower-saxony",
+  coords: [53.1430, 8.2140],
+  desc: "British military location in Lower Saxony.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "adelheide",
+  title: "Adelheide",
+  region: "lower-saxony",
+  coords: [52.9900, 8.6600],
+  desc: "Training and military area near Delmenhorst.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "wuppertal",
+  title: "Wuppertal",
+  region: "nrw",
+  coords: [51.2560, 7.1500],
+  desc: "British military presence in the Wuppertal area.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "bunde",
+  title: "Bunde",
+  region: "lower-saxony",
+  coords: [53.1810, 7.2730],
+  desc: "British military location near the Dutch border.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "munster-westfalen",
+  title: "Münster (Westfalen)",
+  region: "nrw",
+  coords: [51.9607, 7.6261],
+  desc: "Major Westphalian city with British military presence.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "buxtehude",
+  title: "Buxtehude",
+  region: "lower-saxony",
+  coords: [53.4760, 9.7000],
+  desc: "British military location south-west of Hamburg.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "gottingen",
+  title: "Göttingen",
+  region: "lower-saxony",
+  coords: [51.5410, 9.9150],
+  desc: "British military presence in the Göttingen area.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "melsbroek",
+  title: "Melsbroek",
+  region: "belgium",
+  coords: [50.9030, 4.4840],
+  desc: "RAF and British military location near Brussels.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "laarbruch",
+  title: "Laarbruch",
+  region: "nrw",
+  coords: [51.6020, 6.1420],
+  desc: "RAF Laarbruch, major British airbase supporting BAOR.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "sennelager",
+  title: "Sennelager",
+  region: "nrw",
+  coords: [51.7630, 8.8400],
+  desc: "Major BAOR training area near Paderborn.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "warendorf",
+  title: "Warendorf",
+  region: "nrw",
+  coords: [51.9510, 7.9870],
+  desc: "British military location in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "st-tonis",
+  title: "St Tönis",
+  region: "nrw",
+  coords: [51.3210, 6.4980],
+  desc: "British military presence near Krefeld.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "wildenrath",
+  title: "Wildenrath",
+  region: "nrw",
+  coords: [51.0500, 6.2200],
+  desc: "RAF Wildenrath, major RAF Germany airbase.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "gutersloh",
+  title: "Gütersloh",
+  region: "nrw",
+  coords: [51.9069, 8.3785],
+  desc: "RAF Gütersloh and British military garrison location.",
+  units: [],
+  page: "locations/template-location.html"
+}  
 ];
+
 
 
