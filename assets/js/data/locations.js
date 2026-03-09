@@ -129,5 +129,7 @@ var locations = [
   units: [],
   page: "locations/template-location.html"
 },  
+  
 ];
+
 
