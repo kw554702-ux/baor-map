@@ -16,10 +16,14 @@ var baorIcon = L.icon({
 // --- Marker layer ---
 var markerLayer = L.layerGroup().addTo(map);
 
+var bounds = L.latLngBounds();
+
 for (var i = 0; i < locations.length; i++) {
   var loc = locations[i];
 
   var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
+
+  bounds.extend(loc.coords);
 
   var popupHtml =
     '<strong>' + loc.title + '</strong>' +
@@ -33,6 +37,7 @@ for (var i = 0; i < locations.length; i++) {
   className: 'baor-label'
 });
 }
+map.fitBounds(bounds, { padding: [40, 40] });
 
 // --- British Zone overlay layer ---
 var britishZoneLayer = L.geoJSON(null, {
@@ -107,6 +112,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
