@@ -628,8 +628,39 @@ var locations = [
   desc: "RAF Gütersloh and British military garrison location.",
   units: [],
   page: "locations/template-location.html"
+},  
+
+{
+  key: "wulfen",
+  title: "Wulfen",
+  region: "nrw",
+  coords: [51.7440, 7.0070],
+  desc: "British military location in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "hemer",
+  title: "Hemer",
+  region: "nrw",
+  coords: [51.3830, 7.7740],
+  desc: "BAOR garrison town in North Rhine-Westphalia.",
+  units: [],
+  page: "locations/template-location.html"
+},
+
+{
+  key: "werl",
+  title: "Werl",
+  region: "nrw",
+  coords: [51.5550, 7.9140],
+  desc: "BAOR station town east of Dortmund.",
+  units: [],
+  page: "locations/template-location.html"
 }  
 ];
+
 
 
 
