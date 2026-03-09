@@ -118,7 +118,7 @@ var locations = [
   desc: "British occupation zone port city near the inner German border.",
   units: [],
   page: "locations/template-location.html"
-}
+},
 
 {
   key: "munsterlager",
@@ -131,5 +131,6 @@ var locations = [
 },  
   
 ];
+
 
 
