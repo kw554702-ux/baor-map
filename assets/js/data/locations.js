@@ -4,8 +4,15 @@ var locations = [
   key: "bergen-hohne",
   title: "Bergen-Hohne",
   region: "lower-saxony",
-  coords: [52.7819, 9.9273],
-  desc: "Major BAOR training area and armoured station.",
+  coords: [52.889, 9.960],
+  zoomTo: [52.90, 9.97],
+  zoomLevel: 12,
+  desc: `
+  <ul>
+    <li>Major BAOR training area</li>
+    <li>Home of Bergen-Hohne Garrison</li>
+  </ul>
+  `,
   units: [],
   page: "locations/template-location.html"
 },
@@ -665,6 +672,7 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
 
 
