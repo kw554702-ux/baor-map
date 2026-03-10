@@ -211,16 +211,6 @@ var locations = [
 },
 
 {
-  key: "hohne",
-  title: "Hohne",
-  region: "lower-saxony",
-  coords: [52.8070, 9.9730],
-  desc: "BAOR camp and training-area location closely linked to Bergen-Hohne.",
-  units: [],
-  page: "locations/template-location.html"
-},
-
-{
   key: "wietzendorf",
   title: "Wietzendorf",
   region: "lower-saxony",
@@ -675,6 +665,7 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
 
 
