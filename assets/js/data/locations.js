@@ -4,9 +4,7 @@ var locations = [
   key: "bergen-hohne",
   title: "Bergen-Hohne",
   region: "lower-saxony",
-  coords: [52.782259268383676, 9.93237562149255],
-  zoomTo: [52.90, 9.97],
-  zoomLevel: 12,
+  coords: [52.782629688104116, 9.932452174338616], 
   desc: `
   <ul>
     <li>Major BAOR training area</li>
@@ -672,6 +670,7 @@ var locations = [
   page: "locations/template-location.html"
 }  
 ];
+
 
 
 
