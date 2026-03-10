@@ -5,6 +5,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var bergenCamp = L.marker([52.914, 9.997], { icon: baorIcon })
+  .bindPopup("<strong>Bergen Camp</strong><br>Bergen-Hohne Garrison")
+  .addTo(barracksLayer);
+
 // Custom BAOR icon
 var baorIcon = L.icon({
   iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
@@ -116,3 +120,4 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
