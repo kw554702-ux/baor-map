@@ -13,6 +13,7 @@ if (loc.zoomTo) {
   marker.on("click", function(e) {
     map.setView(loc.zoomTo, loc.zoomLevel || 12);
   });
+}
 
 // Custom BAOR icon
 var baorIcon = L.icon({
@@ -125,6 +126,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
