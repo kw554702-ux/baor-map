@@ -1,5 +1,5 @@
 var locations = [
-Map Code
+
 { key: "aachen", title: "Aachen", coords: [50.7752265001308, 6.08353627784672] },
 { key: "arnsberg", title: "Arnsberg", coords: [51.4083437837646, 8.05564845226628] },
 { key: "aurich", title: "Aurich", coords: [53.4718143358373, 7.4834562313093] },
@@ -148,6 +148,7 @@ Map Code
 
  
 ];
+
 
 
 
