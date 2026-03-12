@@ -6,7 +6,16 @@ var locations = [
 { key: "bad-bramstedt", title: "Bad Bramstedt", coords: [53.9197430163223, 9.88633296252211] },
 { key: "bad-eilsen", title: "Bad Eilsen", coords: [52.2399041484595, 9.09993941626075] },
 { key: "bad-lippspringe", title: "Bad Lippspringe", coords: [51.7835523618262, 8.8195913667117] },
-{ key: "bad-oeynhausen", title: "Bad Oeynhausen", coords: [52.2075810700606, 8.79632430311422] },
+{
+  key: "bad-oeynhausen",
+  title: "Bad Oeynhausen",
+  coords: [52.2075810700606, 8.79632430311422],
+  type: "Headquarters",
+  bfpo: "1",
+  hq: "HQ BAOR, 1948–1954; HQ I Corps, 1951–1953",
+  page: "locations/bad-oeynhausen.html"
+},
+
 { key: "bad-rothenfelde", title: "Bad Rothenfelde", coords: [52.1088592546586, 8.16345320293256] },
 { key: "bad-salzuflen", title: "Bad Salzuflen", coords: [52.0768742961842, 8.75868071231655] },
 { key: "bad-zwischenahn", title: "Bad Zwischenahn", coords: [53.1824600336773, 8.00974428774323] },
@@ -153,6 +162,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412] }
  
 ];
+
 
 
 
