@@ -143,11 +143,9 @@ var locations = [
 { key: "wolfenbüttel", title: "Wolfenbüttel", coords: [52.1610134993603, 10.5335224406349] },
 { key: "wulfen", title: "Wulfen", coords: [51.7159519160126, 7.01344360744929] },
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412] }
-
-
-
  
 ];
+
 
 
 
