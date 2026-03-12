@@ -24,7 +24,8 @@ var hqIcon = L.icon({
 var markerLayer = L.markerClusterGroup({
   showCoverageOnHover: false,
   zoomToBoundsOnClick: true,
-  spiderfyOnMaxZoom: true
+  spiderfyOnMaxZoom: true,
+  maxClusterRadius: 45
 });
 
 map.addLayer(markerLayer);
@@ -131,5 +132,6 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
