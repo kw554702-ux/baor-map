@@ -44,7 +44,9 @@ for (var i = 0; i < locations.length; i++) {
  var popupHtml =
   '<div class="baor-popup">' +
   '<div class="baor-title">' + loc.title + '</div>' +
-  (loc.hq ? '<div class="baor-hq"><em>' + loc.hq + '</em></div>' : '') +
+  (loc.type ? '<div class="baor-type">' + loc.type + '</div>' : '') +
+  (loc.bfpo ? '<div class="baor-meta"><strong>BFPO:</strong> ' + loc.bfpo + '</div>' : '') +
+  (loc.hq ? '<div class="baor-hq"><strong>HQ:</strong> ' + loc.hq + '</div>' : '') +
   (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
   '</div>';
@@ -132,6 +134,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
