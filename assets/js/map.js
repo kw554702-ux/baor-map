@@ -35,7 +35,7 @@ var bounds = L.latLngBounds();
 for (var i = 0; i < locations.length; i++) {
   var loc = locations[i];
 
-  var icon = loc.hq ? hqIcon : baorIcon;
+  var icon = baorIcon;
 
   var marker = L.marker(loc.coords, { icon: icon }).addTo(markerLayer);
 
@@ -134,6 +134,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
