@@ -40,10 +40,11 @@ for (var i = 0; i < locations.length; i++) {
   var marker = L.marker(loc.coords, { icon: icon }).addTo(markerLayer);
 
   bounds.extend(loc.coords);
-
- var popupHtml =
+ 
+  var popupHtml =
   '<div class="baor-popup">' +
   '<div class="baor-title">' + loc.title + '</div>' +
+  (loc.bfpo ? '<div class="baor-meta"><strong>BFPO:</strong> ' + loc.bfpo + '</div>' : '') +
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
   '</div>';
@@ -145,6 +146,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
