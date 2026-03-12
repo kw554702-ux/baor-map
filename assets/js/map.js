@@ -13,6 +13,13 @@ var baorIcon = L.icon({
   popupAnchor: [0, -50]
 });
 
+var hqIcon = L.icon({
+  iconUrl: 'assets/img/baor-hq-marker.png',
+  iconSize: [40, 56],
+  iconAnchor: [20, 56],
+  popupAnchor: [0, -50]
+});
+
 // --- Marker layer ---
 var markerLayer = L.markerClusterGroup();
 map.addLayer(markerLayer);
@@ -22,16 +29,19 @@ var bounds = L.latLngBounds();
 for (var i = 0; i < locations.length; i++) {
   var loc = locations[i];
 
-  var marker = L.marker(loc.coords, { icon: baorIcon }).addTo(markerLayer);
+  var icon = loc.hq ? hqIcon : baorIcon;
+
+  var marker = L.marker(loc.coords, { icon: icon }).addTo(markerLayer);
 
   bounds.extend(loc.coords);
 
-  var popupHtml =
-    '<div class="baor-popup">' +
-    '<div class="baor-title">' + loc.title + '</div>' +
-    (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
-    '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
-    '</div>';
+ var popupHtml =
+  '<div class="baor-popup">' +
+  '<div class="baor-title">' + loc.title + '</div>' +
+  (loc.hq ? '<div class="baor-hq"><em>' + loc.hq + '</em></div>' : '') +
+  (loc.desc ? '<div class="baor-desc">' + loc.desc + '</div>' : '') +
+  '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
+  '</div>';
 
   marker.bindPopup(popupHtml);
 
@@ -116,3 +126,4 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
