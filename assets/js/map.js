@@ -21,7 +21,12 @@ var hqIcon = L.icon({
 });
 
 // --- Marker layer ---
-var markerLayer = L.markerClusterGroup();
+var markerLayer = L.markerClusterGroup({
+  showCoverageOnHover: false,
+  zoomToBoundsOnClick: true,
+  spiderfyOnMaxZoom: true
+});
+
 map.addLayer(markerLayer);
 
 var bounds = L.latLngBounds();
@@ -126,4 +131,5 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
