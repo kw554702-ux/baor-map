@@ -31,6 +31,11 @@ h1 {
   box-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
 
+.baor-hq {
+  font-style: italic;
+  color: #444;
+  margin-bottom: 4px;
+}
 .baor-popup {
   font-family: Georgia, serif;
   line-height: 1.4;
@@ -56,3 +61,4 @@ h1 {
 .baor-link a:hover {
   text-decoration: underline;
 }
+
