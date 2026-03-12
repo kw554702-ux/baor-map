@@ -130,11 +130,10 @@ var locations = [
 { key: "verden", title: "Verden", coords: [52.923, 9.233], bfpo: "32", page: "locations/verden.html" },
 { key: "viersen", title: "Viersen", coords: [51.2556808394629, 6.4011846427851], page: "locations/viersen.html" },
 { key: "vogelsang", title: "Vogelsang", coords: [50.9559058071629, 6.88458181873423], page: "locations/vogelsang.html" },
-{ key: "walsrode", title: "Walsrode", coords: [, ], bfpo: "23", page: "locations/walsrode.html" },
+{ key: "walsrode", title: "Walsrode", coords: [52.86490973072808, 9.583303042610028], bfpo: "23", page: "locations/walsrode.html" },
 { key: "warendorf", title: "Warendorf", coords: [51.9525613092017, 7.98440842710821], page: "locations/warendorf.html" },
 { key: "werl", title: "Werl", coords: [51.5608914282912, 7.91347708642613], bfpo: "103", page: "locations/werl.html" },
 { key: "wesendorf", title: "Wesendorf", coords: [52.5941536599317, 10.5294714833064], page: "locations/wesendorf.html" },
-{ key: "wessel", title: "Wessel", coords: [, ], bfpo: "44", page: "locations/wessel.html" },
 { key: "wetter", title: "Wetter", coords: [51.3866285545256, 7.39554830236588], page: "locations/wetter.html" },
 { key: "wickrath", title: "Wickrath", coords: [51.1326075105549, 6.4088126826903], page: "locations/wickrath.html" },
 { key: "wildenrath", title: "Wildenrath", coords: [51.057, 6.215], bfpo: "42", page: "locations/wildenrath.html" },
@@ -148,6 +147,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], bfpo: "46", page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
