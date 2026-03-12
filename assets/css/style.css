@@ -36,7 +36,7 @@ h1 {
 
 .baor-popup {
   font-family: Georgia, serif;
-  max-width: 220px;
+  max-width: 230px;
   line-height: 1.35;
 }
 
@@ -44,18 +44,28 @@ h1 {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 2px; 
+}
+
+.baor-type {
+  font-size: 13px;
+  color: #2d3e66;
+  margin-bottom: 4px;
+}
+
+.baor-meta {
+  font-size: 13px;
+  margin-bottom: 3px;
 }
 
 .baor-hq {
-  font-style: italic;
-  color: #555;
-  margin-bottom: 6px;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 5px;
 }
 
 .baor-desc {
   font-size: 13px;
+  margin-top: 5px;
   margin-bottom: 8px;
 }
 
@@ -69,7 +79,6 @@ h1 {
 .baor-link a:hover {
   text-decoration: underline;
 }
-
 /* BAOR cluster styling */
 
 .marker-cluster-small,
@@ -116,5 +125,6 @@ h1 {
   line-height: 38px !important;
   font-size: 15px !important;
 }
+
 
 
