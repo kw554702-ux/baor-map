@@ -63,6 +63,20 @@ for (var i = 0; i < locations.length; i++) {
 
 map.fitBounds(bounds, { padding: [40, 40] });
 
+// --- Zoom to location from URL parameter ---
+var params = new URLSearchParams(window.location.search);
+var targetKey = params.get("loc");
+
+if (targetKey) {
+  for (var i = 0; i < locations.length; i++) {
+    var loc = locations[i];
+    if (loc.key === targetKey) {
+      map.setView(loc.coords, 11);
+      break;
+    }
+  }
+}
+
 // --- British Zone overlay layer ---
 var britishZoneLayer = L.geoJSON(null, {
   style: function (feature) {
@@ -134,6 +148,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
