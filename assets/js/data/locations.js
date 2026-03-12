@@ -145,9 +145,10 @@ var locations = [
 { key: "witten-annen", title: "Witten-Annen", coords: [51.450719670211, 7.37595763696168], page: "locations/witten-annen.html" },
 { key: "wolfenbuttel", title: "Wolfenbüttel", coords: [52.1610134993603, 10.5335224406349], page: "locations/wolfenbuttel.html" },
 { key: "wulfen", title: "Wulfen", coords: [51.7159519160126, 7.01344360744929], page: "locations/wulfen.html" },
-{ key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], page: "locations/wuppertal.html" },
+{ key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
