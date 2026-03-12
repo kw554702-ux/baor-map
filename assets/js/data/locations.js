@@ -49,7 +49,7 @@ var locations = [
 { key: "flensburg", title: "Flensburg", coords: [54.7949030411002, 9.4547453119708], page: "locations/flensburg.html" },
 { key: "frankfurt-am-main", title: "Frankfurt am Main", coords: [50.1136532849353, 8.68049213380417], page: "locations/frankfurt-am-main.html" },
 { key: "gluckstadt", title: "Glückstadt", coords: [53.7876498483282, 9.41427717966927], page: "locations/gluckstadt.html" },
-{ key: "goch", title: "Goch", coords: [, ], page: "locations/goch.html" },
+{ key: "goch", title: "Goch", coords: [51.68093032966771, 6.153789164061455], page: "locations/goch.html" },
 { key: "goslar", title: "Goslar", coords: [51.909218106593, 10.4285042593599], page: "locations/goslar.html" },
 { key: "gottingen", title: "Göttingen", coords: [51.5482652966472, 9.91826856594484], page: "locations/gottingen.html" },
 { key: "gutersloh", title: "Gütersloh", coords: [51.906, 8.378], bfpo: "47", page: "locations/gutersloh.html" },
@@ -148,6 +148,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], bfpo: "46", page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
