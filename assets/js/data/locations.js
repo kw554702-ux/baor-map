@@ -1,5 +1,4 @@
 var locations = [
-
 { key: "aachen", title: "Aachen", coords: [50.7752265001308, 6.08353627784672], page: "locations/aachen.html" },
 { key: "arnsberg", title: "Arnsberg", coords: [51.4083437837646, 8.05564845226628], page: "locations/arnsberg.html" },
 { key: "aurich", title: "Aurich", coords: [53.4718143358373, 7.4834562313093], page: "locations/aurich.html" },
@@ -147,6 +146,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], bfpo: "46", page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
