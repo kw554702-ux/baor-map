@@ -5,9 +5,9 @@ var locations = [
 { key: "aurich", title: "Aurich", coords: [53.4718143358373, 7.4834562313093], page: "locations/aurich.html" },
 { key: "bad-bramstedt", title: "Bad Bramstedt", coords: [53.9197430163223, 9.88633296252211], page: "locations/bad-bramstedt.html" },
 { key: "bad-eilsen", title: "Bad Eilsen", coords: [52.2399041484595, 9.09993941626075], page: "locations/bad-eilsen.html" },
-{ key: "bad-lippspringe", title: "Bad Lippspringe", coords: [51.7835523618262, 8.8195913667117], hq: "Brigade HQ – 33rd Armoured Brigade (1950-1956)", page: "locations/bad-lippspringe.html" }
+{ key: "bad-lippspringe", title: "Bad Lippspringe", coords: [51.7835523618262, 8.8195913667117], hq: "Brigade HQ – 33rd Armoured Brigade (1950-1956)", page: "locations/bad-lippspringe.html" },
 
-{ key: "bad-oeynhausen", title: "Bad Oeynhausen", coords: [52.2075810700606, 8.79632430311422], hq: "Army HQ – BAOR (1948-1954)", page: "locations/bad-oeynhausen.html" }
+{ key: "bad-oeynhausen", title: "Bad Oeynhausen", coords: [52.2075810700606, 8.79632430311422], hq: "Army HQ – BAOR (1948-1954)", page: "locations/bad-oeynhausen.html" },
 
 { key: "bad-rothenfelde", title: "Bad Rothenfelde", coords: [52.1088592546586, 8.16345320293256], page: "locations/bad-rothenfelde.html" },
 { key: "bad-salzuflen", title: "Bad Salzuflen", coords: [52.0768742961842, 8.75868071231655], page: "locations/bad-salzuflen.html" },
@@ -36,7 +36,7 @@ var locations = [
 { key: "dedelstorf", title: "Dedelstorf", coords: [52.7010573057168, 10.5068468631801], page: "locations/dedelstorf.html" },
 { key: "deilinghofen", title: "Deilinghofen", coords: [51.374164416031, 7.80488556170502], page: "locations/deilinghofen.html" },
 { key: "delmenhorst", title: "Delmenhorst", coords: [53.0494708176368, 8.62880760586465], hq: "Army Group Royal Artillery HQ – 5th AGRA (AA) (1950-1958)", page: "locations/delmenhorst.html" },
-{ key: "detmold", title: "Detmold", coords: [51.938, 8.873], bfpo: "41", hq: "Brigade HQ – 20th Armoured Brigade (1957-1977)", page: "locations/detmold.html" }
+{ key: "detmold", title: "Detmold", coords: [51.938, 8.873], bfpo: "41", hq: "Brigade HQ – 20th Armoured Brigade (1957-1977)", page: "locations/detmold.html" },
 
 { key: "diepholz", title: "Diepholz", coords: [52.606151572546, 8.37073500133807], page: "locations/diepholz.html" },
 { key: "dortmund", title: "Dortmund", coords: [51.5171702037927, 7.47297298466541], page: "locations/dortmund.html" },
@@ -148,6 +148,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
