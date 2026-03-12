@@ -14,7 +14,7 @@ var locations = [
 { key: "bad-zwischenahn", title: "Bad Zwischenahn", coords: [53.1824600336773, 8.00974428774323], page: "locations/bad-zwischenahn.html" },
 { key: "bergen-hohne", title: "Bergen-Hohne", coords: [52.7825460229226, 9.93236658850305], bfpo: "30", page: "locations/bergen-hohne.html" },
 { key: "berlin", title: "Berlin", coords: [52.5227152801697, 13.3876647214938], page: "locations/berlin.html" },
-{ key: "bielefeld", title: "Bielefeld", coords: [52.03, 8.532], bfpo: "39", hq: "Corps HQ – 1 Corps (1953-192)", page: "locations/bielefeld.html" },
+{ key: "bielefeld", title: "Bielefeld", coords: [52.03, 8.532], bfpo: "39", hq: "Corps HQ – 1 Corps (1953-1992)", page: "locations/bielefeld.html" },
 { key: "birgelen/wassenberg", title: "Birgelen/Wassenberg", coords: [51.113815175, 6.14853939845787], page: "locations/birgelen/wassenberg.html" },
 { key: "bochum", title: "Bochum", coords: [51.4822115508774, 7.21783369869501], page: "locations/bochum.html" },
 { key: "bracht", title: "Bracht", coords: [51.2821109639047, 6.19022700111504], page: "locations/bracht.html" },
@@ -148,6 +148,7 @@ var locations = [
 { key: "wuppertal", title: "Wuppertal", coords: [51.2644696687309, 7.15514105882412], page: "locations/wuppertal.html" }
 
 ];
+
 
 
 
