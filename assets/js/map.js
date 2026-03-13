@@ -137,15 +137,38 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
-// --- Location search ---
-var searchControl = L.Control.geocoder({
-  defaultMarkGeocode: false
-})
-.on('markgeocode', function(e) {
-  var latlng = e.geocode.center;
-  map.setView(latlng, 11);
-})
-.addTo(map);
+// --- BAOR location search ---
+function findLocationByTitle(query) {
+  query = query.trim().toLowerCase();
+  for (var i = 0; i < locations.length; i++) {
+    if (locations[i].title.toLowerCase() === query) {
+      return locations[i];
+    }
+  }
+  return null;
+}
+
+var searchInput = document.getElementById("baor-search");
+var searchButton = document.getElementById("baor-search-btn");
+
+function runBaorSearch() {
+  var query = searchInput.value;
+  var loc = findLocationByTitle(query);
+
+  if (loc) {
+    map.setView(loc.coords, 11);
+  } else {
+    alert("Location not found in BAOR dataset.");
+  }
+}
+
+searchButton.addEventListener("click", runBaorSearch);
+
+searchInput.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    runBaorSearch();
+  }
+});
 
 
 // Layer switcher
@@ -157,6 +180,7 @@ L.control.layers(
   },
   { collapsed: false }
 ).addTo(map);
+
 
 
 
