@@ -147,6 +147,17 @@ L.control.layers(
   { collapsed: false }
 ).addTo(map);
 
+// --- Location search ---
+var searchControl = L.Control.geocoder({
+  defaultMarkGeocode: false
+})
+.on('markgeocode', function(e) {
+  var latlng = e.geocode.center;
+  map.setView(latlng, 11);
+})
+.addTo(map);
+
+
 
 
 
