@@ -138,31 +138,49 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
   });
 
 // --- BAOR location search ---
-function findLocationByTitle(query) {
-  query = query.trim().toLowerCase();
+function normaliseText(text) {
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")   // remove accents
+    .replace(/[^a-z0-9\s-]/g, "")      // remove punctuation
+    .trim();
+}
 
-  // 1. Try exact match first
+function findLocation(query) {
+  var q = normaliseText(query);
+  if (!q) return null;
+
+  var exactMatch = null;
+  var startsWithMatch = null;
+  var containsMatch = null;
+
   for (var i = 0; i < locations.length; i++) {
-    if (locations[i].title.toLowerCase() === query) {
-      return locations[i];
+    var loc = locations[i];
+
+    var haystack = [
+      loc.title,
+      loc.key,
+      loc.hq,
+      loc.desc,
+      loc.bfpo
+    ].map(normaliseText).join(" ");
+
+    if (haystack === q) {
+      exactMatch = loc;
+      break;
+    }
+
+    if (!startsWithMatch && haystack.indexOf(q) === 0) {
+      startsWithMatch = loc;
+    }
+
+    if (!containsMatch && haystack.indexOf(q) !== -1) {
+      containsMatch = loc;
     }
   }
 
-  // 2. Then try "starts with"
-  for (var j = 0; j < locations.length; j++) {
-    if (locations[j].title.toLowerCase().indexOf(query) === 0) {
-      return locations[j];
-    }
-  }
-
-  // 3. Then try "contains"
-  for (var k = 0; k < locations.length; k++) {
-    if (locations[k].title.toLowerCase().indexOf(query) !== -1) {
-      return locations[k];
-    }
-  }
-
-  return null;
+  return exactMatch || startsWithMatch || containsMatch || null;
 }
 
 var searchInput = document.getElementById("baor-search");
@@ -172,17 +190,18 @@ function runBaorSearch() {
   if (!searchInput) return;
 
   var query = searchInput.value;
-  var loc = findLocationByTitle(query);
+  var loc = findLocation(query);
 
   if (loc) {
-    map.setView(loc.coords, 11);
+    map.setView(loc.coords, 12);
 
-    // Wait briefly for the map to move, then open the popup
-    setTimeout(function() {
-      markerLayer.eachLayer(function(layer) {
-        if (layer.getLatLng &&
-            layer.getLatLng().lat === loc.coords[0] &&
-            layer.getLatLng().lng === loc.coords[1]) {
+    setTimeout(function () {
+      markerLayer.eachLayer(function (layer) {
+        if (
+          layer.getLatLng &&
+          Math.abs(layer.getLatLng().lat - loc.coords[0]) < 0.0001 &&
+          Math.abs(layer.getLatLng().lng - loc.coords[1]) < 0.0001
+        ) {
           layer.openPopup();
         }
       });
@@ -197,13 +216,12 @@ if (searchButton) {
 }
 
 if (searchInput) {
-  searchInput.addEventListener("keydown", function(e) {
+  searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       runBaorSearch();
     }
   });
 }
-
 
 // Layer switcher
 L.control.layers(
@@ -253,6 +271,7 @@ if (searchInput) {
     }
   });
 }
+
 
 
 
