@@ -137,13 +137,23 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
+// Layer switcher
+L.control.layers(
+  null,
+  {
+    'BAOR markers': markerLayer,
+    'British Zone overlay': britishZoneLayer
+  },
+  { collapsed: false }
+).addTo(map);
+
 // --- BAOR location search ---
 function normaliseText(text) {
   return String(text || "")
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")   // remove accents
-    .replace(/[^a-z0-9\s-]/g, "")      // remove punctuation
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
     .trim();
 }
 
@@ -151,36 +161,23 @@ function findLocation(query) {
   var q = normaliseText(query);
   if (!q) return null;
 
-  var exactMatch = null;
-  var startsWithMatch = null;
-  var containsMatch = null;
-
   for (var i = 0; i < locations.length; i++) {
     var loc = locations[i];
+    var title = normaliseText(loc.title);
+    var key = normaliseText(loc.key);
 
-    var haystack = [
-      loc.title,
-      loc.key,
-      loc.hq,
-      loc.desc,
-      loc.bfpo
-    ].map(normaliseText).join(" ");
-
-    if (haystack === q) {
-      exactMatch = loc;
-      break;
-    }
-
-    if (!startsWithMatch && haystack.indexOf(q) === 0) {
-      startsWithMatch = loc;
-    }
-
-    if (!containsMatch && haystack.indexOf(q) !== -1) {
-      containsMatch = loc;
-    }
+    if (title === q || key === q) return loc;
   }
 
-  return exactMatch || startsWithMatch || containsMatch || null;
+  for (var j = 0; j < locations.length; j++) {
+    var loc2 = locations[j];
+    var title2 = normaliseText(loc2.title);
+    var key2 = normaliseText(loc2.key);
+
+    if (title2.indexOf(q) !== -1 || key2.indexOf(q) !== -1) return loc2;
+  }
+
+  return null;
 }
 
 var searchInput = document.getElementById("baor-search");
@@ -222,18 +219,6 @@ if (searchInput) {
     }
   });
 }
-
-// Layer switcher
-L.control.layers(
-  null,
-  {
-    'BAOR markers': markerLayer,
-    'British Zone overlay': britishZoneLayer
-  },
-  { collapsed: false }
-).addTo(map);
-
-
 
 
 
