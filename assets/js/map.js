@@ -22,25 +22,6 @@ var hqIcon = L.icon({
 
 
 // --- Marker layer ---
-/* BAOR cluster styling */
-
-.marker-cluster-small,
-.marker-cluster-medium,
-.marker-cluster-large {
-  background: rgba(31,42,68,0.25) !important;
-}
-
-.marker-cluster-small div,
-.marker-cluster-medium div,
-.marker-cluster-large div {
-  background: #ffffff !important;
-  border: 3px solid #1f2a44;
-  color: #1f2a44;
-  font-family: Georgia, serif;
-  font-weight: bold;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
 
 /* Size tuning */
 
