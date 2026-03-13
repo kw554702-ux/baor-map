@@ -132,7 +132,7 @@ var locations = [
 { key: "walsrode", title: "Walsrode", coords: [52.8644952033708, 9.58536297905269], bfpo: "23", page: "locations/walsrode.html" },
 { key: "warendorf", title: "Warendorf", coords: [51.9525613092017, 7.98440842710821], page: "locations/warendorf.html" },
 { key: "werl", title: "Werl", coords: [51.5608914282912, 7.91347708642613], bfpo: "103", page: "locations/werl.html" },
-#REF!
+{ key: "wesendorf", title: "Wesendorf", coords: [52.5941536599317, 10.5294714833064], page: "locations/wesendorf.html" },
 { key: "wetter", title: "Wetter", coords: [51.3866285545256, 7.39554830236588], page: "locations/wetter.html" },
 { key: "wickrath", title: "Wickrath", coords: [51.1326075105549, 6.4088126826903], page: "locations/wickrath.html" },
 { key: "wildenrath", title: "Wildenrath", coords: [51.057, 6.215], bfpo: "42", page: "locations/wildenrath.html" },
@@ -148,6 +148,7 @@ var locations = [
 
 
 ];
+
 
 
 
