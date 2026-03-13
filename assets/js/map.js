@@ -23,28 +23,7 @@ var hqIcon = L.icon({
 
 // --- Marker layer ---
 
-/* Size tuning */
 
-.marker-cluster-small div {
-  width: 36px !important;
-  height: 36px !important;
-  line-height: 32px !important;
-  font-size: 14px !important;
-}
-
-.marker-cluster-medium div {
-  width: 40px !important;
-  height: 40px !important;
-  line-height: 36px !important;
-  font-size: 15px !important;
-}
-
-.marker-cluster-large div {
-  width: 46px !important;
-  height: 46px !important;
-  line-height: 42px !important;
-  font-size: 16px !important;
-}
 
 map.addLayer(markerLayer);
 
