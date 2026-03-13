@@ -140,11 +140,28 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
 // --- BAOR location search ---
 function findLocationByTitle(query) {
   query = query.trim().toLowerCase();
+
+  // 1. Try exact match first
   for (var i = 0; i < locations.length; i++) {
     if (locations[i].title.toLowerCase() === query) {
       return locations[i];
     }
   }
+
+  // 2. Then try "starts with"
+  for (var j = 0; j < locations.length; j++) {
+    if (locations[j].title.toLowerCase().indexOf(query) === 0) {
+      return locations[j];
+    }
+  }
+
+  // 3. Then try "contains"
+  for (var k = 0; k < locations.length; k++) {
+    if (locations[k].title.toLowerCase().indexOf(query) !== -1) {
+      return locations[k];
+    }
+  }
+
   return null;
 }
 
@@ -152,23 +169,40 @@ var searchInput = document.getElementById("baor-search");
 var searchButton = document.getElementById("baor-search-btn");
 
 function runBaorSearch() {
+  if (!searchInput) return;
+
   var query = searchInput.value;
   var loc = findLocationByTitle(query);
 
   if (loc) {
     map.setView(loc.coords, 11);
+
+    // Wait briefly for the map to move, then open the popup
+    setTimeout(function() {
+      markerLayer.eachLayer(function(layer) {
+        if (layer.getLatLng &&
+            layer.getLatLng().lat === loc.coords[0] &&
+            layer.getLatLng().lng === loc.coords[1]) {
+          layer.openPopup();
+        }
+      });
+    }, 300);
   } else {
     alert("Location not found in BAOR dataset.");
   }
 }
 
-searchButton.addEventListener("click", runBaorSearch);
+if (searchButton) {
+  searchButton.addEventListener("click", runBaorSearch);
+}
 
-searchInput.addEventListener("keydown", function(e) {
-  if (e.key === "Enter") {
-    runBaorSearch();
-  }
-});
+if (searchInput) {
+  searchInput.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      runBaorSearch();
+    }
+  });
+}
 
 
 // Layer switcher
@@ -219,6 +253,7 @@ if (searchInput) {
     }
   });
 }
+
 
 
 
