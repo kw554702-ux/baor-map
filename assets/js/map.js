@@ -137,6 +137,17 @@ fetch('https://raw.githubusercontent.com/isellsoap/deutschlandGeoJSON/main/2_bun
     console.log('Overlay failed to load:', err);
   });
 
+// --- Location search ---
+var searchControl = L.Control.geocoder({
+  defaultMarkGeocode: false
+})
+.on('markgeocode', function(e) {
+  var latlng = e.geocode.center;
+  map.setView(latlng, 11);
+})
+.addTo(map);
+
+
 // Layer switcher
 L.control.layers(
   null,
@@ -156,6 +167,7 @@ var searchControl = L.Control.geocoder({
   map.setView(latlng, 11);
 })
 .addTo(map);
+
 
 
 
