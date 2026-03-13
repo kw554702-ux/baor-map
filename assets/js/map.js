@@ -20,6 +20,7 @@ var hqIcon = L.icon({
   popupAnchor: [0, -50]
 });
 
+
 // --- Marker layer ---
 var markerLayer = L.markerClusterGroup({
   showCoverageOnHover: false,
