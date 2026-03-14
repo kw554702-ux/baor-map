@@ -150,7 +150,7 @@ function showFormation(formationId) {
     var bounds = L.latLngBounds(allLatLngs);
     map.fitBounds(bounds, { padding: [60, 60] });
   }
-}
+
 
 
 
