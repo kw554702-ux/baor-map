@@ -90,6 +90,8 @@ function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
 
+  document.getElementById('map').classList.add('map-showing-formation');
+
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
@@ -152,8 +154,10 @@ function showFormation(formationId) {
 }
 
 function clearFormationView() {
+  document.getElementById('map').classList.remove('map-showing-formation');
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
+}
 
   if (!map.hasLayer(markerLayer)) {
     map.addLayer(markerLayer);
