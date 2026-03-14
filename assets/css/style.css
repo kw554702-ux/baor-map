@@ -151,11 +151,7 @@ h1 {
   font-size: 16px !important;
 }
 
-/* Hide normal clustered markers during formation view */
-.map-showing-formation .leaflet-marker-pane,
-.map-showing-formation .leaflet-shadow-pane {
-  display: none;
-}
+
 
 
 
