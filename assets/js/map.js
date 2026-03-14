@@ -114,9 +114,17 @@ function showFormation(formationId) {
   }
 
   if (allMarkers.length > 0) {
-    var group = L.featureGroup(allMarkers);
-    map.fitBounds(group.getBounds(), { padding: [60, 60] });
-  }
+  var group = L.featureGroup(allMarkers);
+  map.fitBounds(group.getBounds(), { padding: [60, 60], maxZoom: 9 });
+}
+
+  setTimeout(function () {
+    if (map.getZoom() > 8) {
+      map.setZoom(8);
+    } else {
+      map.zoomIn(1);
+    }
+  }, 300);
 }
 
 // --- Zoom to location from URL parameter ---
