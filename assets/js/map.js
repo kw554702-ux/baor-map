@@ -24,6 +24,8 @@ var hqIcon = L.icon({
 // --- Formation relationships ---
 var markersByKey = {};
 var activeFormationLines = L.layerGroup().addTo(map);
+var activeFormationMarkers = L.layerGroup().addTo(map);
+
 var formations = {
   "herford-1951-1956": {
     parent: "herford",
