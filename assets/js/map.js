@@ -83,25 +83,42 @@ function showFormation(formationId) {
   if (!formation) return;
 
   activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
 
-  var allMarkers = [];
+  var allLatLngs = [];
+
+  function getLocationByKey(key) {
+    for (var i = 0; i < locations.length; i++) {
+      if (locations[i].key === key) return locations[i];
+    }
+    return null;
+  }
+
+  var parentLoc = getLocationByKey(formation.parent);
   var parentMarker = markersByKey[formation.parent];
 
-  if (!parentMarker) return;
-
-  allMarkers.push(parentMarker);
+  if (!parentLoc || !parentMarker) return;
 
   var parentLatLng = parentMarker.getLatLng();
+  allLatLngs.push(parentLatLng);
+
+  L.marker(parentLatLng, { icon: hqIcon })
+    .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
+    .addTo(activeFormationMarkers);
 
   for (var i = 0; i < formation.children.length; i++) {
     var childKey = formation.children[i];
+    var childLoc = getLocationByKey(childKey);
     var childMarker = markersByKey[childKey];
 
-    if (!childMarker) continue;
-
-    allMarkers.push(childMarker);
+    if (!childLoc || !childMarker) continue;
 
     var childLatLng = childMarker.getLatLng();
+    allLatLngs.push(childLatLng);
+
+    L.marker(childLatLng, { icon: baorIcon })
+      .bindPopup("<strong>" + childLoc.title + "</strong>")
+      .addTo(activeFormationMarkers);
 
     var line = L.polyline(
       [parentLatLng, childLatLng],
@@ -116,14 +133,11 @@ function showFormation(formationId) {
     activeFormationLines.addLayer(line);
   }
 
-  if (allMarkers.length > 0) {
-    var latLngs = [];
-    for (var j = 0; j < allMarkers.length; j++) {
-      latLngs.push(allMarkers[j].getLatLng());
-    }
-
-    var bounds = L.latLngBounds(latLngs);
+  if (allLatLngs.length > 0) {
+    var bounds = L.latLngBounds(allLatLngs);
     map.fitBounds(bounds, { padding: [60, 60] });
+  }
+}
 
     setTimeout(function () {
       for (var k = 0; k < allMarkers.length; k++) {
