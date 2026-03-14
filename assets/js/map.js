@@ -75,6 +75,7 @@ for (var i = 0; i < locations.length; i++) {
 }
 
 map.fitBounds(bounds, { padding: [40, 40] });
+
 function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
@@ -114,19 +115,21 @@ function showFormation(formationId) {
   }
 
   if (allMarkers.length > 0) {
-  var group = L.featureGroup(allMarkers);
-  map.fitBounds(group.getBounds(), { padding: [60, 60], maxZoom: 9 });
-}
-
-  setTimeout(function () {
-    if (map.getZoom() > 8) {
-      map.setZoom(8);
-    } else {
-      map.zoomIn(1);
+    var latLngs = [];
+    for (var j = 0; j < allMarkers.length; j++) {
+      latLngs.push(allMarkers[j].getLatLng());
     }
-  }, 300);
-}
 
+    var bounds = L.latLngBounds(latLngs);
+    map.fitBounds(bounds, { padding: [60, 60] });
+
+    setTimeout(function () {
+      for (var k = 0; k < allMarkers.length; k++) {
+        markerLayer.zoomToShowLayer(allMarkers[k]);
+      }
+    }, 300);
+  }
+}
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
