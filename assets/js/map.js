@@ -25,7 +25,12 @@ var hqIcon = L.icon({
 
 
 
+// --- Marker layer ---
+
+var markerLayer = L.markerClusterGroup();
+
 map.addLayer(markerLayer);
+L.marker([51.193, 6.343]).addTo(markerLayer).bindPopup("Test marker");
 
 var bounds = L.latLngBounds();
 
