@@ -160,7 +160,7 @@ function showFormation(formationId) {
 
   map.fitBounds(bounds, { padding: [40, 40] });
 }
-
+}
     // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
