@@ -145,7 +145,6 @@ function showFormation(formationId) {
       }
     }, 300);
   }
-}
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
