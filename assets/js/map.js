@@ -110,7 +110,7 @@ function showFormation(formationId) {
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  L.marker(parentLatLng, { icon: hqIcon })
+  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
     .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
     .addTo(activeFormationMarkers);
 
@@ -124,19 +124,19 @@ function showFormation(formationId) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-    L.marker(childLatLng, { icon: baorIcon })
+    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
       .bindPopup("<strong>" + childLoc.title + "</strong>")
       .addTo(activeFormationMarkers);
 
     var line = L.polyline(
-      [parentLatLng, childLatLng],
-      {
-        color: "#1f2a44",
-        weight: 3,
-        opacity: 0.75,
-        dashArray: "6, 6"
-      }
-    );
+  [parentLatLng, childLatLng],
+  {
+    color: "#1f2a44",
+    weight: 3,
+    opacity: 0.75,
+    dashArray: "6, 6"
+  }
+);
 
     activeFormationLines.addLayer(line);
   }
