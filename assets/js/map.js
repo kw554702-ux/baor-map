@@ -84,7 +84,7 @@ for (var i = 0; i < locations.length; i++) {
   });
 }
 
-map.fitBounds(bounds, { padding: [40, 40] });
+
 
 function showFormation(formationId) {
   var formation = formations[formationId];
@@ -119,7 +119,7 @@ function showFormation(formationId) {
     .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
     .addTo(activeFormationMarkers);
 
-  for (var i = 0; i < formation.children.length; i++) {
+   for (var i = 0; i < formation.children.length; i++) {
     var childKey = formation.children[i];
     var childLoc = getLocationByKey(childKey);
     var childMarker = markersByKey[childKey];
@@ -147,19 +147,9 @@ function showFormation(formationId) {
   }
 
   if (allLatLngs.length > 0) {
-    var bounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(bounds, { padding: [60, 60] });
+    var formationBounds = L.latLngBounds(allLatLngs);
+    map.fitBounds(formationBounds, { padding: [60, 60] });
   }
-
-
-
-
-  if (!map.hasLayer(markerLayer)) {
-    map.addLayer(markerLayer);
-  }
-
-  map.fitBounds(bounds, { padding: [40, 40] });
-}
 }
     // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
