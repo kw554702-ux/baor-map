@@ -69,8 +69,8 @@ for (var i = 0; i < locations.length; i++) {
   (loc.bfpo ? '<div class="baor-meta"><strong>BFPO:</strong> ' + loc.bfpo + '</div>' : '') +
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
   (loc.key === "herford"
-    ? '<div class="baor-period-link"><a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">1951–1956: show brigade layout</a></div>'
-    : '') +
+  ? '<div class="baor-period-link"><a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">1951–1956: show brigade layout</a></div><div class="baor-period-link"><a href="#" onclick="clearFormationView(); return false;">Clear formation view</a></div>'
+  : '') +
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
   '</div>';
 
@@ -93,6 +93,10 @@ function showFormation(formationId) {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
+  if (map.hasLayer(markerLayer)) {
+    map.removeLayer(markerLayer);
+  }
+
   var allLatLngs = [];
 
   function getLocationByKey(key) {
@@ -110,7 +114,7 @@ function showFormation(formationId) {
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
+  L.marker(parentLatLng, { icon: hqIcon })
     .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
     .addTo(activeFormationMarkers);
 
@@ -124,19 +128,19 @@ function showFormation(formationId) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
+    L.marker(childLatLng, { icon: baorIcon })
       .bindPopup("<strong>" + childLoc.title + "</strong>")
       .addTo(activeFormationMarkers);
 
     var line = L.polyline(
-  [parentLatLng, childLatLng],
-  {
-    color: "#1f2a44",
-    weight: 3,
-    opacity: 0.75,
-    dashArray: "6, 6"
-  }
-);
+      [parentLatLng, childLatLng],
+      {
+        color: "#1f2a44",
+        weight: 3,
+        opacity: 0.75,
+        dashArray: "6, 6"
+      }
+    );
 
     activeFormationLines.addLayer(line);
   }
@@ -145,6 +149,17 @@ function showFormation(formationId) {
     var bounds = L.latLngBounds(allLatLngs);
     map.fitBounds(bounds, { padding: [60, 60] });
   }
+}
+
+function clearFormationView() {
+  activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
+
+  if (!map.hasLayer(markerLayer)) {
+    map.addLayer(markerLayer);
+  }
+
+  map.fitBounds(bounds, { padding: [40, 40] });
 }
 
     // --- Zoom to location from URL parameter ---
