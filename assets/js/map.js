@@ -21,7 +21,16 @@ var hqIcon = L.icon({
 });
 
 
-// --- Marker layer ---
+// --- Formation relationships ---
+var markersByKey = {};
+var activeFormationLines = L.layerGroup().addTo(map);
+var formations = {
+  "herford-1951-1956": {
+    parent: "herford",
+    children: ["bad-lippspringe", "hildesheim"],
+    title: "11th Armoured Division brigade layout, 1951–1956"
+  }
+};
 
 
 
@@ -40,6 +49,7 @@ for (var i = 0; i < locations.length; i++) {
   var icon = baorIcon;
 
   var marker = L.marker(loc.coords, { icon: icon }).addTo(markerLayer);
+  markersByKey[loc.key] = marker;
 
   bounds.extend(loc.coords);
  
@@ -48,6 +58,9 @@ for (var i = 0; i < locations.length; i++) {
   '<div class="baor-title">' + loc.title + '</div>' +
   (loc.bfpo ? '<div class="baor-meta"><strong>BFPO:</strong> ' + loc.bfpo + '</div>' : '') +
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
+  (loc.key === "herford"
+    ? '<div class="baor-period-link"><a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">1951–1956: show brigade layout</a></div>'
+    : '') +
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
   '</div>';
 
@@ -62,6 +75,49 @@ for (var i = 0; i < locations.length; i++) {
 }
 
 map.fitBounds(bounds, { padding: [40, 40] });
+function showFormation(formationId) {
+  var formation = formations[formationId];
+  if (!formation) return;
+
+  activeFormationLines.clearLayers();
+
+  var allMarkers = [];
+  var parentMarker = markersByKey[formation.parent];
+
+  if (!parentMarker) return;
+
+  allMarkers.push(parentMarker);
+
+  var parentLatLng = parentMarker.getLatLng();
+
+  for (var i = 0; i < formation.children.length; i++) {
+    var childKey = formation.children[i];
+    var childMarker = markersByKey[childKey];
+
+    if (!childMarker) continue;
+
+    allMarkers.push(childMarker);
+
+    var childLatLng = childMarker.getLatLng();
+
+    var line = L.polyline(
+      [parentLatLng, childLatLng],
+      {
+        color: "#1f2a44",
+        weight: 3,
+        opacity: 0.75,
+        dashArray: "6, 6"
+      }
+    );
+
+    activeFormationLines.addLayer(line);
+  }
+
+  if (allMarkers.length > 0) {
+    var group = L.featureGroup(allMarkers);
+    map.fitBounds(group.getBounds(), { padding: [60, 60] });
+  }
+}
 
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
