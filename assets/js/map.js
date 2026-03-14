@@ -139,14 +139,7 @@ function showFormation(formationId) {
   }
 }
 
-    setTimeout(function () {
-      for (var k = 0; k < allMarkers.length; k++) {
-        markerLayer.zoomToShowLayer(allMarkers[k]);
-      }
-    }, 300);
-  }
-}
-// --- Zoom to location from URL parameter ---
+    // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
 
