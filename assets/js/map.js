@@ -69,7 +69,7 @@ for (var i = 0; i < locations.length; i++) {
   (loc.bfpo ? '<div class="baor-meta"><strong>BFPO:</strong> ' + loc.bfpo + '</div>' : '') +
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
   (loc.key === "herford"
-  ? '<div class="baor-period-link"><a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">1951–1956: show brigade layout</a></div><div class="baor-period-link"><a href="#" onclick="clearFormationView(); return false;">Clear formation view</a></div>'
+  ? '<div class="baor-period-link"><a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">1951–1956: show brigade layout</a></div>'
   : '') +
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
   '</div>';
@@ -90,8 +90,7 @@ function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
 
-  document.getElementById('map').classList.add('map-showing-formation');
-
+  
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
@@ -153,11 +152,7 @@ function showFormation(formationId) {
   }
 }
 
-function clearFormationView() {
-  document.getElementById('map').classList.remove('map-showing-formation');
-  activeFormationLines.clearLayers();
-  activeFormationMarkers.clearLayers();
-}
+
 
   if (!map.hasLayer(markerLayer)) {
     map.addLayer(markerLayer);
