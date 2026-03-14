@@ -47,7 +47,7 @@ var formations = {
 // --- Marker layer ---
 
 
-var markerLayer = L.layerGroup();
+var markerLayer = L.markerClusterGroup();
 map.addLayer(markerLayer);
 
 
