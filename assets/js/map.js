@@ -1,4 +1,12 @@
-var map = L.map('map').setView([52.9, 9.8], 6);
+var map = L.map('map').setView([52.0, 9.0], 6);
+
+// --- Formation display panes (above clusters) ---
+
+map.createPane('formationLinesPane');
+map.getPane('formationLinesPane').style.zIndex = 650;
+
+map.createPane('formationMarkersPane');
+map.getPane('formationMarkersPane').style.zIndex = 700;
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
