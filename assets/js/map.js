@@ -29,11 +29,11 @@ var hqIcon = L.icon({
 });
 
 
-// --- Formation relationships ---
+// --- Formation reormation lationships ---
 var markersByKey = {};
 var activeFormationLines = L.layerGroup().addTo(map);
 var activeFormationMarkers = L.layerGroup().addTo(map);
-var activeFormationLabels = L.layerGroup().addTo(map);
+
 
 var formations = {
   "herford-1951-1956": {
@@ -114,7 +114,7 @@ function showFormation(formationId) {
 
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
-  activeFormationLabels.clearLayers();
+  
 
   if (map.hasLayer(markerLayer)) {
     map.removeLayer(markerLayer);
@@ -188,21 +188,7 @@ brigadeMarker.openPopup();
 
     activeFormationLines.addLayer(line);
 
-    var midLat = (parentLatLng.lat + childLatLng.lat) / 2;
-    var midLng = (parentLatLng.lng + childLatLng.lng) / 2;
-
-    var labelIcon = L.divIcon({
-      className: 'formation-line-label',
-      html: '<div>' + childLabel + '</div>',
-      iconSize: [140, 24],
-      iconAnchor: [70, 12]
-    });
-
-    L.marker([midLat, midLng], {
-      icon: labelIcon,
-      interactive: false,
-      pane: 'formationMarkersPane'
-    }).addTo(activeFormationLabels);
+    
   }
 
   if (allLatLngs.length > 0) {
@@ -248,7 +234,7 @@ function hideFormationTitle() {
 function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
-  activeFormationLabels.clearLayers();
+  
 
   if (!map.hasLayer(markerLayer)) {
     map.addLayer(markerLayer);
