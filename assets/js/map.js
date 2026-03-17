@@ -39,8 +39,8 @@ var formations = {
   "herford-1951-1956": {
     parent: "herford",
    children: [
-  { key: "bad-lippspringe", title: "33rd Armoured Brigade" },
-  { key: "hildesheim", title: "91st Lorried Infantry Brigade" }
+  { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
+  { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade" }
 ],
     title: "11th Armoured Division brigade layout, 1951–1956"
   }
