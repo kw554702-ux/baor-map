@@ -33,11 +33,15 @@ var hqIcon = L.icon({
 var markersByKey = {};
 var activeFormationLines = L.layerGroup().addTo(map);
 var activeFormationMarkers = L.layerGroup().addTo(map);
+var activeFormationLabels = L.layerGroup().addTo(map);
 
 var formations = {
   "herford-1951-1956": {
     parent: "herford",
-    children: ["bad-lippspringe", "hildesheim"],
+    children: [
+      { key: "bad-lippspringe", label: "33rd Armoured Brigade" },
+      { key: "hildesheim", label: "91st Lorried Infantry Brigade" }
+    ],
     title: "11th Armoured Division brigade layout, 1951–1956"
   }
 };
@@ -110,6 +114,7 @@ function showFormation(formationId) {
 
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
+  activeFormationLabels.clearLayers();
 
   if (map.hasLayer(markerLayer)) {
     map.removeLayer(markerLayer);
@@ -137,9 +142,10 @@ function showFormation(formationId) {
     .addTo(activeFormationMarkers);
 
   for (var i = 0; i < formation.children.length; i++) {
-    var childKey = formation.children[i];
-    var childLoc = getLocationByKey(childKey);
-    var childMarker = markersByKey[childKey];
+  var child = formation.children[i];
+  var childKey = child.key;
+  var childLabel = child.label;
+  var childLoc = getLocationByKey(childKey);
 
     if (!childLoc || !childMarker) continue;
 
@@ -163,6 +169,22 @@ function showFormation(formationId) {
 );
 
     activeFormationLines.addLayer(line);
+
+    var midLat = (parentLatLng.lat + childLatLng.lat) / 2;
+    var midLng = (parentLatLng.lng + childLatLng.lng) / 2;
+
+    var labelIcon = L.divIcon({
+      className: 'formation-line-label',
+      html: '<div>' + childLabel + '</div>',
+      iconSize: [140, 24],
+      iconAnchor: [70, 12]
+    });
+
+    L.marker([midLat, midLng], {
+      icon: labelIcon,
+      interactive: false,
+      pane: 'formationMarkersPane'
+    }).addTo(activeFormationLabels);
   }
 
   if (allLatLngs.length > 0) {
@@ -208,6 +230,7 @@ function hideFormationTitle() {
 function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
+  activeFormationLabels.clearLayers();
 
   if (!map.hasLayer(markerLayer)) {
     map.addLayer(markerLayer);
