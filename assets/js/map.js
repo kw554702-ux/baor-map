@@ -106,8 +106,8 @@ function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
 
-hideFormationBackButton();
-  
+  hideFormationBackButton();
+
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
@@ -115,7 +115,64 @@ hideFormationBackButton();
     map.removeLayer(markerLayer);
   }
 
-  function showFormationBackButton() {
+  var allLatLngs = [];
+
+  function getLocationByKey(key) {
+    for (var i = 0; i < locations.length; i++) {
+      if (locations[i].key === key) return locations[i];
+    }
+    return null;
+  }
+
+  var parentLoc = getLocationByKey(formation.parent);
+  var parentMarker = markersByKey[formation.parent];
+
+  if (!parentLoc || !parentMarker) return;
+
+  var parentLatLng = parentMarker.getLatLng();
+  allLatLngs.push(parentLatLng);
+
+  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
+    .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
+    .addTo(activeFormationMarkers);
+
+  for (var i = 0; i < formation.children.length; i++) {
+    var childKey = formation.children[i];
+    var childLoc = getLocationByKey(childKey);
+    var childMarker = markersByKey[childKey];
+
+    if (!childLoc || !childMarker) continue;
+
+    var childLatLng = childMarker.getLatLng();
+    allLatLngs.push(childLatLng);
+
+    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
+      .bindPopup("<strong>" + childLoc.title + "</strong>")
+      .addTo(activeFormationMarkers);
+
+    var line = L.polyline(
+      [parentLatLng, childLatLng],
+      {
+        color: "#1f2a44",
+        weight: 3,
+        opacity: 0.75,
+        dashArray: "6, 6",
+        pane: 'formationLinesPane'
+      }
+    );
+
+    activeFormationLines.addLayer(line);
+  }
+
+  if (allLatLngs.length > 0) {
+    var formationBounds = L.latLngBounds(allLatLngs);
+    map.fitBounds(formationBounds, { padding: [60, 60] });
+  }
+
+  showFormationBackButton();
+}
+    
+function showFormationBackButton() {
   var back = document.getElementById("formation-back");
   if (back) {
     back.style.display = "block";
@@ -141,62 +198,7 @@ function resetFormation() {
 
   hideFormationBackButton();
 }
-  var allLatLngs = [];
-
-  function getLocationByKey(key) {
-    for (var i = 0; i < locations.length; i++) {
-      if (locations[i].key === key) return locations[i];
-    }
-    return null;
-  }
-
-  var parentLoc = getLocationByKey(formation.parent);
-  var parentMarker = markersByKey[formation.parent];
-
-  if (!parentLoc || !parentMarker) return;
-
-  var parentLatLng = parentMarker.getLatLng();
-  allLatLngs.push(parentLatLng);
-
-  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
-    .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
-    .addTo(activeFormationMarkers);
-
-   for (var i = 0; i < formation.children.length; i++) {
-    var childKey = formation.children[i];
-    var childLoc = getLocationByKey(childKey);
-    var childMarker = markersByKey[childKey];
-
-    if (!childLoc || !childMarker) continue;
-
-    var childLatLng = childMarker.getLatLng();
-    allLatLngs.push(childLatLng);
-
-    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
-      .bindPopup("<strong>" + childLoc.title + "</strong>")
-      .addTo(activeFormationMarkers);
-
-    var line = L.polyline(
-  [parentLatLng, childLatLng],
-  {
-    color: "#1f2a44",
-    weight: 3,
-    opacity: 0.75,
-    dashArray: "6, 6",
-    pane: 'formationLinesPane'
-  }
-);
-
-    activeFormationLines.addLayer(line);
-  }
-
-  if (allLatLngs.length > 0) {
-    var formationBounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(formationBounds, { padding: [60, 60] });
-  }
-  showFormationBackButton();
-}
-    // --- Zoom to location from URL parameter ---
+// --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
 
