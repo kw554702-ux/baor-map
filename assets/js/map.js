@@ -33,6 +33,8 @@ var hqIcon = L.icon({
 var markersByKey = {};
 var activeFormationLines = L.layerGroup().addTo(map);
 var activeFormationMarkers = L.layerGroup().addTo(map);
+var currentFormationId = null;
+var formationHistory = [];
 
 
 var formations = {
