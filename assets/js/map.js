@@ -239,7 +239,10 @@ var brigadeMarker = L.marker(childLatLng, {
   icon: baorIcon,
   pane: 'formationMarkersPane'
 })
-.bindPopup(popupHtml)
+.bindPopup(popupHtml, {
+  maxWidth: 380,
+  minWidth: 300
+})
 .bindTooltip(childTitle, {
   permanent: true,
   direction: 'top',
