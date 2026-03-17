@@ -36,17 +36,27 @@ var activeFormationMarkers = L.layerGroup().addTo(map);
 
 
 var formations = {
+
   "herford-1951-1956": {
     parent: "herford",
-   children: [
-  { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
-  { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade" }
-],
+    children: [
+      { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
+      { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade", formation: "hildesheim-91st-brigade" }
+    ],
     title: "11th Armoured Division – Brigade Layout (1951–1956)"
+  },
+
+  "hildesheim-91st-brigade": {
+    parent: "hildesheim",
+    children: [
+      { key: "goslar", title: "1st Battalion, The Royal Norfolk Regiment" },
+      { key: "braunschweig", title: "1st Battalion, The Lincolnshire Regiment" },
+      { key: "gottingen", title: "1st Battalion, The King’s Own Yorkshire Light Infantry" }
+    ],
+    title: "91st Lorried Infantry Brigade – Battalion Locations"
   }
+
 };
-
-
 
 // --- Marker layer ---
 
