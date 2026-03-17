@@ -209,25 +209,32 @@ function showFormation(formationId, skipHistory) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-   var popupHtml = "<strong>" + childTitle + "</strong>";
+   var popupHtml = "<div class='formation-popup'>";
+popupHtml += "<div class='formation-popup-title'>" + childTitle + "</div>";
 
 if (child.battalions && child.battalions.length > 0) {
-  popupHtml += "<br><br>";
+  popupHtml += "<div class='formation-popup-list'>";
   for (var j = 0; j < child.battalions.length; j++) {
     popupHtml +=
-      "<strong>" + child.battalions[j].dates + "</strong>: " +
-      child.battalions[j].name + "<br>";
+      "<div class='formation-popup-row'>" +
+        "<div class='formation-popup-dates'>" + child.battalions[j].dates + "</div>" +
+        "<div class='formation-popup-unit'>" + child.battalions[j].name + "</div>" +
+      "</div>";
   }
+  popupHtml += "</div>";
 } else {
-  popupHtml += "<br>" + childLoc.title;
+  popupHtml += "<div class='formation-popup-place'>" + childLoc.title + "</div>";
 }
 
 if (child.formation) {
   popupHtml +=
-    "<br><br><a href='#' onclick=\"showFormation('" +
-    child.formation +
-    "'); return false;\">Show battalion locations</a>";
+    "<div class='formation-popup-link'>" +
+      "<a href='#' onclick=\"showFormation('" + child.formation + "'); return false;\">" +
+      "Show battalion locations</a>" +
+    "</div>";
 }
+
+popupHtml += "</div>";
 var brigadeMarker = L.marker(childLatLng, {
   icon: baorIcon,
   pane: 'formationMarkersPane'
