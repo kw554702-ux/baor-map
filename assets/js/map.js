@@ -234,7 +234,21 @@ var brigadeMarker = L.marker(childLatLng, {
   showFormationBackButton();
   showFormationTitle(formation.title);
 }
-    
+
+function goBackFormation() {
+  activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
+
+  if (formationHistory.length > 0) {
+    var previousFormation = formationHistory.pop();
+    currentFormationId = null;
+    showFormation(previousFormation, true);
+    return;
+  }
+
+  resetFormation();
+}
+
 function showFormationBackButton() {
   var back = document.getElementById("formation-back");
   if (back) {
@@ -258,19 +272,7 @@ function showFormationTitle(text) {
     titleBox.style.display = "block";
   }
 }
-function goBackFormation() {
-  activeFormationLines.clearLayers();
-  activeFormationMarkers.clearLayers();
 
-  if (formationHistory.length > 0) {
-    var previousFormation = formationHistory.pop();
-    currentFormationId = null;
-    showFormation(previousFormation, true);
-    return;
-  }
-
-  resetFormation();
-}
 function hideFormationTitle() {
   var titleBox = document.getElementById("formation-title");
   if (titleBox) {
