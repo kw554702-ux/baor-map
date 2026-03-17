@@ -144,10 +144,10 @@ function showFormation(formationId) {
 .bindPopup(
   "<strong>" + formation.title + "</strong><br>" + parentLoc.title
 )
-.bindTooltip("HQ 11th Armoured Division", {
+.bindTooltip("11th Armoured Division HQ", {
   permanent: true,
   direction: 'right',
-  offset: [12, -8],
+  offset: [18, -20],
   className: 'formation-marker-label'
 })
 .addTo(activeFormationMarkers);
