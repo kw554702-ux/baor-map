@@ -146,6 +146,7 @@ function showFormation(formationId) {
   var childKey = child.key;
   var childLabel = child.label;
   var childLoc = getLocationByKey(childKey);
+  var childMarker = markersByKey[childKey]; 
 
     if (!childLoc || !childMarker) continue;
 
