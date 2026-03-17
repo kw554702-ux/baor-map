@@ -22,7 +22,7 @@ var baorIcon = L.icon({
 });
 
 var hqIcon = L.icon({
-  iconUrl: 'assets/img/baor-hq-marker.png',
+  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/baor-hq-marker.png',
   iconSize: [40, 56],
   iconAnchor: [20, 56],
   popupAnchor: [0, -50]
