@@ -120,11 +120,11 @@ for (var i = 0; i < locations.length; i++) {
 
 
 
-function showFormation(formationId) {
+function showFormation(formationId, skipHistory) {
   var formation = formations[formationId];
   if (!formation) return;
 
-  if (currentFormationId && currentFormationId !== formationId) {
+  if (!skipHistory && currentFormationId && currentFormationId !== formationId) {
     formationHistory.push(currentFormationId);
   }
 
@@ -148,7 +148,7 @@ function showFormation(formationId) {
   if (formationHistory.length > 0) {
     var previousFormation = formationHistory.pop();
     currentFormationId = null;
-    showFormation(previousFormation);
+    showFormation(previousFormation, true);
     return;
   }
 
