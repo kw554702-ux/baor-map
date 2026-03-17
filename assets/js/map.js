@@ -142,12 +142,15 @@ function showFormation(formationId) {
   pane: 'formationMarkersPane'
 })
 .bindPopup(
-  "<strong>" + formation.title + "</strong><br>" +
-  parentLoc.title
+  "<strong>" + formation.title + "</strong><br>" + parentLoc.title
 )
+.bindTooltip("HQ 11th Armoured Division", {
+  permanent: true,
+  direction: 'right',
+  offset: [12, -8],
+  className: 'formation-marker-label'
+})
 .addTo(activeFormationMarkers);
-
-hqMarker.openPopup();
 
   for (var i = 0; i < formation.children.length; i++) {
   var child = formation.children[i];
@@ -166,13 +169,15 @@ hqMarker.openPopup();
   pane: 'formationMarkersPane'
 })
 .bindPopup(
-  "<strong>" + childTitle + "</strong><br>" +
-  childLoc.title
+  "<strong>" + childTitle + "</strong><br>" + childLoc.title
 )
+.bindTooltip(childTitle, {
+  permanent: true,
+  direction: 'top',
+  offset: [0, -48],
+  className: 'formation-marker-label'
+})
 .addTo(activeFormationMarkers);
-
-// 👇 AUTO-OPEN the popup
-brigadeMarker.openPopup();
 
     var line = L.polyline(
   [parentLatLng, childLatLng],
