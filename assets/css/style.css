@@ -167,11 +167,12 @@ h1 {
 .formation-back a {
   color: #1f2a44;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .formation-back a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 
