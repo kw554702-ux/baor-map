@@ -187,7 +187,14 @@ function showFormation(formationId, skipHistory) {
   pane: 'formationMarkersPane'
 })
 .bindPopup(
-  "<strong>" + formation.title + "</strong><br>" + parentLoc.title
+  "<div class='formation-popup'>" +
+    "<div class='formation-popup-title'>" + (formation.hqTitle || parentLoc.title) + "</div>" +
+    "<div class='formation-popup-place'>" + parentLoc.title + "</div>" +
+  "</div>",
+  {
+    maxWidth: 380,
+    minWidth: 260
+  }
 )
 .bindTooltip(formation.hqTitle || parentLoc.title, {
   permanent: true,
