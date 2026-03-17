@@ -42,7 +42,7 @@ var formations = {
   { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
   { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade" }
 ],
-    title: "11th Armoured Division brigade layout, 1951–1956"
+    title: "11th Armoured Division – Brigade Layout (1951–1956)"
   }
 };
 
