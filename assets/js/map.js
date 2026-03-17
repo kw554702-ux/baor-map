@@ -174,13 +174,22 @@ function showFormation(formationId) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-    var brigadeMarker = L.marker(childLatLng, {
+   var popupHtml =
+  "<strong>" + childTitle + "</strong><br>" +
+  childLoc.title;
+
+if (child.formation) {
+  popupHtml +=
+    "<br><br><a href='#' onclick=\"showFormation('" +
+    child.formation +
+    "'); return false;\">Show battalion locations</a>";
+}
+
+var brigadeMarker = L.marker(childLatLng, {
   icon: baorIcon,
   pane: 'formationMarkersPane'
 })
-.bindPopup(
-  "<strong>" + childTitle + "</strong><br>" + childLoc.title
-)
+.bindPopup(popupHtml)
 .bindTooltip(childTitle, {
   permanent: true,
   direction: 'top',
