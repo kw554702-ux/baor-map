@@ -281,7 +281,6 @@ function hideFormationTitle() {
 function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
-  
 
   if (!map.hasLayer(markerLayer)) {
     map.addLayer(markerLayer);
@@ -291,6 +290,9 @@ function resetFormation() {
 
   hideFormationBackButton();
   hideFormationTitle();
+
+  currentFormationId = null;
+  formationHistory = [];
 }
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
