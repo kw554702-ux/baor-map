@@ -38,10 +38,10 @@ var activeFormationLabels = L.layerGroup().addTo(map);
 var formations = {
   "herford-1951-1956": {
     parent: "herford",
-    children: [
-      { key: "bad-lippspringe", label: "33rd Armoured Brigade" },
-      { key: "hildesheim", label: "91st Lorried Infantry Brigade" }
-    ],
+   children: [
+  { key: "bad-lippspringe", title: "33rd Armoured Brigade" },
+  { key: "hildesheim", title: "91st Lorried Infantry Brigade" }
+],
     title: "11th Armoured Division brigade layout, 1951–1956"
   }
 };
@@ -137,14 +137,22 @@ function showFormation(formationId) {
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
-    .bindPopup("<strong>" + parentLoc.title + "</strong><br><strong>Divisional HQ</strong>")
-    .addTo(activeFormationMarkers);
+  var hqMarker = L.marker(parentLatLng, {
+  icon: hqIcon,
+  pane: 'formationMarkersPane'
+})
+.bindPopup(
+  "<strong>" + formation.title + "</strong><br>" +
+  parentLoc.title
+)
+.addTo(activeFormationMarkers);
+
+hqMarker.openPopup();
 
   for (var i = 0; i < formation.children.length; i++) {
   var child = formation.children[i];
   var childKey = child.key;
-  var childLabel = child.label;
+  var childTitle = child.title;
   var childLoc = getLocationByKey(childKey);
   var childMarker = markersByKey[childKey]; 
 
@@ -153,9 +161,18 @@ function showFormation(formationId) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
-      .bindPopup("<strong>" + childLoc.title + "</strong><br>Brigade location")
-      .addTo(activeFormationMarkers);
+    var brigadeMarker = L.marker(childLatLng, {
+  icon: baorIcon,
+  pane: 'formationMarkersPane'
+})
+.bindPopup(
+  "<strong>" + childTitle + "</strong><br>" +
+  childLoc.title
+)
+.addTo(activeFormationMarkers);
+
+// 👇 AUTO-OPEN the popup
+brigadeMarker.openPopup();
 
     var line = L.polyline(
   [parentLatLng, childLatLng],
