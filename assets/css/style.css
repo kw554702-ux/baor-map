@@ -191,7 +191,14 @@ h1 {
   max-width: 320px;
 }
 
+#map-container {
+  position: relative;
+}
 
+#map {
+  height: calc(100vh - 110px); /* adjusts for header + search */
+  width: 100%;
+}
 
 
 
