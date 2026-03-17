@@ -285,3 +285,11 @@ h1 {
 .formation-popup-link a:hover {
   text-decoration: underline;
 }
+
+.leaflet-popup-content-wrapper {
+  max-width: 400px;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px;
+}
