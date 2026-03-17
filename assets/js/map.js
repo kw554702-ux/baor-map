@@ -124,18 +124,23 @@ function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
 
+  if (currentFormationId && currentFormationId !== formationId) {
+    formationHistory.push(currentFormationId);
+  }
+
+  currentFormationId = formationId;
+
   hideFormationBackButton();
 
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
-  
 
   if (map.hasLayer(markerLayer)) {
     map.removeLayer(markerLayer);
   }
 
   var allLatLngs = [];
-
+  
   function getLocationByKey(key) {
     for (var i = 0; i < locations.length; i++) {
       if (locations[i].key === key) return locations[i];
