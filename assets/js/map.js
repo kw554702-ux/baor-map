@@ -39,6 +39,7 @@ var formations = {
 
   "herford-1951-1956": {
     parent: "herford",
+    hqTitle: "11th Armoured Division HQ",
     children: [
       { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
       { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade", formation: "hildesheim-91st-brigade" }
@@ -48,6 +49,7 @@ var formations = {
 
   "hildesheim-91st-brigade": {
     parent: "hildesheim",
+    hqTitle: "HQ 91st Lorried Infantry Brigade",
     children: [
       { key: "goslar", title: "1st Battalion, The Royal Norfolk Regiment" },
       { key: "braunschweig", title: "1st Battalion, The Lincolnshire Regiment" },
@@ -154,7 +156,7 @@ function showFormation(formationId) {
 .bindPopup(
   "<strong>" + formation.title + "</strong><br>" + parentLoc.title
 )
-.bindTooltip("11th Armoured Division HQ", {
+.bindTooltip(formation.hqTitle || parentLoc.title, {
   permanent: true,
   direction: 'right',
   offset: [18, -20],
