@@ -133,7 +133,7 @@ function showFormation(formationId) {
   allLatLngs.push(parentLatLng);
 
   L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
-    .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
+    .bindPopup("<strong>" + parentLoc.title + "</strong><br><strong>Divisional HQ</strong>")
     .addTo(activeFormationMarkers);
 
   for (var i = 0; i < formation.children.length; i++) {
@@ -147,19 +147,20 @@ function showFormation(formationId) {
     allLatLngs.push(childLatLng);
 
     L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
-      .bindPopup("<strong>" + childLoc.title + "</strong>")
+      .bindPopup("<strong>" + childLoc.title + "</strong><br>Brigade location")
       .addTo(activeFormationMarkers);
 
     var line = L.polyline(
-      [parentLatLng, childLatLng],
-      {
-        color: "#1f2a44",
-        weight: 3,
-        opacity: 0.75,
-        dashArray: "6, 6",
-        pane: 'formationLinesPane'
-      }
-    );
+  [parentLatLng, childLatLng],
+  {
+    color: "#23395b",
+    weight: 4,
+    opacity: 0.7,
+    dashArray: "8, 8",
+    lineCap: "round",
+    pane: 'formationLinesPane'
+  }
+);
 
     activeFormationLines.addLayer(line);
   }
@@ -170,6 +171,7 @@ function showFormation(formationId) {
   }
 
   showFormationBackButton();
+  showFormationTitle(formation.title);
 }
     
 function showFormationBackButton() {
@@ -177,6 +179,8 @@ function showFormationBackButton() {
   if (back) {
     back.style.display = "block";
   }
+
+  
 }
 
 function hideFormationBackButton() {
@@ -186,6 +190,21 @@ function hideFormationBackButton() {
   }
 }
 
+function showFormationTitle(text) {
+  var titleBox = document.getElementById("formation-title");
+  if (titleBox) {
+    titleBox.textContent = text;
+    titleBox.style.display = "block";
+  }
+}
+
+function hideFormationTitle() {
+  var titleBox = document.getElementById("formation-title");
+  if (titleBox) {
+    titleBox.style.display = "none";
+    titleBox.textContent = "";
+  }
+}
 function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
@@ -197,6 +216,7 @@ function resetFormation() {
   map.fitBounds(bounds, { padding: [30, 30] });
 
   hideFormationBackButton();
+  hideFormationTitle();
 }
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
