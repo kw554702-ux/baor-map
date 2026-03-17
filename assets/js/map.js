@@ -50,15 +50,39 @@ var formations = {
   },
 
   "hildesheim-91st-brigade": {
-    parent: "hildesheim",
-    hqTitle: "HQ 91st Lorried Infantry Brigade",
-    children: [
-      { key: "goslar", title: "1st Battalion, The Royal Norfolk Regiment" },
-      { key: "braunschweig", title: "1st Battalion, The Lincolnshire Regiment" },
-      { key: "gottingen", title: "1st Battalion, The King’s Own Yorkshire Light Infantry" }
-    ],
-    title: "91st Lorried Infantry Brigade – Battalion Locations"
-  }
+  parent: "hildesheim",
+  hqTitle: "HQ 91st Lorried Infantry Brigade",
+  children: [
+    {
+      key: "goslar",
+      title: "Goslar",
+      battalions: [
+        { name: "1st Bn Sherwood Foresters", dates: "1951–1953" },
+        { name: "1st Bn Royal Lincolnshire Regt", dates: "1953–1954" },
+        { name: "1st Bn Royal Berkshire Regt", dates: "Jun 1954–1956" }
+      ]
+    },
+    {
+      key: "braunschweig",
+      title: "Braunschweig",
+      battalions: [
+        { name: "1st Bn York & Lancaster Regt", dates: "1951–Jan 1953" },
+        { name: "1st Bn South Wales Borderers", dates: "Jan 1953–Jul 1955" },
+        { name: "1st Bn East Surrey Regt", dates: "Jul 1955–1956" }
+      ]
+    },
+    {
+      key: "gottingen",
+      title: "Göttingen",
+      battalions: [
+        { name: "1st Bn Royal Irish Fusiliers", dates: "1951–Oct 1952" },
+        { name: "1st Bn King's Shropshire LI", dates: "Oct 1952–Mar 1954" },
+        { name: "1st Bn Border Regt", dates: "Mar 1954–1956" }
+      ]
+    }
+  ],
+  title: "91st Lorried Infantry Brigade – Battalion Locations"
+}
 
 };
 
@@ -185,9 +209,18 @@ function showFormation(formationId, skipHistory) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-   var popupHtml =
-  "<strong>" + childTitle + "</strong><br>" +
-  childLoc.title;
+   var popupHtml = "<strong>" + childTitle + "</strong>";
+
+if (child.battalions && child.battalions.length > 0) {
+  popupHtml += "<br><br>";
+  for (var j = 0; j < child.battalions.length; j++) {
+    popupHtml +=
+      "<strong>" + child.battalions[j].dates + "</strong>: " +
+      child.battalions[j].name + "<br>";
+  }
+} else {
+  popupHtml += "<br>" + childLoc.title;
+}
 
 if (child.formation) {
   popupHtml +=
@@ -195,7 +228,6 @@ if (child.formation) {
     child.formation +
     "'); return false;\">Show battalion locations</a>";
 }
-
 var brigadeMarker = L.marker(childLatLng, {
   icon: baorIcon,
   pane: 'formationMarkersPane'
