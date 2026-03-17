@@ -106,6 +106,7 @@ function showFormation(formationId) {
   var formation = formations[formationId];
   if (!formation) return;
 
+hideFormationBackButton();
   
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
@@ -114,6 +115,32 @@ function showFormation(formationId) {
     map.removeLayer(markerLayer);
   }
 
+  function showFormationBackButton() {
+  var back = document.getElementById("formation-back");
+  if (back) {
+    back.style.display = "block";
+  }
+}
+
+function hideFormationBackButton() {
+  var back = document.getElementById("formation-back");
+  if (back) {
+    back.style.display = "none";
+  }
+}
+
+function resetFormation() {
+  activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
+
+  if (!map.hasLayer(markerLayer)) {
+    map.addLayer(markerLayer);
+  }
+
+  map.fitBounds(bounds, { padding: [30, 30] });
+
+  hideFormationBackButton();
+}
   var allLatLngs = [];
 
   function getLocationByKey(key) {
@@ -131,7 +158,7 @@ function showFormation(formationId) {
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  L.marker(parentLatLng, { icon: hqIcon })
+  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
     .bindPopup("<strong>" + parentLoc.title + "</strong><br>HQ marker")
     .addTo(activeFormationMarkers);
 
@@ -145,19 +172,20 @@ function showFormation(formationId) {
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-    L.marker(childLatLng, { icon: baorIcon })
+    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
       .bindPopup("<strong>" + childLoc.title + "</strong>")
       .addTo(activeFormationMarkers);
 
     var line = L.polyline(
-      [parentLatLng, childLatLng],
-      {
-        color: "#1f2a44",
-        weight: 3,
-        opacity: 0.75,
-        dashArray: "6, 6"
-      }
-    );
+  [parentLatLng, childLatLng],
+  {
+    color: "#1f2a44",
+    weight: 3,
+    opacity: 0.75,
+    dashArray: "6, 6",
+    pane: 'formationLinesPane'
+  }
+);
 
     activeFormationLines.addLayer(line);
   }
@@ -166,6 +194,7 @@ function showFormation(formationId) {
     var formationBounds = L.latLngBounds(allLatLngs);
     map.fitBounds(formationBounds, { padding: [60, 60] });
   }
+  showFormationBackButton();
 }
     // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
