@@ -222,4 +222,66 @@ h1 {
   white-space: nowrap;
 }
 
+.formation-popup {
+  min-width: 280px;
+  max-width: 360px;
+  font-size: 13px;
+  line-height: 1.4;
+}
 
+.formation-popup-title {
+  font-weight: 700;
+  color: #1f2a44;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.formation-popup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formation-popup-row {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 4px 0;
+  border-top: 1px solid #eef2f7;
+}
+
+.formation-popup-row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.formation-popup-dates {
+  font-weight: 700;
+  color: #5a6780;
+  white-space: nowrap;
+}
+
+.formation-popup-unit {
+  color: #1f2a44;
+}
+
+.formation-popup-place {
+  color: #1f2a44;
+}
+
+.formation-popup-link {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #dde4ef;
+}
+
+.formation-popup-link a {
+  color: #1f2a44;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.formation-popup-link a:hover {
+  text-decoration: underline;
+}
