@@ -140,6 +140,20 @@ function showFormation(formationId) {
   }
 
   var allLatLngs = [];
+
+  function goBackFormation() {
+  activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
+
+  if (formationHistory.length > 0) {
+    var previousFormation = formationHistory.pop();
+    currentFormationId = null;
+    showFormation(previousFormation);
+    return;
+  }
+
+  resetFormation();
+}
   
   function getLocationByKey(key) {
     for (var i = 0; i < locations.length; i++) {
