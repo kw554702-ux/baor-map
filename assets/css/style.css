@@ -175,7 +175,21 @@ h1 {
   opacity: 0.85;
 }
 
-
+.formation-title {
+  display: none;
+  position: absolute;
+  top: 145px;
+  right: 14px;
+  z-index: 1000;
+  background: rgba(31,42,68,0.92);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 320px;
+}
 
 
 
