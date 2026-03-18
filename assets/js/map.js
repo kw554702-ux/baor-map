@@ -40,6 +40,7 @@ var activeFormationLines = L.layerGroup().addTo(map);
 var activeFormationMarkers = L.layerGroup().addTo(map);
 var currentFormationId = null;
 var formationHistory = [];
+var formationLabelsVisible = true;
 
 
 var formations = {
