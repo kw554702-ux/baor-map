@@ -563,6 +563,8 @@ function hideFormationTitle() {
   }
 }
 function resetFormation() {
+  map.closePopup();
+
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
@@ -570,7 +572,13 @@ function resetFormation() {
     map.addLayer(markerLayer);
   }
 
+  // Refresh cluster interactivity after re-adding
+  if (markerLayer.refreshClusters) {
+    markerLayer.refreshClusters();
+  }
+
   map.fitBounds(bounds, { padding: [30, 30] });
+  map.invalidateSize();
 
   hideFormationBackButton();
   hideFormationTitle();
