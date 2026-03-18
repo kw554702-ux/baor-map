@@ -215,6 +215,8 @@ function showFormation(formationId, skipHistory) {
   var formation = formations[formationId];
   if (!formation) return;
 
+  map.closePopup();
+
   if (!skipHistory && currentFormationId && currentFormationId !== formationId) {
     formationHistory.push(currentFormationId);
   }
@@ -355,6 +357,8 @@ var brigadeMarker = L.marker(childLatLng, {
 function showFullStructure(structureId) {
   var structure = fullStructures[structureId];
   if (!structure) return;
+
+  map.closePopup();
 
   if (currentFormationId && currentFormationId !== structureId) {
     formationHistory.push(currentFormationId);
