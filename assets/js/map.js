@@ -601,13 +601,18 @@ function resetFormation() {
     label.style.display = formationLabelsVisible ? "" : "none";
   });
 
-   function applyFormationLabelVisibility() {
+  if (toggleBtn) {
+    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
+  }
+}
+
+function applyFormationLabelVisibility() {
   var labels = document.querySelectorAll(".leaflet-tooltip");
 
   labels.forEach(function(label) {
     label.style.display = formationLabelsVisible ? "" : "none";
   });
-} 
+}
 
   if (toggleBtn) {
     toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
