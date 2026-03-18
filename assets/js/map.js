@@ -729,6 +729,7 @@ var toggleLabelsButton = document.getElementById("toggle-labels-btn");
 if (toggleLabelsButton) {
   toggleLabelsButton.addEventListener("click", toggleFormationLabels);
 }
+
 if (searchInput) {
   searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
