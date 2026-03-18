@@ -350,19 +350,7 @@ function showFormation(formationId, skipHistory) {
   applyFormationLabelVisibility();
 }
   
-  if (allLatLngs.length > 0) {
-    var formationBounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(formationBounds, {
-      paddingTopLeft: [140, 100],
-      paddingBottomRight: [80, 80]
-    });
-  }
-
-  showFormationBackButton();
-  showFormationTitle(formation.title);
-  applyFormationLabelVisibility();
-}
-
+  
 function showFullStructure(structureId) {
   var structure = fullStructures[structureId];
   if (!structure) return;
