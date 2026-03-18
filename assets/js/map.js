@@ -708,6 +708,10 @@ if (toggleLabelsButton) {
   toggleLabelsButton.addEventListener("click", toggleFormationLabels);
 }
 
+if (searchButton) {
+  searchButton.addEventListener("click", runBaorSearch);
+}
+
 if (searchInput) {
   searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
