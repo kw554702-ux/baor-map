@@ -296,3 +296,7 @@ h1 {
 .leaflet-popup-content {
   margin: 10px 14px;
 }
+
+.leaflet-tooltip.formation-marker-label {
+  pointer-events: none;
+}
