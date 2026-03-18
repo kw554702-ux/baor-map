@@ -734,6 +734,7 @@ function runBaorSearch() {
 if (searchButton) {
   searchButton.addEventListener("click", runBaorSearch);
 }
+
 var toggleLabelsButton = document.getElementById("toggle-labels-btn");
 
 if (toggleLabelsButton) {
