@@ -231,8 +231,6 @@ function showFormation(formationId, skipHistory) {
 
   currentFormationId = formationId;
 
-  hideFormationBackButton();
-
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
@@ -242,118 +240,138 @@ function showFormation(formationId, skipHistory) {
 
   var allLatLngs = [];
 
-  
-  
-  function getLocationByKey(key) {
-    for (var i = 0; i < locations.length; i++) {
-      if (locations[i].key === key) return locations[i];
-    }
-    return null;
-  }
-
   var parentLoc = getLocationByKey(formation.parent);
   var parentMarker = markersByKey[formation.parent];
-
   if (!parentLoc || !parentMarker) return;
 
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  var hqMarker = L.marker(parentLatLng, {
-  icon: hqIcon,
-  pane: 'formationMarkersPane'
-})
-.bindPopup(
-  "<div class='formation-popup'>" +
-    "<div class='formation-popup-title'>" + (formation.hqTitle || parentLoc.title) + "</div>" +
-    "<div class='formation-popup-place'>" + parentLoc.title + "</div>" +
-  "</div>",
-  {
-    maxWidth: 380,
-    minWidth: 260
-  }
-)
-.bindTooltip(formation.hqTitle || parentLoc.title, {
-  permanent: true,
-  direction: 'right',
-  offset: [18, -20],
-  className: 'formation-marker-label'
-})
-.addTo(activeFormationMarkers);
+  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
+    .bindPopup(
+      "<div class='formation-popup'>" +
+        "<div class='formation-popup-title'>" + (formation.hqTitle || parentLoc.title) + "</div>" +
+        "<div class='formation-popup-place'>" + parentLoc.title + "</div>" +
+      "</div>",
+      { maxWidth: 380, minWidth: 260 }
+    )
+    .bindTooltip(formation.hqTitle || parentLoc.title, {
+      permanent: true,
+      direction: 'right',
+      offset: [18, -20],
+      className: 'formation-marker-label'
+    })
+    .addTo(activeFormationMarkers);
 
   for (var i = 0; i < formation.children.length; i++) {
-  var child = formation.children[i];
-  var childKey = child.key;
-  var childTitle = child.title;
-  var childLoc = getLocationByKey(childKey);
-  var childMarker = markersByKey[childKey]; 
+    var child = formation.children[i];
+    var childLoc = getLocationByKey(child.key);
+    var childMarker = markersByKey[child.key];
 
     if (!childLoc || !childMarker) continue;
 
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
 
-   var popupHtml = "<div class='formation-popup'>";
-popupHtml += "<div class='formation-popup-title'>" + childTitle + "</div>";
+    var childTitle = child.title || childLoc.title;
 
-if (child.battalions && child.battalions.length > 0) {
-  popupHtml += "<div class='formation-popup-list'>";
-  for (var j = 0; j < child.battalions.length; j++) {
-    popupHtml +=
-      "<div class='formation-popup-row'>" +
-        "<div class='formation-popup-dates'>" + child.battalions[j].dates + "</div>" +
-        "<div class='formation-popup-unit'>" + child.battalions[j].name + "</div>" +
-      "</div>";
-  }
-  popupHtml += "</div>";
-} else {
-  popupHtml += "<div class='formation-popup-place'>" + childLoc.title + "</div>";
-}
+    var popupHtml = "<div class='formation-popup'>";
+    popupHtml += "<div class='formation-popup-title'>" + childTitle + "</div>";
 
-if (child.formation) {
-  popupHtml +=
-    "<div class='formation-popup-link'>" +
-      "<a href='#' onclick=\"showFormation('" + child.formation + "'); return false;\">" +
-      "Show battalion locations</a>" +
-    "</div>";
-}
+    if (child.battalions && child.battalions.length > 0) {
+      popupHtml += "<div class='formation-popup-list'>";
+      for (var j = 0; j < child.battalions.length; j++) {
+        popupHtml +=
+          "<div class='formation-popup-row'>" +
+            "<div class='formation-popup-dates'>" + child.battalions[j].dates + "</div>" +
+            "<div class='formation-popup-unit'>" + child.battalions[j].name + "</div>" +
+          "</div>";
+      }
+      popupHtml += "</div>";
+    } else {
+      popupHtml += "<div class='formation-popup-place'>" + childLoc.title + "</div>";
+    }
 
-popupHtml += "</div>";
-var brigadeMarker = L.marker(childLatLng, {
-  icon: baorIcon,
-  pane: 'formationMarkersPane'
-})
-.bindPopup(popupHtml, {
-  maxWidth: 380,
-  minWidth: 300
-})
-.bindTooltip(childTitle, {
-  permanent: true,
-  direction: 'top',
-  offset: [0, -48],
-  className: 'formation-marker-label',
-  opacity: 0.9   // 👈 add this
-})
-.addTo(activeFormationMarkers);
+    if (child.formation) {
+      popupHtml +=
+        "<div class='formation-popup-link'>" +
+          "<a href='#' onclick=\"showFormation('" + child.formation + "'); return false;\">" +
+          "Show battalion locations</a>" +
+        "</div>";
+    }
 
-    var line = L.polyline(
-  [parentLatLng, childLatLng],
-  {
-    color: "#23395b",
-    weight: 4,
-    opacity: 0.7,
-    dashArray: "8, 8",
-    lineCap: "round",
-    pane: 'formationLinesPane'
-  }
-);
+    popupHtml += "</div>";
+
+    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
+      .bindPopup(popupHtml, { maxWidth: 380, minWidth: 300 })
+      .bindTooltip(childTitle, {
+        permanent: true,
+        direction: 'top',
+        offset: [0, -48],
+        className: 'formation-marker-label'
+      })
+      .addTo(activeFormationMarkers);
+
+    var line = L.polyline([parentLatLng, childLatLng], {
+      color: "#23395b",
+      weight: 3,
+      opacity: 0.7,
+      dashArray: "6, 6",
+      pane: 'formationLinesPane'
+    });
 
     activeFormationLines.addLayer(line);
-
-    
   }
 
-   function toggleFormationLabels() {
+  if (allLatLngs.length > 0) {
+    var formationBounds = L.latLngBounds(allLatLngs);
+    map.fitBounds(formationBounds, {
+      paddingTopLeft: [140, 100],
+      paddingBottomRight: [80, 80]
+    });
+  }
+
+  showFormationBackButton();
+  showFormationTitle(formation.title);
+  applyFormationLabelVisibility();
+}
+
+
+function resetFormation() {
+  map.closePopup();
+
+  activeFormationLines.clearLayers();
+  activeFormationMarkers.clearLayers();
+
+  map.getPane('formationLinesPane').style.display = 'none';
+  map.getPane('formationMarkersPane').style.display = 'none';
+
+  hideFormationBackButton();
+  hideFormationTitle();
+
+  currentFormationId = null;
+  formationHistory = [];
+
+  if (map.hasLayer(markerLayer)) {
+    map.removeLayer(markerLayer);
+  }
+
+  setTimeout(function () {
+    map.addLayer(markerLayer);
+
+    if (markerLayer.refreshClusters) {
+      markerLayer.refreshClusters();
+    }
+
+    map.fitBounds(bounds, { padding: [30, 30] });
+    map.invalidateSize();
+  }, 0);
+}
+
+
+// --- LABEL TOGGLE FUNCTIONS (standalone) ---
+
+function toggleFormationLabels() {
   formationLabelsVisible = !formationLabelsVisible;
 
   var toggleBtn = document.getElementById("toggle-labels-btn");
