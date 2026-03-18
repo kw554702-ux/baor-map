@@ -43,9 +43,9 @@ var formations = {
     parent: "herford",
     hqTitle: "11th Armoured Division HQ",
     children: [
-      { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade" },
-      { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade", formation: "hildesheim-91st-brigade" }
-    ],
+  { key: "bad-lippspringe", title: "HQ 33rd Armoured Brigade", formation: "bad-lippspringe-33rd-brigade" },
+  { key: "hildesheim", title: "HQ 91st Lorried Infantry Brigade", formation: "hildesheim-91st-brigade" }
+],
     title: "11th Armoured Division – Brigade Layout (1951–1956)"
   },
 
@@ -84,6 +84,38 @@ var formations = {
   title: "91st Lorried Infantry Brigade – Battalion Locations"
 }
 
+  "bad-lippspringe-33rd-brigade": {
+  parent: "bad-lippspringe",
+  hqTitle: "HQ 33rd Armoured Brigade",
+  children: [
+    {
+      key: "paderborn",
+      title: "Paderborn",
+      battalions: [
+        { name: "5th Royal Inniskilling Dragoon Guards", dates: "to Aug 1951" },
+        { name: "8th Royal Tank Regt", dates: "from Aug 1951" }
+      ]
+    },
+    {
+      key: "detmold",
+      title: "Detmold",
+      battalions: [
+        { name: "1st Royal Tank Regt", dates: "to Oct 1952" },
+        { name: "3rd Royal Tank Regt", dates: "from Oct 1952" },
+        { name: "9th Lancers", dates: "assigned Nov 1952" }
+      ]
+    },
+    {
+      key: "sennelager",
+      title: "Sennelager",
+      battalions: [
+        { name: "1st Bn KRRC (King's Royal Rifle Corps)", dates: "to Jun 1955" },
+        { name: "1st Bn Sherwood Foresters", dates: "from Jun 1955" }
+      ]
+    }
+  ],
+  title: "33rd Armoured Brigade – Unit Locations"
+}
 };
 
 // --- Marker layer ---
