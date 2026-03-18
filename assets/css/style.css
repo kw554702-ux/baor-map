@@ -222,6 +222,10 @@ h1 {
   white-space: nowrap;
 }
 
+.labels-hidden .leaflet-tooltip.formation-marker-label {
+  display: none !important;
+}
+
 .formation-popup {
   min-width: 280px;
   max-width: 360px;
