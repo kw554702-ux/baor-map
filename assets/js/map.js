@@ -349,6 +349,19 @@ function showFormation(formationId, skipHistory) {
   showFormationTitle(formation.title);
   applyFormationLabelVisibility();
 }
+  
+  if (allLatLngs.length > 0) {
+    var formationBounds = L.latLngBounds(allLatLngs);
+    map.fitBounds(formationBounds, {
+      paddingTopLeft: [140, 100],
+      paddingBottomRight: [80, 80]
+    });
+  }
+
+  showFormationBackButton();
+  showFormationTitle(formation.title);
+  applyFormationLabelVisibility();
+}
 
 function showFullStructure(structureId) {
   var structure = fullStructures[structureId];
@@ -575,7 +588,6 @@ function resetFormation() {
     map.invalidateSize();
   }, 0);
 }
-
 function toggleFormationLabels() {
   formationLabelsVisible = !formationLabelsVisible;
 
@@ -598,6 +610,7 @@ function applyFormationLabelVisibility() {
     label.style.display = formationLabelsVisible ? "" : "none";
   });
 }
+
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
 var targetKey = params.get("loc");
