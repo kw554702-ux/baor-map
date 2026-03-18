@@ -592,16 +592,17 @@ function resetFormation() {
   function toggleFormationLabels() {
   formationLabelsVisible = !formationLabelsVisible;
 
-  var mapContainer = document.getElementById("map-container");
   var toggleBtn = document.getElementById("toggle-labels-btn");
+  var labels = document.querySelectorAll(".formation-marker-label");
 
-  if (mapContainer) {
-    if (formationLabelsVisible) {
-      mapContainer.classList.remove("labels-hidden");
-    } else {
-      mapContainer.classList.add("labels-hidden");
-    }
+  labels.forEach(function(label) {
+    label.style.display = formationLabelsVisible ? "" : "none";
+  });
+
+  if (toggleBtn) {
+    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
   }
+}
 
   if (toggleBtn) {
     toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
