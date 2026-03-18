@@ -353,17 +353,27 @@ var brigadeMarker = L.marker(childLatLng, {
     
   }
 
-    if (allLatLngs.length > 0) {
-    var formationBounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(formationBounds, {
-      paddingTopLeft: [140, 100],
-      paddingBottomRight: [80, 80]
-    });
-  }
+   function toggleFormationLabels() {
+  formationLabelsVisible = !formationLabelsVisible;
 
-  showFormationBackButton();
-  showFormationTitle(formation.title);
-  applyFormationLabelVisibility();
+  var toggleBtn = document.getElementById("toggle-labels-btn");
+  var labels = document.querySelectorAll(".leaflet-tooltip");
+
+  labels.forEach(function(label) {
+    label.style.display = formationLabelsVisible ? "" : "none";
+  });
+
+  if (toggleBtn) {
+    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
+  }
+}
+
+function applyFormationLabelVisibility() {
+  var labels = document.querySelectorAll(".leaflet-tooltip");
+
+  labels.forEach(function(label) {
+    label.style.display = formationLabelsVisible ? "" : "none";
+  });
 }
 
 function showFullStructure(structureId) {
