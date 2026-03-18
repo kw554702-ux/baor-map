@@ -82,7 +82,7 @@ var formations = {
     }
   ],
   title: "91st Lorried Infantry Brigade – Battalion Locations"
-}
+},
 
   "bad-lippspringe-33rd-brigade": {
   parent: "bad-lippspringe",
