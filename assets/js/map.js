@@ -568,23 +568,27 @@ function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
-  if (!map.hasLayer(markerLayer)) {
-    map.addLayer(markerLayer);
-  }
-
-  // Refresh cluster interactivity after re-adding
-  if (markerLayer.refreshClusters) {
-    markerLayer.refreshClusters();
-  }
-
-  map.fitBounds(bounds, { padding: [30, 30] });
-  map.invalidateSize();
-
   hideFormationBackButton();
   hideFormationTitle();
 
   currentFormationId = null;
   formationHistory = [];
+
+  // Fully reset the clustered marker layer
+  if (map.hasLayer(markerLayer)) {
+    map.removeLayer(markerLayer);
+  }
+
+  setTimeout(function () {
+    map.addLayer(markerLayer);
+
+    if (markerLayer.refreshClusters) {
+      markerLayer.refreshClusters();
+    }
+
+    map.fitBounds(bounds, { padding: [30, 30] });
+    map.invalidateSize();
+  }, 0);
 }
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
