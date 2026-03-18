@@ -185,17 +185,15 @@ for (var i = 0; i < locations.length; i++) {
 
   // EXISTING dynamic structure link
   (loc.key === "herford"
-    ? '<div class="baor-period-link">' +
+  ? '<div class="baor-period-link">' +
       '<a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">' +
-      '1951–1956: show brigade layout</a></div>'
-    : '') +
-
-  // 👉 OPTIONAL: static structure page backup
-  (loc.key === "herford"
-    ? '<div class="baor-period-link">' +
-      '<a href="herford-division.html" target="_blank">Open structure map (full view)</a>' +
-      '</div>'
-    : '') +
+      '1951–1956: show brigade layout</a>' +
+    '</div>' +
+    '<div class="baor-period-link">' +
+      '<a href="#" onclick="showFullStructure(\'herford-full-division\'); return false;">' +
+      '1951–1956: show full divisional structure</a>' +
+    '</div>'
+  : '') +
 
   '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
 
