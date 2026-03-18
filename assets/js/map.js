@@ -518,7 +518,7 @@ function showFullStructure(structureId) {
     
   }
 
-    if (allLatLngs.length > 0) {
+     if (allLatLngs.length > 0) {
     var fullBounds = L.latLngBounds(allLatLngs);
     map.fitBounds(fullBounds, {
       paddingTopLeft: [140, 100],
