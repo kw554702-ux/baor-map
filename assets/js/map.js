@@ -1,6 +1,6 @@
 var map = L.map('map').setView([52.0, 9.0], 6);
 
-// --- Formation display panes (above clusters) ---
+// --- Formation display panes (above clusters) --- =
 
 map.createPane('formationLinesPane');
 map.getPane('formationLinesPane').style.zIndex = 650;
@@ -321,7 +321,8 @@ var brigadeMarker = L.marker(childLatLng, {
   permanent: true,
   direction: 'top',
   offset: [0, -48],
-  className: 'formation-marker-label'
+  className: 'formation-marker-label',
+  opacity: 0.9   // 👈 add this
 })
 .addTo(activeFormationMarkers);
 
