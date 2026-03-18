@@ -604,11 +604,7 @@ function resetFormation() {
   }
 }
 
-  if (toggleBtn) {
-    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
-  }
-}
-  setTimeout(function () {
+    setTimeout(function () {
     map.addLayer(markerLayer);
 
     if (markerLayer.refreshClusters) {
