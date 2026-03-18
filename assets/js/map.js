@@ -506,12 +506,23 @@ function goBackFormation() {
   activeFormationMarkers.clearLayers();
 
   if (formationHistory.length > 0) {
-    var previousFormation = formationHistory.pop();
+    var previousView = formationHistory.pop();
     currentFormationId = null;
-    showFormation(previousFormation, true);
-    return;
+
+    // If it's a normal formation
+    if (formations[previousView]) {
+      showFormation(previousView, true);
+      return;
+    }
+
+    // If it's a full structure view
+    if (fullStructures[previousView]) {
+      showFullStructure(previousView);
+      return;
+    }
   }
 
+  // Otherwise go back to main map
   resetFormation();
 }
 
