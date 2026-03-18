@@ -149,6 +149,12 @@ var fullStructures = {
   }
 };
 
+function getLocationByKey(key) {
+  for (var i = 0; i < locations.length; i++) {
+    if (locations[i].key === key) return locations[i];
+  }
+  return null;
+}
 // --- Marker layer ---
 
 
