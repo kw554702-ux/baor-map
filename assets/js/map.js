@@ -247,33 +247,36 @@ function showFormation(formationId, skipHistory) {
   var parentLatLng = parentMarker.getLatLng();
   allLatLngs.push(parentLatLng);
 
-  L.marker(parentLatLng, { icon: hqIcon, pane: 'formationMarkersPane' })
-    .bindPopup(
-      "<div class='formation-popup'>" +
-        "<div class='formation-popup-title'>" + (formation.hqTitle || parentLoc.title) + "</div>" +
-        "<div class='formation-popup-place'>" + parentLoc.title + "</div>" +
-      "</div>",
-      { maxWidth: 380, minWidth: 260 }
-    )
-    .bindTooltip(formation.hqTitle || parentLoc.title, {
-      permanent: true,
-      direction: 'right',
-      offset: [18, -20],
-      className: 'formation-marker-label'
-    })
-    .addTo(activeFormationMarkers);
+  L.marker(parentLatLng, {
+    icon: hqIcon,
+    pane: 'formationMarkersPane'
+  })
+  .bindPopup(
+    "<div class='formation-popup'>" +
+      "<div class='formation-popup-title'>" + (formation.hqTitle || parentLoc.title) + "</div>" +
+      "<div class='formation-popup-place'>" + parentLoc.title + "</div>" +
+    "</div>",
+    { maxWidth: 380, minWidth: 260 }
+  )
+  .bindTooltip(formation.hqTitle || parentLoc.title, {
+    permanent: true,
+    direction: 'right',
+    offset: [18, -20],
+    className: 'formation-marker-label'
+  })
+  .addTo(activeFormationMarkers);
 
   for (var i = 0; i < formation.children.length; i++) {
     var child = formation.children[i];
-    var childLoc = getLocationByKey(child.key);
-    var childMarker = markersByKey[child.key];
+    var childKey = child.key;
+    var childTitle = child.title;
+    var childLoc = getLocationByKey(childKey);
+    var childMarker = markersByKey[childKey];
 
     if (!childLoc || !childMarker) continue;
 
     var childLatLng = childMarker.getLatLng();
     allLatLngs.push(childLatLng);
-
-    var childTitle = child.title || childLoc.title;
 
     var popupHtml = "<div class='formation-popup'>";
     popupHtml += "<div class='formation-popup-title'>" + childTitle + "</div>";
@@ -302,23 +305,34 @@ function showFormation(formationId, skipHistory) {
 
     popupHtml += "</div>";
 
-    L.marker(childLatLng, { icon: baorIcon, pane: 'formationMarkersPane' })
-      .bindPopup(popupHtml, { maxWidth: 380, minWidth: 300 })
-      .bindTooltip(childTitle, {
-        permanent: true,
-        direction: 'top',
-        offset: [0, -48],
-        className: 'formation-marker-label'
-      })
-      .addTo(activeFormationMarkers);
+    L.marker(childLatLng, {
+      icon: baorIcon,
+      pane: 'formationMarkersPane'
+    })
+    .bindPopup(popupHtml, {
+      maxWidth: 380,
+      minWidth: 300
+    })
+    .bindTooltip(childTitle, {
+      permanent: true,
+      direction: 'top',
+      offset: [0, -48],
+      className: 'formation-marker-label',
+      opacity: 0.9
+    })
+    .addTo(activeFormationMarkers);
 
-    var line = L.polyline([parentLatLng, childLatLng], {
-      color: "#23395b",
-      weight: 3,
-      opacity: 0.7,
-      dashArray: "6, 6",
-      pane: 'formationLinesPane'
-    });
+    var line = L.polyline(
+      [parentLatLng, childLatLng],
+      {
+        color: "#23395b",
+        weight: 4,
+        opacity: 0.7,
+        dashArray: "8, 8",
+        lineCap: "round",
+        pane: 'formationLinesPane'
+      }
+    );
 
     activeFormationLines.addLayer(line);
   }
@@ -336,64 +350,6 @@ function showFormation(formationId, skipHistory) {
   applyFormationLabelVisibility();
 }
 
-
-function resetFormation() {
-  map.closePopup();
-
-  activeFormationLines.clearLayers();
-  activeFormationMarkers.clearLayers();
-
-  map.getPane('formationLinesPane').style.display = 'none';
-  map.getPane('formationMarkersPane').style.display = 'none';
-
-  hideFormationBackButton();
-  hideFormationTitle();
-
-  currentFormationId = null;
-  formationHistory = [];
-
-  if (map.hasLayer(markerLayer)) {
-    map.removeLayer(markerLayer);
-  }
-
-  setTimeout(function () {
-    map.addLayer(markerLayer);
-
-    if (markerLayer.refreshClusters) {
-      markerLayer.refreshClusters();
-    }
-
-    map.fitBounds(bounds, { padding: [30, 30] });
-    map.invalidateSize();
-  }, 0);
-}
-
-
-// --- LABEL TOGGLE FUNCTIONS (standalone) ---
-
-function toggleFormationLabels() {
-  formationLabelsVisible = !formationLabelsVisible;
-
-  var toggleBtn = document.getElementById("toggle-labels-btn");
-  var labels = document.querySelectorAll(".leaflet-tooltip");
-
-  labels.forEach(function(label) {
-    label.style.display = formationLabelsVisible ? "" : "none";
-  });
-
-  if (toggleBtn) {
-    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
-  }
-}
-
-function applyFormationLabelVisibility() {
-  var labels = document.querySelectorAll(".leaflet-tooltip");
-
-  labels.forEach(function(label) {
-    label.style.display = formationLabelsVisible ? "" : "none";
-  });
-}
-
 function showFullStructure(structureId) {
   var structure = fullStructures[structureId];
   if (!structure) return;
@@ -407,8 +363,6 @@ function showFullStructure(structureId) {
   }
 
   currentFormationId = structureId;
-
-  hideFormationBackButton();
 
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
@@ -434,10 +388,7 @@ function showFullStructure(structureId) {
       "<div class='formation-popup-title'>" + structure.division.title + "</div>" +
       "<div class='formation-popup-place'>" + divisionLoc.title + "</div>" +
     "</div>",
-    {
-      maxWidth: 380,
-      minWidth: 260
-    }
+    { maxWidth: 380, minWidth: 260 }
   )
   .bindTooltip(structure.division.title, {
     permanent: true,
@@ -464,10 +415,7 @@ function showFullStructure(structureId) {
         "<div class='formation-popup-title'>" + brigade.title + "</div>" +
         "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
       "</div>",
-      {
-        maxWidth: 380,
-        minWidth: 260
-      }
+      { maxWidth: 380, minWidth: 260 }
     )
     .bindTooltip(brigade.title, {
       permanent: true,
@@ -507,10 +455,7 @@ function showFullStructure(structureId) {
           "<div class='formation-popup-title'>" + child.title + "</div>" +
           "<div class='formation-popup-place'>" + childLoc.title + "</div>" +
         "</div>",
-        {
-          maxWidth: 380,
-          minWidth: 260
-        }
+        { maxWidth: 380, minWidth: 260 }
       )
       .bindTooltip(child.title, {
         permanent: true,
@@ -533,10 +478,9 @@ function showFullStructure(structureId) {
       );
       activeFormationLines.addLayer(brigadeLine);
     }
-    
   }
 
-     if (allLatLngs.length > 0) {
+  if (allLatLngs.length > 0) {
     var fullBounds = L.latLngBounds(allLatLngs);
     map.fitBounds(fullBounds, {
       paddingTopLeft: [140, 100],
@@ -548,6 +492,7 @@ function showFullStructure(structureId) {
   showFormationTitle(structure.title);
   applyFormationLabelVisibility();
 }
+
 function goBackFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
@@ -556,20 +501,17 @@ function goBackFormation() {
     var previousView = formationHistory.pop();
     currentFormationId = null;
 
-    // If it's a normal formation
     if (formations[previousView]) {
       showFormation(previousView, true);
       return;
     }
 
-    // If it's a full structure view
     if (fullStructures[previousView]) {
       showFullStructure(previousView);
       return;
     }
   }
 
-  // Otherwise go back to main map
   resetFormation();
 }
 
@@ -578,8 +520,6 @@ function showFormationBackButton() {
   if (back) {
     back.style.display = "block";
   }
-
-  
 }
 
 function hideFormationBackButton() {
@@ -604,6 +544,7 @@ function hideFormationTitle() {
     titleBox.textContent = "";
   }
 }
+
 function resetFormation() {
   map.closePopup();
 
@@ -623,7 +564,19 @@ function resetFormation() {
     map.removeLayer(markerLayer);
   }
 
-  function toggleFormationLabels() {
+  setTimeout(function () {
+    map.addLayer(markerLayer);
+
+    if (markerLayer.refreshClusters) {
+      markerLayer.refreshClusters();
+    }
+
+    map.fitBounds(bounds, { padding: [30, 30] });
+    map.invalidateSize();
+  }, 0);
+}
+
+function toggleFormationLabels() {
   formationLabelsVisible = !formationLabelsVisible;
 
   var toggleBtn = document.getElementById("toggle-labels-btn");
@@ -644,23 +597,6 @@ function applyFormationLabelVisibility() {
   labels.forEach(function(label) {
     label.style.display = formationLabelsVisible ? "" : "none";
   });
-}
-
-  if (toggleBtn) {
-    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
-  }
-}
-
-    setTimeout(function () {
-    map.addLayer(markerLayer);
-
-    if (markerLayer.refreshClusters) {
-      markerLayer.refreshClusters();
-    }
-
-    map.fitBounds(bounds, { padding: [30, 30] });
-    map.invalidateSize();
-  }, 0);
 }
 // --- Zoom to location from URL parameter ---
 var params = new URLSearchParams(window.location.search);
