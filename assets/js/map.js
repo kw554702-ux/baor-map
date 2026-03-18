@@ -360,6 +360,7 @@ var brigadeMarker = L.marker(childLatLng, {
 
   showFormationBackButton();
   showFormationTitle(formation.title);
+  applyFormationLabelVisibility();
 }
 
 function showFullStructure(structureId) {
@@ -513,6 +514,7 @@ function showFullStructure(structureId) {
 
   showFormationBackButton();
   showFormationTitle(structure.title);
+  applyFormationLabelVisibility();
 }
 function goBackFormation() {
   activeFormationLines.clearLayers();
@@ -593,11 +595,19 @@ function resetFormation() {
   formationLabelsVisible = !formationLabelsVisible;
 
   var toggleBtn = document.getElementById("toggle-labels-btn");
-  var labels = document.querySelectorAll(".formation-marker-label");
+  var labels = document.querySelectorAll(".leaflet-tooltip");
 
   labels.forEach(function(label) {
     label.style.display = formationLabelsVisible ? "" : "none";
   });
+
+   function applyFormationLabelVisibility() {
+  var labels = document.querySelectorAll(".leaflet-tooltip");
+
+  labels.forEach(function(label) {
+    label.style.display = formationLabelsVisible ? "" : "none";
+  });
+} 
 
   if (toggleBtn) {
     toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
