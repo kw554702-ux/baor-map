@@ -1,4 +1,6 @@
-var map = L.map('map').setView([52.0, 9.0], 6);
+var map = L.map('map', {
+  preferCanvas: true
+}).setView([52.0, 9.0], 6);
 
 // --- Formation display panes (above clusters) --- =
 
