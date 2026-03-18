@@ -10,6 +10,9 @@ map.getPane('formationLinesPane').style.zIndex = 650;
 map.createPane('formationMarkersPane');
 map.getPane('formationMarkersPane').style.zIndex = 700;
 
+map.getPane('formationLinesPane').style.display = 'none';
+map.getPane('formationMarkersPane').style.display = 'none';
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; OpenStreetMap contributors'
@@ -218,6 +221,8 @@ function showFormation(formationId, skipHistory) {
   if (!formation) return;
 
   map.closePopup();
+  map.getPane('formationLinesPane').style.display = 'block';
+  map.getPane('formationMarkersPane').style.display = 'block';
 
   if (!skipHistory && currentFormationId && currentFormationId !== formationId) {
     formationHistory.push(currentFormationId);
@@ -361,6 +366,8 @@ function showFullStructure(structureId) {
   if (!structure) return;
 
   map.closePopup();
+  map.getPane('formationLinesPane').style.display = 'block';
+  map.getPane('formationMarkersPane').style.display = 'block';
 
   if (currentFormationId && currentFormationId !== structureId) {
     formationHistory.push(currentFormationId);
@@ -568,13 +575,15 @@ function resetFormation() {
   activeFormationLines.clearLayers();
   activeFormationMarkers.clearLayers();
 
+  map.getPane('formationLinesPane').style.display = 'none';
+  map.getPane('formationMarkersPane').style.display = 'none';
+
   hideFormationBackButton();
   hideFormationTitle();
 
   currentFormationId = null;
   formationHistory = [];
 
-  // Fully reset the clustered marker layer
   if (map.hasLayer(markerLayer)) {
     map.removeLayer(markerLayer);
   }
