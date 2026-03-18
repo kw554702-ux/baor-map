@@ -589,6 +589,24 @@ function resetFormation() {
     map.removeLayer(markerLayer);
   }
 
+  function toggleFormationLabels() {
+  formationLabelsVisible = !formationLabelsVisible;
+
+  var mapContainer = document.getElementById("map-container");
+  var toggleBtn = document.getElementById("toggle-labels-btn");
+
+  if (mapContainer) {
+    if (formationLabelsVisible) {
+      mapContainer.classList.remove("labels-hidden");
+    } else {
+      mapContainer.classList.add("labels-hidden");
+    }
+  }
+
+  if (toggleBtn) {
+    toggleBtn.textContent = formationLabelsVisible ? "Hide labels" : "Show labels";
+  }
+}
   setTimeout(function () {
     map.addLayer(markerLayer);
 
@@ -690,7 +708,11 @@ function runBaorSearch() {
 if (searchButton) {
   searchButton.addEventListener("click", runBaorSearch);
 }
+var toggleLabelsButton = document.getElementById("toggle-labels-btn");
 
+if (toggleLabelsButton) {
+  toggleLabelsButton.addEventListener("click", toggleFormationLabels);
+}
 if (searchInput) {
   searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
