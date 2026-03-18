@@ -353,9 +353,12 @@ var brigadeMarker = L.marker(childLatLng, {
     
   }
 
-  if (allLatLngs.length > 0) {
+    if (allLatLngs.length > 0) {
     var formationBounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(formationBounds, { padding: [60, 60] });
+    map.fitBounds(formationBounds, {
+      paddingTopLeft: [140, 100],
+      paddingBottomRight: [80, 80]
+    });
   }
 
   showFormationBackButton();
