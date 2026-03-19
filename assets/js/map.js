@@ -310,9 +310,10 @@ function showFormation(formationId, skipHistory) {
       pane: 'formationMarkersPane'
     })
     .bindPopup(popupHtml, {
-      maxWidth: 380,
-      minWidth: 300
-    })
+  maxWidth: 380,
+  minWidth: 300,
+  offset: L.point(28, -22)
+})
     .bindTooltip(childTitle, {
       permanent: true,
       direction: 'top',
@@ -389,7 +390,11 @@ function showFullStructure(structureId) {
       "<div class='formation-popup-title'>" + structure.division.title + "</div>" +
       "<div class='formation-popup-place'>" + divisionLoc.title + "</div>" +
     "</div>",
-    { maxWidth: 380, minWidth: 260 }
+   {
+  maxWidth: 380,
+  minWidth: 260,
+  offset: L.point(28, -22)
+}
   )
   .bindTooltip(structure.division.title, {
     permanent: true,
@@ -416,7 +421,7 @@ function showFullStructure(structureId) {
         "<div class='formation-popup-title'>" + brigade.title + "</div>" +
         "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
       "</div>",
-      { maxWidth: 380, minWidth: 260 }
+      { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
     )
     .bindTooltip(brigade.title, {
       permanent: true,
@@ -456,7 +461,7 @@ function showFullStructure(structureId) {
           "<div class='formation-popup-title'>" + child.title + "</div>" +
           "<div class='formation-popup-place'>" + childLoc.title + "</div>" +
         "</div>",
-        { maxWidth: 380, minWidth: 260 }
+        { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
       )
       .bindTooltip(child.title, {
         permanent: true,
