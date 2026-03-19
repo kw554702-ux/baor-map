@@ -27,10 +27,10 @@ var baorIcon = L.icon({
 });
 
 var hqIcon = L.icon({
-  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
-  iconSize: [40, 56],
-  iconAnchor: [20, 56],
-  popupAnchor: [18, -68]
+  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/baor-hq-marker.png',
+  iconSize: [46, 64],   // ⬅️ slightly bigger
+  iconAnchor: [23, 64],
+  popupAnchor: [18, -72]
 });
 
 // --- Formation reormation lationships ---
