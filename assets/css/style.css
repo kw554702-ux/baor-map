@@ -35,6 +35,9 @@ h1 {
 .leaflet-popup-content {
   max-width: 320px;
 }
+.leaflet-popup {
+  margin-bottom: 14px;
+}
 .baor-popup {
   font-family: Georgia, serif;
   max-width: 320px;
@@ -249,8 +252,8 @@ h1 {
 
 .formation-popup-row {
   display: grid;
-  grid-template-columns: 105px 1fr;
-  gap: 10px;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
   align-items: start;
   padding: 4px 0;
   border-top: 1px solid #eef2f7;
