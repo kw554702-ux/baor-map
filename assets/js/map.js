@@ -23,14 +23,14 @@ var baorIcon = L.icon({
   iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
   iconSize: [40, 56],
   iconAnchor: [20, 56],
-  popupAnchor: [0, -68]
+  popupAnchor: [18, -68]
 });
 
 var hqIcon = L.icon({
-  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
+  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/baor-hq-marker.png',
   iconSize: [40, 56],
   iconAnchor: [20, 56],
-  popupAnchor: [0, -68]
+  popupAnchor: [18, -68]
 });
 
 
