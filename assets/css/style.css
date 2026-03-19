@@ -307,3 +307,11 @@ h1 {
 .leaflet-tooltip.formation-marker-label {
   pointer-events: none;
 }
+
+.leaflet-marker-icon {
+  transition: transform 0.15s ease;
+}
+
+.leaflet-marker-icon:hover {
+  transform: scale(1.05);
+}
