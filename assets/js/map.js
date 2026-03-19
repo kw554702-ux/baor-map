@@ -5,10 +5,10 @@ var map = L.map('map', {
 // --- Formation display panes (above clusters) --- =
 
 map.createPane('formationLinesPane');
-map.getPane('formationLinesPane').style.zIndex = 650;
+map.getPane('formationLinesPane').style.zIndex = 620;
 
 map.createPane('formationMarkersPane');
-map.getPane('formationMarkersPane').style.zIndex = 700;
+map.getPane('formationMarkersPane').style.zIndex = 640;
 
 map.getPane('formationLinesPane').style.display = 'none';
 map.getPane('formationMarkersPane').style.display = 'none';
