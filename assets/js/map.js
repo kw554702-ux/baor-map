@@ -247,8 +247,7 @@ for (var i = 0; i < locations.length; i++) {
   markersByKey[loc.key] = marker;
 
   bounds.extend(loc.coords);
- 
-  var popupHtml = 
+ var popupHtml =
   '<div class="baor-popup">' +
 
   '<div class="baor-title">' + loc.title + '</div>' +
@@ -277,6 +276,7 @@ for (var i = 0; i < locations.length; i++) {
     : '') +
 
   '</div>';
+  
   
 marker.bindPopup(popupHtml);
 
