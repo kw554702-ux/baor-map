@@ -131,73 +131,95 @@ var fullStructures = {
       key: "herford",
       title: "HQ 11th Armoured Division"
     },
-    
-"herford-support-troops": {
-  title: "11th Armoured Division – Support Troops",
-  division: {
-    key: "herford",
-    title: "HQ 11th Armoured Division"
+    brigades: [
+      {
+        key: "hildesheim",
+        title: "HQ 91st Lorried Infantry Brigade",
+        children: [
+          { key: "goslar", title: "Goslar" },
+          { key: "braunschweig", title: "Braunschweig" },
+          { key: "gottingen", title: "Göttingen" }
+        ]
+      },
+      {
+        key: "bad-lippspringe",
+        title: "HQ 33rd Armoured Brigade",
+        children: [
+          { key: "paderborn", title: "Paderborn" },
+          { key: "detmold", title: "Detmold" },
+          { key: "sennelager", title: "Sennelager" }
+        ]
+      }
+    ]
   },
-  support: [
-    {
+
+  "herford-support-troops": {
+    title: "11th Armoured Division – Support Troops",
+    division: {
       key: "herford",
-      title: "Herford – Div HQ / Signals",
-      details: [
-        "HQ 11th Armoured Division",
-        "11th Armoured Division Signal Regt"
-      ]
+      title: "HQ 11th Armoured Division"
     },
-    {
-      key: "wolfenbuttel",
-      title: "Wolfenbüttel – Recce",
-      details: [
-        "Royal Horse Guards [recce]",
-        "Replaced Mar 1952 by Life Guards",
-        "Replaced Jul 1953 by 13th/18th Hussars [left Mar 1956]"
-      ]
-    },
-    {
-      key: "bielefeld",
-      title: "Bielefeld – Anti-tank",
-      details: [
-        "3rd Hussars [atk regt]",
-        "Replaced Jul 1953 by 16th/5th Lancers at Sennelager"
-      ]
-    },
-    {
-      key: "hildesheim",
-      title: "Hildesheim – RHA / Loc Bty",
-      details: [
-        "2nd Field Regt RHA",
-        "I, L, O Btys RHA [Sexton]",
-        "157th Loc Bty RA"
-      ]
-    },
-    {
-      key: "detmold",
-      title: "Detmold – Field Regt RA",
-      details: [
-        "10th Field Regt RA",
-        "Q, X, Y Btys RA [Sexton]"
-      ]
-    },
-    {
-      key: "lippstadt",
-      title: "Lippstadt – LAA Regt",
-      details: [
-        "53rd LAA Regt RA",
-        "58, 106, 110 LAA Btys RA [40mm]"
-      ]
-    },
-    {
-      key: "hameln",
-      title: "Hameln – Engineers",
-      details: [
-        "26 Field Engr Regt RE",
-        "7, 29, 60 Field Sqns and 43 Field Park Sqn RE"
-      ]
-    }
-  ]
+    support: [
+      {
+        key: "herford",
+        title: "Herford – Div HQ / Signals",
+        details: [
+          "HQ 11th Armoured Division",
+          "11th Armoured Division Signal Regt"
+        ]
+      },
+      {
+        key: "wolfenbuttel",
+        title: "Wolfenbüttel – Recce",
+        details: [
+          "Royal Horse Guards [recce]",
+          "Replaced Mar 1952 by Life Guards",
+          "Replaced Jul 1953 by 13th/18th Hussars [left Mar 1956]"
+        ]
+      },
+      {
+        key: "bielefeld",
+        title: "Bielefeld – Anti-tank",
+        details: [
+          "3rd Hussars [atk regt]",
+          "Replaced Jul 1953 by 16th/5th Lancers at Sennelager"
+        ]
+      },
+      {
+        key: "hildesheim",
+        title: "Hildesheim – RHA / Loc Bty",
+        details: [
+          "2nd Field Regt RHA",
+          "I, L, O Btys RHA [Sexton]",
+          "157th Loc Bty RA"
+        ]
+      },
+      {
+        key: "detmold",
+        title: "Detmold – Field Regt RA",
+        details: [
+          "10th Field Regt RA",
+          "Q, X, Y Btys RA [Sexton]"
+        ]
+      },
+      {
+        key: "lippstadt",
+        title: "Lippstadt – LAA Regt",
+        details: [
+          "53rd LAA Regt RA",
+          "58, 106, 110 LAA Btys RA [40mm]"
+        ]
+      },
+      {
+        key: "hameln",
+        title: "Hameln – Engineers",
+        details: [
+          "26 Field Engr Regt RE",
+          "7, 29, 60 Field Sqns and 43 Field Park Sqn RE"
+        ]
+      }
+    ]
+  }
 };
       
     brigades: [
@@ -257,21 +279,24 @@ for (var i = 0; i < locations.length; i++) {
 
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
 
-  // EXISTING dynamic structure link
-  (loc.key === "herford"
+ (loc.key === "herford"
   ? '<div class="baor-period-link">' +
       '<a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">' +
       '1951–1956: show brigade layout</a>' +
     '</div>' +
+
     '<div class="baor-period-link">' +
       '<a href="#" onclick="showFullStructure(\'herford-full-division\'); return false;">' +
       '1951–1956: show full divisional structure</a>' +
+    '</div>' +
+
+    '<div class="baor-period-link">' +
+      '<a href="#" onclick="showFullStructure(\'herford-support-troops\'); return false;">' +
+      '1951–1956: show support troops</a>' +
     '</div>'
   : '') +
 
-  '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
-
-  '</div>';
+'<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
 
   marker.bindPopup(popupHtml);
 
@@ -420,160 +445,103 @@ function showFormation(formationId, skipHistory) {
 }
   
   
-function showFullStructure(structureId) {
-  var structure = fullStructures[structureId];
-  if (!structure) return;
-
-  map.closePopup();
-  map.getPane('formationLinesPane').style.display = 'block';
-  map.getPane('formationMarkersPane').style.display = 'block';
-
-  if (currentFormationId && currentFormationId !== structureId) {
-    formationHistory.push(currentFormationId);
-  }
-
-  currentFormationId = structureId;
-
-  activeFormationLines.clearLayers();
-  activeFormationMarkers.clearLayers();
-
-  if (map.hasLayer(markerLayer)) {
-    map.removeLayer(markerLayer);
-  }
-
-  var allLatLngs = [];
-
-  var divisionLoc = getLocationByKey(structure.division.key);
-  if (!divisionLoc) return;
-
-  var divisionLatLng = L.latLng(divisionLoc.coords[0], divisionLoc.coords[1]);
-  allLatLngs.push(divisionLatLng);
-
-  L.marker(divisionLatLng, {
-    icon: hqIcon,
-    pane: 'formationMarkersPane'
-  })
-  .bindPopup(
-    "<div class='formation-popup'>" +
-      "<div class='formation-popup-title'>" + structure.division.title + "</div>" +
-      "<div class='formation-popup-place'>" + divisionLoc.title + "</div>" +
-    "</div>",
-   {
-  maxWidth: 380,
-  minWidth: 260,
-  offset: L.point(30, -26)
-}
-  )
-  .bindTooltip(structure.division.title, {
-    permanent: true,
-    direction: 'right',
-    offset: [18, -20],
-    className: 'formation-marker-label'
-  })
-  .addTo(activeFormationMarkers);
-
-  var items = structure.brigades || structure.support;
-
-for (var i = 0; i < items.length; i++) {
-  var item = items[i];
-  var loc = getLocationByKey(item.key);
-  if (!loc) continue;
-
-  var latLng = L.latLng(loc.coords[0], loc.coords[1]);
-  allLatLngs.push(latLng);
-
-  L.marker(latLng, {
-    icon: baorIcon,
-    pane: 'formationMarkersPane'
-  })
-  .bindPopup(
-    "<div class='formation-popup'>" +
-      "<div class='formation-popup-title'>" + item.title + "</div>" +
-      "<div class='formation-popup-place'>" + loc.title + "</div>" +
-     "<div style='margin-top:6px;'>" +
-  (item.details
-    ? item.details.map(function(d) { return "<div>" + d + "</div>"; }).join("")
-    : "") +
-"</div>" + 
-    "</div>",
-    { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
-  )
-  .bindTooltip(item.title, {
-    permanent: true,
-    direction: 'top',
-    offset: [0, -48],
-    className: 'formation-marker-label'
-  })
-  .addTo(activeFormationMarkers);
-}
-
-    var divisionLine = L.polyline(
-      [divisionLatLng, brigadeLatLng],
+var fullStructures = {
+  "herford-full-division": {
+    title: "11th Armoured Division – Full Structure (1951–1956)",
+    division: {
+      key: "herford",
+      title: "HQ 11th Armoured Division"
+    },
+    brigades: [
       {
-        color: "#1f2a44",
-        weight: 4,
-        opacity: 0.75,
-        dashArray: "8, 8",
-        lineCap: "round",
-        pane: 'formationLinesPane'
+        key: "hildesheim",
+        title: "HQ 91st Lorried Infantry Brigade",
+        children: [
+          { key: "goslar", title: "Goslar" },
+          { key: "braunschweig", title: "Braunschweig" },
+          { key: "gottingen", title: "Göttingen" }
+        ]
+      },
+      {
+        key: "bad-lippspringe",
+        title: "HQ 33rd Armoured Brigade",
+        children: [
+          { key: "paderborn", title: "Paderborn" },
+          { key: "detmold", title: "Detmold" },
+          { key: "sennelager", title: "Sennelager" }
+        ]
       }
-    );
-    activeFormationLines.addLayer(divisionLine);
+    ]
+  },
 
-    for (var j = 0; j < brigade.children.length; j++) {
-      var child = brigade.children[j];
-      var childLoc = getLocationByKey(child.key);
-      if (!childLoc) continue;
-
-      var childLatLng = L.latLng(childLoc.coords[0], childLoc.coords[1]);
-      allLatLngs.push(childLatLng);
-
-      L.marker(childLatLng, {
-        icon: baorIcon,
-        pane: 'formationMarkersPane'
-      })
-      .bindPopup(
-        "<div class='formation-popup'>" +
-          "<div class='formation-popup-title'>" + child.title + "</div>" +
-          "<div class='formation-popup-place'>" + childLoc.title + "</div>" +
-        "</div>",
-        { maxWidth: 380, minWidth: 260, offset: L.point(30, -26) }
-      )
-      .bindTooltip(child.title, {
-        permanent: true,
-        direction: 'top',
-        offset: [0, -48],
-        className: 'formation-marker-label'
-      })
-      .addTo(activeFormationMarkers);
-
-      var brigadeLine = L.polyline(
-        [brigadeLatLng, childLatLng],
-        {
-          color: "#4c6488",
-          weight: 2,
-          opacity: 0.65,
-          dashArray: "6, 8",
-          lineCap: "round",
-          pane: 'formationLinesPane'
-        }
-      );
-      activeFormationLines.addLayer(brigadeLine);
-    }
+  "herford-support-troops": {
+    title: "11th Armoured Division – Support Troops",
+    division: {
+      key: "herford",
+      title: "HQ 11th Armoured Division"
+    },
+    support: [
+      {
+        key: "herford",
+        title: "Herford – Div HQ / Signals",
+        details: [
+          "HQ 11th Armoured Division",
+          "11th Armoured Division Signal Regt"
+        ]
+      },
+      {
+        key: "wolfenbuttel",
+        title: "Wolfenbüttel – Recce",
+        details: [
+          "Royal Horse Guards [recce]",
+          "Replaced Mar 1952 by Life Guards",
+          "Replaced Jul 1953 by 13th/18th Hussars [left Mar 1956]"
+        ]
+      },
+      {
+        key: "bielefeld",
+        title: "Bielefeld – Anti-tank",
+        details: [
+          "3rd Hussars [atk regt]",
+          "Replaced Jul 1953 by 16th/5th Lancers at Sennelager"
+        ]
+      },
+      {
+        key: "hildesheim",
+        title: "Hildesheim – RHA / Loc Bty",
+        details: [
+          "2nd Field Regt RHA",
+          "I, L, O Btys RHA [Sexton]",
+          "157th Loc Bty RA"
+        ]
+      },
+      {
+        key: "detmold",
+        title: "Detmold – Field Regt RA",
+        details: [
+          "10th Field Regt RA",
+          "Q, X, Y Btys RA [Sexton]"
+        ]
+      },
+      {
+        key: "lippstadt",
+        title: "Lippstadt – LAA Regt",
+        details: [
+          "53rd LAA Regt RA",
+          "58, 106, 110 LAA Btys RA [40mm]"
+        ]
+      },
+      {
+        key: "hameln",
+        title: "Hameln – Engineers",
+        details: [
+          "26 Field Engr Regt RE",
+          "7, 29, 60 Field Sqns and 43 Field Park Sqn RE"
+        ]
+      }
+    ]
   }
-
-  if (allLatLngs.length > 0) {
-    var fullBounds = L.latLngBounds(allLatLngs);
-    map.fitBounds(fullBounds, {
-      paddingTopLeft: [140, 100],
-      paddingBottomRight: [80, 80]
-    });
-  }
-
-  showFormationBackButton();
-  showFormationTitle(structure.title);
-  applyFormationLabelVisibility();
-}
+};
 
 function goBackFormation() {
   activeFormationLines.clearLayers();
