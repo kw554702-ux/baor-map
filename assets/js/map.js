@@ -220,8 +220,7 @@ var fullStructures = {
       }
     ]
   }
-};
-      
+};      
     brigades: [
       {
         key: "hildesheim",
