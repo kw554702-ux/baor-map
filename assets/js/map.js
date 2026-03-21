@@ -528,27 +528,7 @@ var fullStructures = {
       key: "herford",
       title: "HQ 11th Armoured Division"
     },
-    brigades: [
-      {
-        key: "hildesheim",
-        title: "HQ 91st Lorried Infantry Brigade",
-        children: [
-          { key: "goslar", title: "Goslar" },
-          { key: "braunschweig", title: "Braunschweig" },
-          { key: "gottingen", title: "Göttingen" }
-        ]
-      },
-      {
-        key: "bad-lippspringe",
-        title: "HQ 33rd Armoured Brigade",
-        children: [
-          { key: "paderborn", title: "Paderborn" },
-          { key: "detmold", title: "Detmold" },
-          { key: "sennelager", title: "Sennelager" }
-        ]
-      }
-    ]
-  },
+    
 
   "herford-support-troops": {
     title: "11th Armoured Division – Support Troops",
