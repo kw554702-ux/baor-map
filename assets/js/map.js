@@ -4,6 +4,7 @@ var map = L.map('map', {
 
 // --- Formation display panes (above clusters) --- =
 
+
 map.createPane('formationLinesPane');
 map.getPane('formationLinesPane').style.zIndex = 620;
 
