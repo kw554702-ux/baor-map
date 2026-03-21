@@ -272,9 +272,13 @@ for (var i = 0; i < locations.length; i++) {
     '</div>'
   : '') +
 
-'<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>' +
+(loc.page
+  ? '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>'
+  : '') +
 
-  marker.bindPopup(popupHtml);
+'</div>';
+
+marker.bindPopup(popupHtml);
 
   marker.bindTooltip(loc.title, {
     direction: 'top',
