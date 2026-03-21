@@ -490,9 +490,11 @@ for (var i = 0; i < items.length; i++) {
     "<div class='formation-popup'>" +
       "<div class='formation-popup-title'>" + item.title + "</div>" +
       "<div class='formation-popup-place'>" + loc.title + "</div>" +
-      "<div style='margin-top:6px;'>" +
-        item.details.map(d => "<div>" + d + "</div>").join("") +
-      "</div>" +
+     "<div style='margin-top:6px;'>" +
+  (item.details
+    ? item.details.map(function(d) { return "<div>" + d + "</div>"; }).join("")
+    : "") +
+"</div>" + 
     "</div>",
     { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
   )
