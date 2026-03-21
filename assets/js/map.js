@@ -221,28 +221,7 @@ var formations = {
     ]
   }
 };    
-    brigades: [
-      {
-        key: "hildesheim",
-        title: "HQ 91st Lorried Infantry Brigade",
-        children: [
-          { key: "goslar", title: "Goslar" },
-          { key: "braunschweig", title: "Braunschweig" },
-          { key: "gottingen", title: "Göttingen" }
-        ]
-      },
-      {
-        key: "bad-lippspringe",
-        title: "HQ 33rd Armoured Brigade",
-        children: [
-          { key: "paderborn", title: "Paderborn" },
-          { key: "detmold", title: "Detmold" },
-          { key: "sennelager", title: "Sennelager" }
-        ]
-      }
-    ]
-  }
-};
+   
 
 function getLocationByKey(key) {
   for (var i = 0; i < locations.length; i++) {
