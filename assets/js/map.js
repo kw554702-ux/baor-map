@@ -131,6 +131,75 @@ var fullStructures = {
       key: "herford",
       title: "HQ 11th Armoured Division"
     },
+
+    "herford-support-troops": {
+  title: "11th Armoured Division – Support Troops",
+  division: {
+    key: "herford",
+    title: "HQ 11th Armoured Division"
+  },
+  support: [
+    {
+      key: "herford",
+      title: "Herford – Div HQ / Signals",
+      details: [
+        "HQ 11th Armoured Division",
+        "11th Armoured Division Signal Regt"
+      ]
+    },
+    {
+      key: "wolfenbuttel",
+      title: "Wolfenbüttel – Recce",
+      details: [
+        "Royal Horse Guards [recce]",
+        "Replaced Mar 1952 by Life Guards",
+        "Replaced Jul 1953 by 13th/18th Hussars [left Mar 1956]"
+      ]
+    },
+    {
+      key: "bielefeld",
+      title: "Bielefeld – Anti-tank",
+      details: [
+        "3rd Hussars [atk regt]",
+        "Replaced Jul 1953 by 16th/5th Lancers at Sennelager"
+      ]
+    },
+    {
+      key: "hildesheim",
+      title: "Hildesheim – RHA / Loc Bty",
+      details: [
+        "2nd Field Regt RHA",
+        "I, L, O Btys RHA [Sexton]",
+        "157th Loc Bty RA"
+      ]
+    },
+    {
+      key: "detmold",
+      title: "Detmold – Field Regt RA",
+      details: [
+        "10th Field Regt RA",
+        "Q, X, Y Btys RA [Sexton]"
+      ]
+    },
+    {
+      key: "lippstadt",
+      title: "Lippstadt – LAA Regt",
+      details: [
+        "53rd LAA Regt RA",
+        "58, 106, 110 LAA Btys RA [40mm]"
+      ]
+    },
+    {
+      key: "hameln",
+      title: "Hameln – Engineers",
+      details: [
+        "26 Field Engr Regt RE",
+        "7, 29, 60 Field Sqns and 43 Field Park Sqn RE"
+      ]
+    }
+  ]
+}
+    
     brigades: [
       {
         key: "hildesheim",
