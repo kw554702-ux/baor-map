@@ -198,7 +198,7 @@ var fullStructures = {
       ]
     }
   ]
-},
+};
       
     brigades: [
       {
