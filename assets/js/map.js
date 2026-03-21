@@ -472,32 +472,38 @@ function showFullStructure(structureId) {
   })
   .addTo(activeFormationMarkers);
 
-  for (var i = 0; i < structure.brigades.length; i++) {
-    var brigade = structure.brigades[i];
-    var brigadeLoc = getLocationByKey(brigade.key);
-    if (!brigadeLoc) continue;
+  var items = structure.brigades || structure.support;
 
-    var brigadeLatLng = L.latLng(brigadeLoc.coords[0], brigadeLoc.coords[1]);
-    allLatLngs.push(brigadeLatLng);
+for (var i = 0; i < items.length; i++) {
+  var item = items[i];
+  var loc = getLocationByKey(item.key);
+  if (!loc) continue;
 
-    L.marker(brigadeLatLng, {
-      icon: baorIcon,
-      pane: 'formationMarkersPane'
-    })
-    .bindPopup(
-      "<div class='formation-popup'>" +
-        "<div class='formation-popup-title'>" + brigade.title + "</div>" +
-        "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
-      "</div>",
-      { maxWidth: 380, minWidth: 260, offset: L.point(30, -26) }
-    )
-    .bindTooltip(brigade.title, {
-      permanent: true,
-      direction: 'top',
-      offset: [0, -48],
-      className: 'formation-marker-label'
-    })
-    .addTo(activeFormationMarkers);
+  var latLng = L.latLng(loc.coords[0], loc.coords[1]);
+  allLatLngs.push(latLng);
+
+  L.marker(latLng, {
+    icon: baorIcon,
+    pane: 'formationMarkersPane'
+  })
+  .bindPopup(
+    "<div class='formation-popup'>" +
+      "<div class='formation-popup-title'>" + item.title + "</div>" +
+      "<div class='formation-popup-place'>" + loc.title + "</div>" +
+      "<div style='margin-top:6px;'>" +
+        item.details.map(d => "<div>" + d + "</div>").join("") +
+      "</div>" +
+    "</div>",
+    { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
+  )
+  .bindTooltip(item.title, {
+    permanent: true,
+    direction: 'top',
+    offset: [0, -48],
+    className: 'formation-marker-label'
+  })
+  .addTo(activeFormationMarkers);
+}
 
     var divisionLine = L.polyline(
       [divisionLatLng, brigadeLatLng],
