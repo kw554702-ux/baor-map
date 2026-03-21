@@ -188,7 +188,7 @@ var fullStructures = {
         "53rd LAA Regt RA",
         "58, 106, 110 LAA Btys RA [40mm]"
       ]
-    };
+    },
     {
       key: "hameln",
       title: "Hameln – Engineers",
