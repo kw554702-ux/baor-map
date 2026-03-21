@@ -4,7 +4,6 @@ var map = L.map('map', {
 
 // --- Formation display panes (above clusters) --- =
 
-
 map.createPane('formationLinesPane');
 map.getPane('formationLinesPane').style.zIndex = 620;
 
@@ -132,75 +131,6 @@ var fullStructures = {
       key: "herford",
       title: "HQ 11th Armoured Division"
     },
-    
-"herford-support-troops": {
-  title: "11th Armoured Division – Support Troops",
-  division: {
-    key: "herford",
-    title: "HQ 11th Armoured Division"
-  },
-  support: [
-    {
-      key: "herford",
-      title: "Herford – Div HQ / Signals",
-      details: [
-        "HQ 11th Armoured Division",
-        "11th Armoured Division Signal Regt"
-      ]
-    },
-    {
-      key: "wolfenbuttel",
-      title: "Wolfenbüttel – Recce",
-      details: [
-        "Royal Horse Guards [recce]",
-        "Replaced Mar 1952 by Life Guards",
-        "Replaced Jul 1953 by 13th/18th Hussars [left Mar 1956]"
-      ]
-    },
-    {
-      key: "bielefeld",
-      title: "Bielefeld – Anti-tank",
-      details: [
-        "3rd Hussars [atk regt]",
-        "Replaced Jul 1953 by 16th/5th Lancers at Sennelager"
-      ]
-    },
-    {
-      key: "hildesheim",
-      title: "Hildesheim – RHA / Loc Bty",
-      details: [
-        "2nd Field Regt RHA",
-        "I, L, O Btys RHA [Sexton]",
-        "157th Loc Bty RA"
-      ]
-    },
-    {
-      key: "detmold",
-      title: "Detmold – Field Regt RA",
-      details: [
-        "10th Field Regt RA",
-        "Q, X, Y Btys RA [Sexton]"
-      ]
-    },
-    {
-      key: "lippstadt",
-      title: "Lippstadt – LAA Regt",
-      details: [
-        "53rd LAA Regt RA",
-        "58, 106, 110 LAA Btys RA [40mm]"
-      ]
-    },
-    {
-      key: "hameln",
-      title: "Hameln – Engineers",
-      details: [
-        "26 Field Engr Regt RE",
-        "7, 29, 60 Field Sqns and 43 Field Park Sqn RE"
-      ]
-    }
-  ]
-};
-      
     brigades: [
       {
         key: "hildesheim",
@@ -473,40 +403,32 @@ function showFullStructure(structureId) {
   })
   .addTo(activeFormationMarkers);
 
-  var items = structure.brigades || structure.support;
+  for (var i = 0; i < structure.brigades.length; i++) {
+    var brigade = structure.brigades[i];
+    var brigadeLoc = getLocationByKey(brigade.key);
+    if (!brigadeLoc) continue;
 
-for (var i = 0; i < items.length; i++) {
-  var item = items[i];
-  var loc = getLocationByKey(item.key);
-  if (!loc) continue;
+    var brigadeLatLng = L.latLng(brigadeLoc.coords[0], brigadeLoc.coords[1]);
+    allLatLngs.push(brigadeLatLng);
 
-  var latLng = L.latLng(loc.coords[0], loc.coords[1]);
-  allLatLngs.push(latLng);
-
-  L.marker(latLng, {
-    icon: baorIcon,
-    pane: 'formationMarkersPane'
-  })
-  .bindPopup(
-    "<div class='formation-popup'>" +
-      "<div class='formation-popup-title'>" + item.title + "</div>" +
-      "<div class='formation-popup-place'>" + loc.title + "</div>" +
-     "<div style='margin-top:6px;'>" +
-  (item.details
-    ? item.details.map(function(d) { return "<div>" + d + "</div>"; }).join("")
-    : "") +
-"</div>" + 
-    "</div>",
-    { maxWidth: 380, minWidth: 260, offset: L.point(28, -22) }
-  )
-  .bindTooltip(item.title, {
-    permanent: true,
-    direction: 'top',
-    offset: [0, -48],
-    className: 'formation-marker-label'
-  })
-  .addTo(activeFormationMarkers);
-}
+    L.marker(brigadeLatLng, {
+      icon: baorIcon,
+      pane: 'formationMarkersPane'
+    })
+    .bindPopup(
+      "<div class='formation-popup'>" +
+        "<div class='formation-popup-title'>" + brigade.title + "</div>" +
+        "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
+      "</div>",
+      { maxWidth: 380, minWidth: 260, offset: L.point(30, -26) }
+    )
+    .bindTooltip(brigade.title, {
+      permanent: true,
+      direction: 'top',
+      offset: [0, -48],
+      className: 'formation-marker-label'
+    })
+    .addTo(activeFormationMarkers);
 
     var divisionLine = L.polyline(
       [divisionLatLng, brigadeLatLng],
@@ -785,3 +707,18 @@ if (searchInput) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
