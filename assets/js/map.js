@@ -234,6 +234,7 @@ function getLocationByKey(key) {
 function showFormation(type, formationKey) {
   var structure = formations[formationKey];
   if (!structure) return;
+}
 
   activeFormationMarkers.clearLayers();
   activeFormationLines.clearLayers();
