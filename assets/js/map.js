@@ -308,15 +308,15 @@ function showFormation(formationKey, fromBack) {
 
   var allLatLngs = [];
 
-  var divisionLoc = getLocationByKey(structure.key);
+ var divisionLoc = getLocationByKey(structure.parent); 
   if (!divisionLoc) return;
 
   var divisionLatLng = L.latLng(divisionLoc.coords[0], divisionLoc.coords[1]);
   allLatLngs.push(divisionLatLng);
 
-  if (structure.brigades) {
-    for (var i = 0; i < structure.brigades.length; i++) {
-      var brigade = structure.brigades[i];
+if (structure.children) {
+  for (var i = 0; i < structure.children.length; i++) {
+    var brigade = structure.children[i]; 
       var brigadeLoc = getLocationByKey(brigade.key);
       if (!brigadeLoc) continue;
 
