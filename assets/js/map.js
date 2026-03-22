@@ -746,4 +746,3 @@ if (searchInput) {
     }
   });
 }
-}
