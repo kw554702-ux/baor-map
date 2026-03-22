@@ -229,26 +229,6 @@ function getLocationByKey(key) {
   }
   return null;
 }
-/* 🔽 INSERT showFormation HERE 🔽 */
-
-function showFormation(type, formationKey) {
-  var structure = formations[formationKey];
-  if (!structure) return;
-
-
-  activeFormationMarkers.clearLayers();
-  activeFormationLines.clearLayers();
-
-  var allLatLngs = [];
-
-  var divisionLoc = getLocationByKey(structure.key);
-  if (!divisionLoc) return;
-
-  var divisionLatLng = L.latLng(divisionLoc.coords[0], divisionLoc.coords[1]);
-  allLatLngs.push(divisionLatLng);
-  
-// --- Marker layer ---
-
 
 var markerLayer = L.markerClusterGroup();
 map.addLayer(markerLayer);
@@ -305,6 +285,28 @@ marker.bindPopup(popupHtml);
     className: 'baor-label'
   });
 }
+/* 🔽 INSERT showFormation HERE 🔽 */
+
+function showFormation(type, formationKey) {
+  var structure = formations[formationKey];
+  if (!structure) return;
+
+
+  activeFormationMarkers.clearLayers();
+  activeFormationLines.clearLayers();
+
+  var allLatLngs = [];
+
+  var divisionLoc = getLocationByKey(structure.key);
+  if (!divisionLoc) return;
+
+  var divisionLatLng = L.latLng(divisionLoc.coords[0], divisionLoc.coords[1]);
+  allLatLngs.push(divisionLatLng);
+}
+// --- Marker layer ---
+
+
+
 
 
 
