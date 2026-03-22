@@ -411,11 +411,18 @@ function showFullStructure(structureId) {
         icon: baorIcon,
         pane: 'formationMarkersPane'
       })
-      .bindPopup(
-        "<div class='formation-popup'>" +
-          "<div class='formation-popup-title'>" + brigade.title + "</div>" +
-          "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
-        "</div>",
+     .bindPopup(
+  "<div class='formation-popup'>" +
+    "<div class='formation-popup-title'>" + brigade.title + "</div>" +
+    "<div class='formation-popup-place'>" + brigadeLoc.title + "</div>" +
+
+    (brigade.details ? 
+      "<div style='margin-top:6px;'>" +
+        brigade.details.map(function(d){ return "<div>" + d + "</div>"; }).join("") +
+      "</div>"
+    : "") +
+
+  "</div>",
         {
           maxWidth: 380,
           minWidth: 260,
@@ -455,11 +462,19 @@ function showFullStructure(structureId) {
           icon: baorIcon,
           pane: 'formationMarkersPane'
         })
-        .bindPopup(
-          "<div class='formation-popup'>" +
-            "<div class='formation-popup-title'>" + child.title + "</div>" +
-            "<div class='formation-popup-place'>" + childLoc.title + "</div>" +
-          "</div>",
+       .bindPopup(
+  "<div class='formation-popup'>" +
+    "<div class='formation-popup-title'>" + child.title + "</div>" +
+    "<div class='formation-popup-place'>" + childLoc.title + "</div>" +
+
+    (child.details ? 
+      "<div style='margin-top:6px;'>" +
+        child.details.map(function(d){ return "<div>" + d + "</div>"; }).join("") +
+      "</div>"
+    : "") +
+
+  "</div>",
+        
           {
             maxWidth: 380,
             minWidth: 260,
