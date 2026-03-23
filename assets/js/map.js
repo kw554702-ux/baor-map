@@ -256,8 +256,8 @@ for (var i = 0; i < locations.length; i++) {
 
   (loc.key === "herford"
   ? '<div class="baor-period-link">' +
-      '<a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">' +
-      '1951–1956: show brigade layout</a>' +
+      '<a href="http://http://localhost/wordpress-6.9/wordpress/index.php/herford-formations-map-1951-1956/" target="_blank">' +
+      'Open formations map</a>' +
     '</div>'
   : '') +
 
