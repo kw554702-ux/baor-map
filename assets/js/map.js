@@ -255,19 +255,11 @@ for (var i = 0; i < locations.length; i++) {
   (loc.hq ? '<div class="baor-hq">' + loc.hq + '</div>' : '') +
 
   (loc.key === "herford"
-    ? '<div class="baor-period-link">' +
-        '<a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">' +
-        '1951–1956: show brigade layout</a>' +
-      '</div>' +
-      '<div class="baor-period-link">' +
-        '<a href="#" onclick="showFullStructure(\'herford-full-division\'); return false;">' +
-        '1951–1956: show full divisional structure</a>' +
-      '</div>' +
-      '<div class="baor-period-link">' +
-        '<a href="#" onclick="showFullStructure(\'herford-support-troops\'); return false;">' +
-        '1951–1956: show support troops</a>' +
-      '</div>'
-    : '') +
+  ? '<div class="baor-period-link">' +
+      '<a href="#" onclick="showFormation(\'herford-1951-1956\'); return false;">' +
+      '1951–1956: show brigade layout</a>' +
+    '</div>'
+  : '') +
 
   (loc.page
     ? '<div class="baor-link"><a href="' + loc.page + '" target="_blank">Open location page</a></div>'
