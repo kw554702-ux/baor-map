@@ -81,7 +81,10 @@ L.marker(stNazaire).addTo(map).bindPopup("<b>St Nazaire</b>");
 
 // --- Fit bounds ---
 var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
-map.fitBounds(group.getBounds(), { padding: [30,30] });
+map.fitBounds(group.getBounds(), {
+  padding: [30,30],
+  maxZoom: 8
+});
 </script>
 
 </body>
