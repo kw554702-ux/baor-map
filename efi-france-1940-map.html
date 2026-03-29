@@ -86,6 +86,11 @@ L.marker(rheims, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Rheims</b>");
 L.marker(sauvage, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Sauvage</b>");
 L.marker(bouzy, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Bouzy</b>");
 L.marker(stNazaire, { icon: unionJackIcon }).addTo(map).bindPopup("<b>St Nazaire</b>");
+L.marker(stOmer, { icon: unionJackIcon }).addTo(map)
+  .bindPopup("<b>St Omer</b><br>Withdrawal towards the Channel zone");
+
+L.marker(bourbourg, { icon: unionJackIcon }).addTo(map)
+  .bindPopup("<b>Bourbourg</b><br>Approach to the Dunkirk perimeter");  
 
 // --- Fit bounds ---
 var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
