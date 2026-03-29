@@ -32,6 +32,14 @@ html, body {
 // --- Create map ---
 var map = L.map('map');
 
+// --- Custom Union Jack icon ---
+var unionJackIcon = L.icon({
+  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
+  iconSize: [32, 42],
+  iconAnchor: [16, 42],
+  popupAnchor: [0, -36]
+}); 
+
 // --- Tile layer ---
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
@@ -72,13 +80,12 @@ var petitLoop = L.polyline(
 ).addTo(map);
 
 // --- Markers ---
-L.marker(arras).addTo(map).bindPopup("<b>Arras</b><br>Forward BEF HQ area");
-L.marker(dunkirk).addTo(map).bindPopup("<b>Dunkirk</b><br>Evacuation point");
-
-L.marker(rheims).addTo(map).bindPopup("<b>Rheims</b>");
-L.marker(sauvage).addTo(map).bindPopup("<b>Sauvage</b>");
-L.marker(bouzy).addTo(map).bindPopup("<b>Bouzy</b>");
-L.marker(stNazaire).addTo(map).bindPopup("<b>St Nazaire</b>");
+L.marker(arras, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Arras</b><br>Forward BEF HQ area");
+L.marker(dunkirk, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Dunkirk</b><br>Evacuation point");
+L.marker(rheims, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Rheims</b>");
+L.marker(sauvage, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Sauvage</b>");
+L.marker(bouzy, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Bouzy</b>");
+L.marker(stNazaire, { icon: unionJackIcon }).addTo(map).bindPopup("<b>St Nazaire</b>");
 
 // --- Fit bounds ---
 var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
