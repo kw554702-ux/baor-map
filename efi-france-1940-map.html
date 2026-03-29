@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EFI France 1940 Routes</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// --- Create map ---
+var map = L.map('map');
+
+// --- Tile layer ---
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+// --- Dunkirk route ---
+var arras = [50.29113198460253, 2.777673705434522];
+var lens = [50.4296394547227, 2.8278349635210973];
+var stOmer = [50.75109195738493, 2.2428350661466654];
+var bourbourg = [50.94747752843757, 2.195449194226261];
+var dunkirk = [51.047143584761876, 2.381315050798782];
+
+// --- Petit route ---
+var rheims = [49.25821699761076, 4.031758579639196];
+var sauvage = [48.55410344962077, 3.7601576571474866];
+var bouzy = [49.079874579754616, 4.145355918472007];
+var pithiviers = [48.177735528895894, 2.242384667782371];
+var olivet = [47.867306865294715, 1.8990908885980011];
+var montoire = [47.75504320246897, 0.8621149156059941];
+var stNazaire = [47.27471411258108, -2.205862943800152];
+
+// --- Routes ---
+var dunkirkRoute = L.polyline(
+  [arras, lens, stOmer, bourbourg, dunkirk],
+  { color: "#073763", weight: 5 }
+).addTo(map);
+
+var petitMainRoute = L.polyline(
+  [rheims, sauvage, pithiviers, olivet, montoire, stNazaire],
+  { color: "#990000", weight: 4 }
+).addTo(map);
+
+var petitLoop = L.polyline(
+  [sauvage, bouzy, rheims],
+  { color: "#990000", weight: 3, dashArray: "6,6" }
+).addTo(map);
+
+// --- Markers ---
+L.marker(arras).addTo(map).bindPopup("<b>Arras</b><br>Forward BEF HQ area");
+L.marker(dunkirk).addTo(map).bindPopup("<b>Dunkirk</b><br>Evacuation point");
+
+L.marker(rheims).addTo(map).bindPopup("<b>Rheims</b>");
+L.marker(sauvage).addTo(map).bindPopup("<b>Sauvage</b>");
+L.marker(bouzy).addTo(map).bindPopup("<b>Bouzy</b>");
+L.marker(stNazaire).addTo(map).bindPopup("<b>St Nazaire</b>");
+
+// --- Fit bounds ---
+var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
+map.fitBounds(group.getBounds(), { padding: [30,30] });
+</script>
+
+</body>
+</html>
