@@ -69,22 +69,23 @@ var dunkirkRoute = L.polyline(
   { color: "#073763", weight: 5 }
 ).addTo(map);
 
-  L.polylineDecorator(dunkirkRoute, {
+ L.polylineDecorator(dunkirkRoute, {
   patterns: [
     {
-      offset: '25%',
-      repeat: '60px',
+      offset: '20%',
+      repeat: '90px',
       symbol: L.Symbol.arrowHead({
-        pixelSize: 8,
+        pixelSize: 12,
+        polygon: false,
         pathOptions: {
           color: '#073763',
-          fillOpacity: 1,
-          weight: 2
+          weight: 3,
+          opacity: 0.95
         }
       })
     }
   ]
-}).addTo(map);
+}).addTo(map); 
 
 
 var petitMainRoute = L.polyline(
