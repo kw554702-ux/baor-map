@@ -128,7 +128,28 @@ L.marker(stOmer, { icon: unionJackIcon }).addTo(map)
 
 L.marker(bourbourg, { icon: unionJackIcon }).addTo(map)
   .bindPopup("<b>Bourbourg</b><br>Approach to the Dunkirk perimeter");  
+L.marker([51.0344, 2.3768])
+  .addTo(map)
+  .bindTooltip("Dunkirk<br><span style='font-size:11px;'>Evacuation to UK</span>", {
+    permanent: true,
+    direction: 'top',
+    offset: [0, -10]
+  });
 
+  L.marker([47.2735, -2.2137])
+  .addTo(map)
+  .bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation</span>", {
+    permanent: true,
+    direction: 'top',
+    offset: [0, -10]
+  });
+L.marker([49.5, 3.5]) // between Arras & Reims
+  .addTo(map)
+  .bindTooltip("EFI starting areas", {
+    permanent: true,
+    direction: 'right'
+  });
+  
 // --- Fit bounds ---
 var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
 map.fitBounds(group.getBounds(), {
