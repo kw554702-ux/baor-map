@@ -26,7 +26,7 @@ html, body {
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-polylinedecorator@1.7.0/dist/leaflet.polylineDecorator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.min.js"></script>
 
 <script>
 // --- Create map ---
@@ -68,6 +68,23 @@ var dunkirkRoute = L.polyline(
   [arras, lens, stOmer, bourbourg, dunkirk],
   { color: "#073763", weight: 5 }
 ).addTo(map);
+
+  L.polylineDecorator(dunkirkRoute, {
+  patterns: [
+    {
+      offset: '25%',
+      repeat: '60px',
+      symbol: L.Symbol.arrowHead({
+        pixelSize: 8,
+        pathOptions: {
+          color: '#073763',
+          fillOpacity: 1,
+          weight: 2
+        }
+      })
+    }
+  ]
+}).addTo(map);
 
 
 var petitMainRoute = L.polyline(
