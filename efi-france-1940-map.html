@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-  
 <style>
 html, body {
   margin: 0;
@@ -27,7 +26,7 @@ html, body {
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-polylinedecorator@1.7.0/dist/leaflet.polylineDecorator.min.js"></script>  
+<script src="https://unpkg.com/leaflet-polylinedecorator@1.7.0/dist/leaflet.polylineDecorator.min.js"></script>
 
 <script>
 // --- Create map ---
@@ -39,7 +38,7 @@ var unionJackIcon = L.icon({
   iconSize: [32, 42],
   iconAnchor: [16, 42],
   popupAnchor: [0, -36]
-}); 
+});
 
 // --- Tile layer ---
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -69,7 +68,8 @@ var dunkirkRoute = L.polyline(
   [arras, lens, stOmer, bourbourg, dunkirk],
   { color: "#073763", weight: 5 }
 ).addTo(map);
-  L.polylineDecorator(dunkirkLine, {
+
+L.polylineDecorator(dunkirkRoute, {
   patterns: [
     {
       offset: '25%',
@@ -86,7 +86,8 @@ var petitMainRoute = L.polyline(
   [rheims, sauvage, pithiviers, olivet, montoire, stNazaire],
   { color: "#990000", weight: 4 }
 ).addTo(map);
-  L.polylineDecorator(petitLine, {
+
+L.polylineDecorator(petitMainRoute, {
   patterns: [
     {
       offset: '25%',
@@ -103,7 +104,8 @@ var petitLoop = L.polyline(
   [sauvage, bouzy, rheims],
   { color: "#990000", weight: 3, dashArray: "6,6" }
 ).addTo(map);
-  L.polylineDecorator(subJourneyLine, {
+
+L.polylineDecorator(petitLoop, {
   patterns: [
     {
       offset: '30%',
@@ -125,9 +127,10 @@ L.marker(bouzy, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Bouzy</b>");
 L.marker(stNazaire, { icon: unionJackIcon }).addTo(map).bindPopup("<b>St Nazaire</b>");
 L.marker(stOmer, { icon: unionJackIcon }).addTo(map)
   .bindPopup("<b>St Omer</b><br>Withdrawal towards the Channel zone");
-
 L.marker(bourbourg, { icon: unionJackIcon }).addTo(map)
-  .bindPopup("<b>Bourbourg</b><br>Approach to the Dunkirk perimeter");  
+  .bindPopup("<b>Bourbourg</b><br>Approach to the Dunkirk perimeter");
+
+// --- Minimal labels ---
 L.marker([51.0344, 2.3768])
   .addTo(map)
   .bindTooltip("Dunkirk<br><span style='font-size:11px;'>Evacuation to UK</span>", {
@@ -136,24 +139,36 @@ L.marker([51.0344, 2.3768])
     offset: [0, -10]
   });
 
-  L.marker([47.2735, -2.2137])
+L.marker([47.2735, -2.2137])
   .addTo(map)
   .bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation</span>", {
     permanent: true,
     direction: 'top',
     offset: [0, -10]
   });
-L.marker([49.5, 3.5]) // between Arras & Reims
+
+L.marker([49.5, 3.5])
   .addTo(map)
   .bindTooltip("EFI starting areas", {
     permanent: true,
     direction: 'right'
   });
-  
+
+// --- Optional title overlay ---
+var title = L.control({position: 'topright'});
+
+title.onAdd = function () {
+  var div = L.DomUtil.create('div');
+  div.innerHTML = "<div style='font-family:Georgia, serif; font-size:13px; color:#073763; background:#ffffffcc; padding:6px 10px; border-radius:6px;'>EFI Retreat Routes<br>June 1940</div>";
+  return div;
+};
+
+title.addTo(map);
+
 // --- Fit bounds ---
 var group = L.featureGroup([dunkirkRoute, petitMainRoute, petitLoop]);
 map.fitBounds(group.getBounds(), {
-  padding: [30,30],
+  padding: [30, 30],
   maxZoom: 8
 });
 </script>
