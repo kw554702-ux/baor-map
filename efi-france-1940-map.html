@@ -93,6 +93,24 @@ var petitMainRoute = L.polyline(
   { color: "#990000", weight: 4 }
 ).addTo(map);
 
+  L.polylineDecorator(petitMainRoute, {
+  patterns: [
+    {
+      offset: '20%',
+      repeat: '90px',
+      symbol: L.Symbol.arrowHead({
+        pixelSize: 12,
+        polygon: false,
+        pathOptions: {
+          color: '#990000',
+          weight: 3,
+          opacity: 0.95
+        }
+      })
+    }
+  ]
+}).addTo(map);
+
 
 
 var petitLoop = L.polyline(
