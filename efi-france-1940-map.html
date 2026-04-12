@@ -69,54 +69,20 @@ var dunkirkRoute = L.polyline(
   { color: "#073763", weight: 5 }
 ).addTo(map);
 
-L.polylineDecorator(dunkirkRoute, {
-  patterns: [
-    {
-      offset: '25%',
-      repeat: '50px',
-      symbol: L.Symbol.arrowHead({
-        pixelSize: 8,
-        pathOptions: { color: '#073763', fillOpacity: 1, weight: 2 }
-      })
-    }
-  ]
-}).addTo(map);
 
 var petitMainRoute = L.polyline(
   [rheims, sauvage, pithiviers, olivet, montoire, stNazaire],
   { color: "#990000", weight: 4 }
 ).addTo(map);
 
-L.polylineDecorator(petitMainRoute, {
-  patterns: [
-    {
-      offset: '25%',
-      repeat: '50px',
-      symbol: L.Symbol.arrowHead({
-        pixelSize: 8,
-        pathOptions: { color: '#990000', fillOpacity: 1, weight: 2 }
-      })
-    }
-  ]
-}).addTo(map);
+
 
 var petitLoop = L.polyline(
   [sauvage, bouzy, rheims],
   { color: "#990000", weight: 3, dashArray: "6,6" }
 ).addTo(map);
 
-L.polylineDecorator(petitLoop, {
-  patterns: [
-    {
-      offset: '30%',
-      repeat: '70px',
-      symbol: L.Symbol.arrowHead({
-        pixelSize: 7,
-        pathOptions: { color: '#990000', fillOpacity: 0.8, weight: 1 }
-      })
-    }
-  ]
-}).addTo(map);
+
 
 // --- Markers ---
 L.marker(arras, { icon: unionJackIcon }).addTo(map).bindPopup("<b>Arras</b><br>Forward BEF HQ area");
