@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>St Nazaire Evacuation Area</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// --- Create map ---
+var map = L.map('map');
+
+// --- Custom Union Jack icon ---
+var unionJackIcon = L.icon({
+  iconUrl: 'https://kw554702-ux.github.io/baor-map/assets/img/union-jack-marker.png',
+  iconSize: [32, 42],
+  iconAnchor: [16, 42],
+  popupAnchor: [0, -36]
+});
+
+// --- Custom red location dot ---
+var locationIcon = L.divIcon({
+  className: 'custom-location-marker',
+  html: '<div style="width:16px;height:16px;background:#990000;border:3px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.35);"></div>',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8]
+});
+
+// --- Tile layer ---
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+// --- Key locations ---
+var stNazaire = [47.2735, -2.2137];
+var loireEntry = [47.265, -2.36];
+var anchorage = [47.245, -2.295];
+
+// --- Optional Union Jack anchor markers ---
+L.marker(stNazaire, { icon: unionJackIcon }).addTo(map)
+  .bindPopup("<b>St Nazaire</b><br>Port and evacuation point");
+
+// --- Red location labels ---
+L.marker(stNazaire, { icon: locationIcon })
+  .addTo(map)
+  .bindTooltip("St Nazaire<br><span style='font-size:11px;'>Port and evacuation point</span>", {
+    permanent: true,
+    direction: 'left',
+    offset: [-12, 0]
+  });
+
+L.marker(loireEntry, { icon: locationIcon })
+  .addTo(map)
+  .bindTooltip("Loire Estuary<br><span style='font-size:11px;'>River entry from the Atlantic</span>", {
+    permanent: true,
+    direction: 'top',
+    offset: [0, -18]
+  });
+
+// --- Anchorage area ---
+L.circle(anchorage, {
+  color: '#990000',
+  weight: 2,
+  fillColor: '#990000',
+  fillOpacity: 0.12,
+  radius: 3500
+}).addTo(map);
+
+L.marker(anchorage, { icon: locationIcon })
+  .addTo(map)
+  .bindTooltip("Anchorage Area<br><span style='font-size:11px;'>Evacuation shipping offshore</span>", {
+    permanent: true,
+    direction: 'right',
+    offset: [12, 0]
+  });
+
+// --- Optional title overlay ---
+var title = L.control({position: 'topright'});
+
+title.onAdd = function () {
+  var div = L.DomUtil.create('div');
+  div.innerHTML = "<div style='font-family:Georgia, serif; font-size:13px; color:#073763; background:#ffffffcc; padding:6px 10px; border-radius:6px;'>St Nazaire Evacuation Area<br>June 1940</div>";
+  return div;
+};
+
+title.addTo(map);
+
+// --- Fit bounds ---
+var group = L.featureGroup([
+  L.marker(stNazaire),
+  L.marker(loireEntry),
+  L.marker(anchorage)
+]);
+
+map.fitBounds(group.getBounds(), {
+  padding: [40, 40],
+  maxZoom: 11
+});
+</script>
+
+</body>
+</html>
