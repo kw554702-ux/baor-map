@@ -135,7 +135,7 @@ L.marker(bourbourg, { icon: unionJackIcon }).addTo(map)
 // --- Minimal labels ---
 L.marker([51.0344, 2.3768])
   .addTo(map)
-  .bindTooltip("Dunkirk<br><span style='font-size:11px;'>Evacuation to UK</span>", {
+  .bindTooltip("Dunkirk<br><span style='font-size:11px;'>Channel evacuation point</span>", {
     permanent: true,
     direction: 'top',
     offset: [0, -10]
@@ -143,7 +143,7 @@ L.marker([51.0344, 2.3768])
 
 L.marker([47.2735, -2.2137])
   .addTo(map)
-  .bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation</span>", {
+.bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation point</span>", {
     permanent: true,
     direction: 'top',
     offset: [0, -10]
@@ -151,9 +151,17 @@ L.marker([47.2735, -2.2137])
 
 L.marker([49.5, 3.5])
   .addTo(map)
-  .bindTooltip("EFI starting areas", {
+.bindTooltip("Reims<br><span style='font-size:11px;'>EFI evacuation starting point</span>", {
     permanent: true,
     direction: 'right'
+  });
+
+  L.marker([50.2910, 2.7775])
+  .addTo(map)
+  .bindTooltip("Arras<br><span style='font-size:11px;'>EFI evacuation starting point</span>", {
+    permanent: true,
+    direction: 'top',
+    offset: [0, -10]
   });
 
 // --- Optional title overlay ---
