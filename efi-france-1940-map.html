@@ -40,6 +40,13 @@ var unionJackIcon = L.icon({
   popupAnchor: [0, -36]
 });
 
+ var locationIcon = L.divIcon({
+  className: 'custom-location-marker',
+  html: '<div style="width:16px;height:16px;background:#990000;border:3px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.35);"></div>',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8]
+}); 
+
 // --- Tile layer ---
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
@@ -133,31 +140,31 @@ L.marker(bourbourg, { icon: unionJackIcon }).addTo(map)
   .bindPopup("<b>Bourbourg</b><br>Approach to the Dunkirk perimeter");
 
 // --- Minimal labels ---
-L.marker([51.0344, 2.3768])
+L.marker([51.0344, 2.3768], { icon: locationIcon })
   .addTo(map)
   .bindTooltip("Dunkirk<br><span style='font-size:11px;'>Channel evacuation point</span>", {
     permanent: true,
     direction: 'top',
-    offset: [0, -10]
+    offset: [0, -18]
   });
 
-L.marker([47.2735, -2.2137])
+L.marker([47.2735, -2.2137], { icon: locationIcon })
   .addTo(map)
-.bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation point</span>", {
+  .bindTooltip("St Nazaire<br><span style='font-size:11px;'>Atlantic evacuation point</span>", {
     permanent: true,
     direction: 'top',
-    offset: [0, -10]
+    offset: [0, -18]
   });
 
-L.marker([49.2589, 4.0310])
+L.marker([49.2589, 4.0310], { icon: locationIcon })
   .addTo(map)
   .bindTooltip("Reims<br><span style='font-size:11px;'>EFI evacuation starting point</span>", {
     permanent: true,
     direction: 'top',
-    offset: [0, -10]
+    offset: [0, -18]
   });
 
-  L.marker([50.2910, 2.7775])
+L.marker([50.2910, 2.7775], { icon: locationIcon })
   .addTo(map)
   .bindTooltip("Arras<br><span style='font-size:11px;'>EFI evacuation starting point</span>", {
     permanent: true,
