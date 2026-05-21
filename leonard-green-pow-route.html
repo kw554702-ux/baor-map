@@ -133,7 +133,12 @@ const lilleMarker = L.circleMarker(lille, {
   weight: 2
 })
 .addTo(map)
-.bindPopup("<b>Lille</b><br>EFI withdrawal route");
+.bindPopup("<b>Lille</b><br>EFI withdrawal route")
+.bindTooltip("Lille", {
+  permanent: false,
+  direction: 'top',
+  offset: [0, -8]
+});
 
 const arrasMarker = L.circleMarker(arras, {
   radius: 9,
@@ -143,7 +148,12 @@ const arrasMarker = L.circleMarker(arras, {
   weight: 3
 })
 .addTo(map)
-.bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France");
+.bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France")
+.bindTooltip("Arras", {
+  permanent: false,
+  direction: 'top',
+  offset: [0, -8]
+});
 
 const wizernesMarker = L.circleMarker(wizernes, {
   radius: 8,
@@ -153,7 +163,11 @@ const wizernesMarker = L.circleMarker(wizernes, {
   weight: 2
 })
 .addTo(map)
-.bindPopup("<b>Wizernes</b><br>Approximate capture area");
+.bindTooltip("Wizernes", {
+  permanent: false,
+  direction: 'top',
+  offset: [0, -8]
+});
 
 const bitburgMarker = L.circleMarker(bitburg, {
   radius: 8,
@@ -163,7 +177,11 @@ const bitburgMarker = L.circleMarker(bitburg, {
   weight: 2
 })
 .addTo(map)
-.bindPopup("<b>Bitburg</b><br>Approximate rail embarkation point");
+.bindTooltip("Bitburg", {
+  permanent: false,
+  direction: 'top',
+  offset: [0, -8]
+});
 
 const stalagXXAMarker = L.circleMarker(stalagXXA, {
   radius: 8,
@@ -173,7 +191,11 @@ const stalagXXAMarker = L.circleMarker(stalagXXA, {
   weight: 2
 })
 .addTo(map)
-.bindPopup("<b>Stalag XXA Thorn</b><br>Occupied Poland");
+.bindTooltip("Stalag XXA Thorn", {
+  permanent: false,
+  direction: 'top',
+  offset: [0, -8]
+});
 
 //
 // BRING MARKERS TO FRONT
