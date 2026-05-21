@@ -62,62 +62,6 @@ const bitburg = [49.96665655154762, 6.528579630114036];
 const stalagXXA = [53.0138, 18.5984];
 
 
-
-//
-// CIRCLE MARKERS
-//
-
-L.circleMarker(lille, {
-  radius: 8,
-  color: '#1f78b4',
-  fillColor: '#1f78b4',
-  fillOpacity: 0.9,
-  weight: 2
-})
-.addTo(map)
-.bindPopup("<b>Lille</b><br>EFI withdrawal route");
-
- const arrasMarker = L.circleMarker(arras, {
-  radius: 9,
-  color: '#ffffff',
-  fillColor: '#1b365d',
-  fillOpacity: 1,
-  weight: 3
-})
-.addTo(map)
-.bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France");
-
-arrasMarker.bringToFront();
-
-L.circleMarker(wizernes, {
-  radius: 8,
-  color: '#990000',
-  fillColor: '#990000',
-  fillOpacity: 0.9,
-  weight: 2
-})
-.addTo(map)
-.bindPopup("<b>Wizernes</b><br>Approximate capture area");
-
-L.circleMarker(bitburg, {
-  radius: 8,
-  color: '#666666',
-  fillColor: '#666666',
-  fillOpacity: 0.9,
-  weight: 2
-})
-.addTo(map)
-.bindPopup("<b>Bitburg</b><br>Approximate rail embarkation point");
-
-L.circleMarker(stalagXXA, {
-  radius: 8,
-  color: '#222222',
-  fillColor: '#222222',
-  fillOpacity: 0.9,
-  weight: 2
-})
-.addTo(map)
-.bindPopup("<b>Stalag XXA Thorn</b><br>Occupied Poland");
 //
 // RETREAT ROUTE
 //
@@ -167,6 +111,62 @@ L.polyline(railRoute, {
   weight: 4,
   dashArray: '2, 10'
 }).addTo(map);
+
+ //
+// CIRCLE MARKERS
+//
+
+Lconst lilleMarker = .circleMarker(lille, {
+  radius: 8,
+  color: '#1f78b4',
+  fillColor: '#1f78b4',
+  fillOpacity: 0.9,
+  weight: 2
+})
+.addTo(map)
+.bindPopup("<b>Lille</b><br>EFI withdrawal route");
+
+ const arrasMarker = L.circleMarker(arras, {
+  radius: 9,
+  color: '#ffffff',
+  fillColor: '#1b365d',
+  fillOpacity: 1,
+  weight: 3
+})
+.addTo(map)
+.bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France");
+
+arrasMarker.bringToFront();
+
+const wizernesMarker = L.circleMarker(wizernes, {
+  radius: 8,
+  color: '#990000',
+  fillColor: '#990000',
+  fillOpacity: 0.9,
+  weight: 2
+})
+.addTo(map)
+.bindPopup("<b>Wizernes</b><br>Approximate capture area");
+
+const bitburg = L.circleMarker(bitburg, {
+  radius: 8,
+  color: '#666666',
+  fillColor: '#666666',
+  fillOpacity: 0.9,
+  weight: 2
+})
+.addTo(map)
+.bindPopup("<b>Bitburg</b><br>Approximate rail embarkation point");
+
+const stalagXXAMarker = L.circleMarker(stalagXXA, {
+  radius: 8,
+  color: '#222222',
+  fillColor: '#222222',
+  fillOpacity: 0.9,
+  weight: 2
+})
+.addTo(map)
+.bindPopup("<b>Stalag XXA Thorn</b><br>Occupied Poland");
 
 //
 // FIT MAP TO ROUTE
