@@ -26,6 +26,32 @@ html, body {
   font-size: 14px;
 }
 
+ #returnBtn {
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1000;
+
+  background:rgba(255,255,255,0.96);
+  border:1px solid #cfcfcf;
+  border-radius:10px;
+
+  padding:10px 14px;
+
+  font-family:Georgia, serif;
+  font-size:14px;
+  color:#990000;
+  text-decoration:none;
+
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+
+  transition:all 0.2s ease;
+}
+
+#returnBtn:hover {
+  background:#f7f7f7;
+  border-color:#999;
+}
  .leaflet-tooltip {
   background: rgba(255,255,255,0.95);
   border: 1px solid #999;
@@ -42,6 +68,13 @@ html, body {
 <body>
 
 <div id="map"></div>
+
+<a href="https://www.sutlerssupreme.co.uk/p/private-leonard-green-rascefi.html"
+   id="returnBtn">
+
+  ← Return to Leonard Green article
+
+</a>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
