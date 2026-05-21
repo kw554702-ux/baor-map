@@ -119,6 +119,16 @@ L.circleMarker(lille, {
 .addTo(map)
 .bindPopup("<b>Lille</b><br>EFI withdrawal route");
 
+ L.circleMarker(arras, {
+  radius: 6,
+  color: '#1b365d',
+  fillColor: '#1b365d',
+  fillOpacity: 0.9,
+  weight: 2
+})
+.addTo(map)
+.bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France");
+
 L.circleMarker(wizernes, {
   radius: 8,
   color: '#990000',
