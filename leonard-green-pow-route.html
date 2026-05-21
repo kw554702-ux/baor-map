@@ -108,6 +108,19 @@ L.polyline(railRoute, {
   dashArray: '2, 10'
 }).addTo(map);
 
+ //
+// FIT MAP TO ROUTE
+//
+
+const group = new L.featureGroup([
+  L.marker(lille),
+  L.marker(stalagXXA)
+]);
+
+map.fitBounds(group.getBounds(), {
+  padding: [40, 40]
+});
+
 //
 // CIRCLE MARKERS
 //
@@ -172,18 +185,7 @@ wizernesMarker.bringToFront();
 bitburgMarker.bringToFront();
 stalagXXAMarker.bringToFront();
 
-//
-// FIT MAP TO ROUTE
-//
 
-const group = new L.featureGroup([
-  L.marker(lille),
-  L.marker(stalagXXA)
-]);
-
-map.fitBounds(group.getBounds(), {
-  padding: [40, 40]
-});
 
 </script>
 
