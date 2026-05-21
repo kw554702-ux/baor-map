@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Leonard Green POW Route</title>
+
+<link rel="stylesheet"
+ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+#map {
+  width:100%;
+  height:100vh;
+}
+
+.leaflet-popup-content {
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+// CREATE MAP
+const map = L.map('map').setView([50.5, 6.5], 5);
+
+// BASE MAP
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+//
+// LOCATIONS
+//
+
+const lille = [50.6292, 3.0573];
+const saintOmer = [50.7480, 2.2600];
+const wizernes = [50.7100, 2.2430];
+const bitburg = [49.9670, 6.5273];
+const stalagXXA = [53.0138, 18.5984];
+
+//
+// MARKERS
+//
+
+L.marker(lille)
+  .addTo(map)
+  .bindPopup("<b>Lille</b><br>EFI withdrawal route");
+
+L.marker(wizernes)
+  .addTo(map)
+  .bindPopup("<b>Wizernes</b><br>Approximate capture area");
+
+L.marker(bitburg)
+  .addTo(map)
+  .bindPopup("<b>Bitburg</b><br>POW marching route reached Germany");
+
+L.marker(stalagXXA)
+  .addTo(map)
+  .bindPopup("<b>Stalag XXA Thorn</b><br>Occupied Poland");
+
+//
+// RETREAT ROUTE
+//
+
+const retreatRoute = [
+  lille,
+  saintOmer,
+  wizernes
+];
+
+L.polyline(retreatRoute, {
+  color: '#990000',
+  weight: 4
+}).addTo(map);
+
+//
+// POW MARCH ROUTE
+//
+
+const marchRoute = [
+  wizernes,
+  [50.5, 4.5],
+  [50.0, 5.5],
+  [49.8, 6.1],
+  bitburg
+];
+
+L.polyline(marchRoute, {
+  color: '#666666',
+  weight: 4,
+  dashArray: '8, 8'
+}).addTo(map);
+
+//
+// RAIL ROUTE
+//
+
+const railRoute = [
+  bitburg,
+  [51.0, 8.0],
+  [52.0, 12.0],
+  stalagXXA
+];
+
+L.polyline(railRoute, {
+  color: '#222222',
+  weight: 3,
+  dashArray: '2, 10'
+}).addTo(map);
+
+//
+// FIT MAP TO ROUTE
+//
+
+const group = new L.featureGroup([
+  L.marker(lille),
+  L.marker(stalagXXA)
+]);
+
+map.fitBounds(group.getBounds(), {
+  padding: [40, 40]
+});
+
+</script>
+
+</body>
+</html>
