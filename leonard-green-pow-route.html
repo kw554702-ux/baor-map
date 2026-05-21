@@ -50,10 +50,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // LOCATIONS
 //
 
-//
-// LOCATIONS
-//
-
 const lille = [50.6292, 3.0573];
 const arras = [50.29111321354557, 2.778012405631989];
 const saintOmer = [50.7480, 2.2600];
@@ -112,11 +108,11 @@ L.polyline(railRoute, {
   dashArray: '2, 10'
 }).addTo(map);
 
- //
+//
 // CIRCLE MARKERS
 //
 
-const lilleMarker = .circleMarker(lille, {
+const lilleMarker = L.circleMarker(lille, {
   radius: 8,
   color: '#1f78b4',
   fillColor: '#1f78b4',
@@ -126,7 +122,7 @@ const lilleMarker = .circleMarker(lille, {
 .addTo(map)
 .bindPopup("<b>Lille</b><br>EFI withdrawal route");
 
- const arrasMarker = L.circleMarker(arras, {
+const arrasMarker = L.circleMarker(arras, {
   radius: 9,
   color: '#ffffff',
   fillColor: '#1b365d',
@@ -135,8 +131,6 @@ const lilleMarker = .circleMarker(lille, {
 })
 .addTo(map)
 .bindPopup("<b>Arras</b><br>HQ RASC/EFI Northern France");
-
-arrasMarker.bringToFront();
 
 const wizernesMarker = L.circleMarker(wizernes, {
   radius: 8,
@@ -167,6 +161,16 @@ const stalagXXAMarker = L.circleMarker(stalagXXA, {
 })
 .addTo(map)
 .bindPopup("<b>Stalag XXA Thorn</b><br>Occupied Poland");
+
+//
+// BRING MARKERS TO FRONT
+//
+
+lilleMarker.bringToFront();
+arrasMarker.bringToFront();
+wizernesMarker.bringToFront();
+bitburgMarker.bringToFront();
+stalagXXAMarker.bringToFront();
 
 //
 // FIT MAP TO ROUTE
