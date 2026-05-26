@@ -156,14 +156,8 @@ L.polyline(railRoute, {
 // FIT MAP TO ROUTE
 //
 
-const group = new L.featureGroup([
-  L.marker(lille),
-  L.marker(stalagXXA)
-]);
-
-map.fitBounds(group.getBounds(), {
-  padding: [40, 40]
-});
+// SET BROADER INITIAL VIEW
+map.setView([51.8, 5.0], 5);
 
 //
 // CIRCLE MARKERS
